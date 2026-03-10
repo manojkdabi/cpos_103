@@ -10690,6 +10690,14 @@ ADVANCED.state.currentQuestionIndex = idx;
                     matches = !isNaN(answerNum) && answerNum > parseFloat(whenVal);
                 } else if (op === 'LT' || op === '<') {
                     matches = !isNaN(answerNum) && answerNum < parseFloat(whenVal);
+                // Sheet aliases: GREATER_EQUAL / LESS_EQUAL / GREATER / LESS
+                // These use When_Numeric_Min as the threshold (When_Value is empty for these rules)
+                } else if (op === 'GREATER_EQUAL' || op === 'GREATER' || op === 'LESS_EQUAL' || op === 'LESS') {
+                    var threshold = (numMin != null && !isNaN(numMin)) ? numMin : parseFloat(whenVal);
+                    if (op === 'GREATER_EQUAL') matches = !isNaN(answerNum) && answerNum >= threshold;
+                    else if (op === 'GREATER')  matches = !isNaN(answerNum) && answerNum > threshold;
+                    else if (op === 'LESS_EQUAL') matches = !isNaN(answerNum) && answerNum <= threshold;
+                    else                          matches = !isNaN(answerNum) && answerNum < threshold;
                 } else {
                     matches = answerCode === whenVal;
                 }
