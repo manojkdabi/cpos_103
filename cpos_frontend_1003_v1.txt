@@ -2319,7 +2319,10 @@
             const sidebar = document.getElementById('sidebar');
             const isOpen = sidebar.classList.toggle('mobile-open');
             const btn = document.getElementById('mobileMenuBtn');
-            if (btn) btn.textContent = isOpen ? '✕' : '☰';
+            if (btn) {
+                btn.textContent = isOpen ? '✕' : '☰';
+                btn.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+            }
         }
 
         window.toggleMobileMenu = toggleMobileMenu;
@@ -4140,32 +4143,30 @@
 
         function showConsistencyWarning(violation) {
             var lang = CPOSL.language;
-            // Store violation first so reviewConflict() can read it from state (ruleId not embedded in onclick)
-            CPOSL.qState.pendingWarning = violation;
-            var warningHtml = '<div class="warning-box">' + '<div style="display:flex;gap:10px;align-items:flex-start">' + '<span style="font-size:24px">⚠️</span>' + '<div style="flex:1">' + '<div style="font-weight:700;margin-bottom:6px;color:var(--warn)">' + (lang === 'HI' ? 'त्वरित जाँच' : 'Quick Check') + '</div>' + '<div style="font-size:13px;line-height:1.5;margin-bottom:10px">' + escapeHtml(violation.message) + '</div>' + '<div style="display:flex;gap:8px;flex-wrap:wrap">' + '<button class="btn ghost" id="btnReviewConflict">' + (lang === 'HI' ? 'पिछले उत्तर देखें' : 'Review Previous Answers') + '</button>' + '<button class="btn primary" onclick="continueAnyway()">' + (lang === 'HI' ? 'फिर भी जारी रखें' : 'Continue Anyway') + '</button>' + '</div></div></div></div>';
+            var warningHtml = '<div class="warning-box">' + '<div style="display:flex;gap:10px;align-items:flex-start">' + '<span style="font-size:24px">⚠️</span>' + '<div style="flex:1">' + '<div style="font-weight:700;margin-bottom:6px;color:var(--warn)">' + (lang === 'HI' ? 'त्वरित जाँच' : 'Quick Check') + '</div>' + '<div style="font-size:13px;line-height:1.5;margin-bottom:10px">' + escapeHtml(violation.message) + '</div>' + '<div style="display:flex;gap:8px;flex-wrap:wrap">' + '<button class="btn ghost" id="btnReviewConflict">' + (lang === 'HI' ? 'पिछले उत्तर देखें' : 'Review Previous Answers') + '</button>' + '<button class="btn primary" id="btnContinueAnyway">' + (lang === 'HI' ? 'फिर भी जारी रखें' : 'Continue Anyway') + '</button>' + '</div></div></div></div>';
 
             document.getElementById('qNavStatus').innerHTML = warningHtml;
-            // Attach reviewer click handler after DOM insertion (avoids ruleId injection into onclick attribute)
+            // Attach handlers after DOM insertion using closures over 'violation' to avoid
+            // inline onclick attribute injection and global-state race conditions.
             var btnReview = document.getElementById('btnReviewConflict');
             if (btnReview) {
-                btnReview.addEventListener('click', function() { reviewConflict(violation.ruleId); });
+                btnReview.addEventListener('click', function() { reviewConflict(violation); });
+            }
+            var btnContinue = document.getElementById('btnContinueAnyway');
+            if (btnContinue) {
+                btnContinue.addEventListener('click', function() { continueAnyway(violation); });
             }
         }
 
-        function reviewConflict(ruleId) {
-            var violation = CPOSL.qState.pendingWarning;
-
+        function reviewConflict(violation) {
             if (violation && violation.conflictingQuestions && violation.conflictingQuestions.length > 0) {
                 alert('Conflicting answers from questions: ' + violation.conflictingQuestions.join(', '));
             }
 
             document.getElementById('qNavStatus').textContent = 'Review your answers, then click Next.';
-            CPOSL.qState.pendingWarning = null;
         }
 
-        function continueAnyway() {
-            var violation = CPOSL.qState.pendingWarning;
-
+        function continueAnyway(violation) {
             if (violation && violation.conflictingQuestions) {
                 violation.conflictingQuestions.forEach(function(qid) {
                         var ans = CPOSL.qState.answered[qid];
@@ -4186,7 +4187,6 @@
             }
 
             document.getElementById('qNavStatus').textContent = '';
-            CPOSL.qState.pendingWarning = null;
             proceedToNextQuestion();
         }
 
