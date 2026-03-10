@@ -10664,19 +10664,20 @@ ADVANCED.state.currentQuestionIndex = idx;
             sorted.forEach(function(rule) {
                 var isActive = String(rule.Is_Active || rule.IsActive || 'TRUE').toUpperCase();
                 if (isActive === 'FALSE') return;
-                var whenQ = rule.When_Question_ID || rule.WhenQuestionID || '';
-                if (whenQ !== questionId) return;
+                var whenQ = String(rule.When_Question_ID || rule.WhenQuestionID || '').trim();
+                if (whenQ !== String(questionId || '').trim()) return;
                 var op = String(rule.When_Operator || '=').toUpperCase().trim();
-                var whenVal = String(rule.When_Value || '');
+                var whenVal = String(rule.When_Value || '').trim();
                 var numMin = parseFloat(rule.When_Numeric_Min);
                 var numMax = parseFloat(rule.When_Numeric_Max);
                 var matches = false;
+                var ansCodeUpper = String(answerCode || '').toUpperCase();
                 if (op === '=' || op === 'EQUALS') {
-                    matches = answerCode === whenVal;
+                    matches = ansCodeUpper === whenVal.toUpperCase();
                 } else if (op === '!=' || op === 'NOT_EQUALS') {
-                    matches = answerCode !== whenVal;
+                    matches = ansCodeUpper !== whenVal.toUpperCase();
                 } else if (op === 'IN') {
-                    matches = whenVal.split(/[|,]/).map(function(v) { return v.trim(); }).indexOf(answerCode) >= 0;
+                    matches = whenVal.split(/[|,]/).map(function(v) { return v.trim().toUpperCase(); }).indexOf(ansCodeUpper) >= 0;
                 } else if (op === 'BETWEEN') {
                     // Uses When_Numeric_Min and When_Numeric_Max columns
                     matches = !isNaN(answerNum) && !isNaN(numMin) && !isNaN(numMax) &&
@@ -11208,7 +11209,12 @@ function advFindNextEligibleQuestionIndex(currentIdx) {
                         }
 
                         // Step 1b: Apply derivation rules to emit additional signals
-                        advApplyDerivationRules(answer.questionId, answer.answerCode || '');
+                        // For numeric_direct questions answerCode is absent; fall back to the
+                        // string representation of answerValue so numeric operators can match.
+                        var ansCodeForDeriv = answer.answerCode != null
+                            ? String(answer.answerCode)
+                            : (answer.answerValue != null ? String(answer.answerValue) : '');
+                        advApplyDerivationRules(answer.questionId, ansCodeForDeriv);
 
                         // Step 1c: Re-evaluate composite rules after new signals are available
                         advApplyCompositeRules();
@@ -11216,8 +11222,10 @@ function advFindNextEligibleQuestionIndex(currentIdx) {
                         // Step 1d: Check probe templates — queue confidence-based follow-up probes
                         advCheckAndTriggerProbes(answer.questionId);
 
-                        // Step 2: Apply inference rules (skip questions + emit signals based on derived signals)
-                        advCheckInferenceDisqualifiers(answer);
+                        // Step 2: Apply inference rules (skip questions + emit signals, check disqualification)
+                        if (typeof advCheckDisqualifiers === 'function' && advCheckDisqualifiers(answer)) {
+                            return; // disqualified — advCheckDisqualifiers has shown the screen
+                        }
                         // Re-evaluate composite rules in case inference emitted new signals
                         advApplyCompositeRules();
 
