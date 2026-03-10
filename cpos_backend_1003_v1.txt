@@ -79,7 +79,7 @@ function manualInitializeAllTables() {
 // IMPORTANT: If you're using a container-bound script (recommended), 
 // you DON'T need to set this. The system will use getActiveSpreadsheet().
 //
-const CPOS_SS_ID = '1f3rcNISHiDHChnboN7eMrjSef0LGuGjbwLbUejk5_QE';
+const CPOS_SS_ID = 'PASTE_YOUR_SPREADSHEET_ID_HERE';
 
 function cpos_getSS_() {
   // Prefer container-bound active SS if present
@@ -240,7 +240,7 @@ function saveCPOSLiteAssessment(payload) {
       assessmentId,                                    // Assessment_ID
       payload.Session_ID || '',                        // Session_ID
       new Date().toISOString(),                        // Created_At
-      Session.getActiveUser().getEmail(),              // Created_By
+      Session.getActiveUser().getEmail() || 'anonymous', // Created_By
       payload.Client_ID || 'Default',                  // Client_ID
       payload.Site_ID || '',                           // Site_ID
       payload.Site_Name || '',                         // Site_Name
@@ -336,7 +336,7 @@ function saveCPOSSession(payload) {
     var row = [
       sessionId,                                       // Session_ID
       payload.Created_At || new Date().toISOString(),  // Created_At
-      Session.getActiveUser().getEmail(),              // Created_By
+      Session.getActiveUser().getEmail() || 'anonymous',              // Created_By
       payload.Client_ID || 'Default',                  // Client_ID
       payload.Site_ID || '',                           // Site_ID
       payload.Language || 'EN',                        // Language
@@ -1248,8 +1248,8 @@ function evaluateCPOS_Lite_v1(selections, opts) {
       if (!mainCrop) {
         eligibility = 'UNKNOWN';
         eligibilityReasons.push('Crop type unknown - need to ask main crop question');
-      } else if (mainCrop !== 'RICE_FLOODED' && mainCrop !== 'RICE-FLOODED' &&
-        !String(mainCrop).toLowerCase().includes('rice') ||
+      } else if ((mainCrop !== 'RICE_FLOODED' && mainCrop !== 'RICE-FLOODED' &&
+        !String(mainCrop).toLowerCase().includes('rice')) ||
         String(mainCrop).toLowerCase().includes('aerobic')) {
         eligibility = 'NO';
         eligibilityReasons.push('AWD pathway only applicable for flooded rice. Your crop: ' + mainCrop);
@@ -1898,7 +1898,7 @@ function normalizeQuestionnaireFields(data) {
     'Mode': 'Mode',
     'Sequence': 'Sequence',
     'Domain': 'Domain',
-    'Group_Code': 'GroupCode',
+    // NOTE: 'Group_Code': 'GroupCode' is already defined above; removed duplicate here
 
     // ---------------- Option fields ----------------
     'Option_ID': 'OptionID',
@@ -1999,6 +1999,15 @@ function normalizeQuestionnaireFields(data) {
     // Options mirrors (if any old code expects snake_case)
     if (normalized.OptionID && normalized.Option_ID === undefined) normalized.Option_ID = normalized.OptionID;
     if (normalized.OptionCode && normalized.Option_Code === undefined) normalized.Option_Code = normalized.OptionCode;
+
+    // Routing rule mirrors
+    if (normalized.CurrentQuestionID && normalized.Current_Question_ID === undefined) normalized.Current_Question_ID = normalized.CurrentQuestionID;
+    if (normalized.NextQuestionID && normalized.Next_Question_ID === undefined) normalized.Next_Question_ID = normalized.NextQuestionID;
+    if (normalized.ConditionSignalKey && normalized.Condition_Signal_Key === undefined) normalized.Condition_Signal_Key = normalized.ConditionSignalKey;
+    if (normalized.ConditionOperator && normalized.Condition_Operator === undefined) normalized.Condition_Operator = normalized.ConditionOperator;
+    if (normalized.ConditionValue && normalized.Condition_Value === undefined) normalized.Condition_Value = normalized.ConditionValue;
+    if (normalized.RouteAction && normalized.Route_Action === undefined) normalized.Route_Action = normalized.RouteAction;
+    if (normalized.RouteID && normalized.Route_ID === undefined) normalized.Route_ID = normalized.RouteID;
 
     return normalized;
   });
@@ -3253,7 +3262,8 @@ function DIAGNOSE_CPOS_ISSUE() {
 
   requiredFunctions.forEach(funcName => {
     try {
-      const func = eval(funcName);
+      // Use typeof on globalThis instead of eval() to safely check function existence
+      const func = globalThis[funcName];
       if (typeof func === 'function') {
         success.push('✅ Function exists: ' + funcName);
         Logger.log('✅ ' + funcName + ' - exists');
@@ -4997,7 +5007,7 @@ function createAdvancedSession(clientId, pathway) {
       interviewId,
       '',
       timestamp,
-      Session.getActiveUser().getEmail(),
+      Session.getActiveUser().getEmail() || 'anonymous',
       clientId || 'DEFAULT',
       '',
       scope.key,              // ✅ store "ALL4" or "AWD|ERW" etc

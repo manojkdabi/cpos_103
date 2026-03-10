@@ -1,0 +1,9 @@
+# APPEND THESE 6 ROWS AFTER ADVR_I1_012 IN CPOS_Advanced_Derivation_Rules
+# ----------------------------------------------------------------
+Rule_ID,Is_Active,Priority,Dimension_ID,When_Question_ID,When_Operator,When_Value,When_Numeric_Min,When_Numeric_Max,Then_Signal_Key,Then_Signal_Value,Then_Signal_Score,Confidence_0_1,Composite_Logic,Notes
+ADVR_I1_013,TRUE,50,I1,ADV_I1_001,LT,2,,,FARMING_EXPERIENCE_CLASS,BEGINNER,30,0.8,,<2 years farming experience
+ADVR_I1_014,TRUE,50,I1,ADV_I1_001,BETWEEN,,2,10,FARMING_EXPERIENCE_CLASS,DEVELOPING,60,0.8,,2-10 years farming experience
+ADVR_I1_015,TRUE,50,I1,ADV_I1_001,GTE,10,,,FARMING_EXPERIENCE_CLASS,EXPERIENCED,90,0.8,,10+ years farming experience
+ADVR_I1_016,TRUE,50,I1,ADV_I1_006,EQUALS,0,,,TRAININGS_EXPOSURE,NONE,20,0.75,,0 trainings attended in last 2 years
+ADVR_I1_017,TRUE,50,I1,ADV_I1_006,BETWEEN,,1,2,TRAININGS_EXPOSURE,LOW,55,0.75,,1-2 trainings attended
+ADVR_I1_018,TRUE,50,I1,ADV_I1_006,GTE,3,,,TRAININGS_EXPOSURE,ADEQUATE,85,0.75,,3+ trainings attended

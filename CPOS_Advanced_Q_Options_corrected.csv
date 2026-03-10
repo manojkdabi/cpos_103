@@ -1,0 +1,457 @@
+Question_ID,Option_Code,Option_Value_Numeric,Option_Label_EN,Option_Label_HI,Option_Order,Direct_Score_0_100,Confidence_Modifier,Triggers_Verification,Triggers_Follow_Up,Follow_Up_Question_ID,Icon,Is_Active,Notes,Derives_Signal_Key,Derives_Signal_Value,Triggers_Probe,Probe_ID,Is_Other,Option_Category
+ADV_D1_001,RICE,,Rice,चावल,1,100,1,FALSE,FALSE,,✅,TRUE,Waterlogged rice crop (AWD applicable),CROP_SELECTED,RICE,FALSE,,FALSE,HIGH
+ADV_D1_001,OTHERS,,Other crops (not rice),अन्य फसलें (चावल नहीं),2,0,1,FALSE,FALSE,,❌,TRUE,AWD not applicable; continue other pathways,CROP_SELECTED,OTHERS,FALSE,,FALSE,LOW
+ADV_D1_002,CLAY,,"Heavy clay (very sticky when wet, hard clods when dry)","भारी मिट्टी (गीली होने पर बहुत चिपचिपी, सूखने पर कठोर ढेले)",1,95,0.8,FALSE,FALSE,,🟫,TRUE,Best for AWD water retention,SOIL_TEXTURE_SIGNAL,HEAVY_CLAY,FALSE,,FALSE,HIGH
+ADV_D1_002,CLAY_LOAM,,"Clay loam (somewhat sticky, holds shape)","मिट्टी दोमट (कुछ चिपचिपा, आकार रखता है)",2,90,0.8,FALSE,FALSE,,🟤,TRUE,Very good for AWD,SOIL_TEXTURE_SIGNAL,CLAY_LOAM,FALSE,,FALSE,HIGH
+ADV_D1_002,LOAM,,"Loam (balanced, crumbly)","दोमट (संतुलित, भुरभुरा)",3,75,0.8,FALSE,FALSE,,🟡,TRUE,Good for AWD,SOIL_TEXTURE_SIGNAL,LOAM,FALSE,,FALSE,HIGH
+ADV_D1_002,SANDY_LOAM,,"Sandy loam (slightly gritty, loose)","रेतीली दोमट (थोड़ी दानेदार, ढीली)",4,55,0.8,FALSE,FALSE,,🟠,TRUE,Moderate for AWD,SOIL_TEXTURE_SIGNAL,SANDY_LOAM,FALSE,,FALSE,MEDIUM
+ADV_D1_002,SAND,,"Sandy (very gritty, won't hold shape or water)","रेतीली (बहुत दानेदार, आकार या पानी नहीं रखती)",5,30,0.8,FALSE,FALSE,,⚪,TRUE,Poor for AWD - high seepage,SOIL_TEXTURE_SIGNAL,SANDY,FALSE,,FALSE,LOW
+ADV_D1_003,DRAIN_1HR,,Less than 1 hour,1 घंटे से कम,1,40,0.75,FALSE,FALSE,,💨,TRUE,Too fast drainage,DRAINAGE_SIGNAL,VERY_FAST,FALSE,,FALSE,MEDIUM
+ADV_D1_003,DRAIN_1_6HR,,1 to 6 hours,1 से 6 घंटे,2,70,0.75,FALSE,FALSE,,⏱️,TRUE,Good drainage,DRAINAGE_SIGNAL,MODERATE,FALSE,,FALSE,MEDIUM
+ADV_D1_003,DRAIN_6_24HR,,6 to 24 hours,6 से 24 घंटे,3,85,0.75,FALSE,FALSE,,⏰,TRUE,Very good for AWD,DRAINAGE_SIGNAL,GOOD,FALSE,,FALSE,HIGH
+ADV_D1_003,DRAIN_1_2DAY,,1 to 2 days,1 से 2 दिन,4,95,0.75,FALSE,FALSE,,📅,TRUE,Excellent water retention,DRAINAGE_SIGNAL,EXCELLENT,FALSE,,FALSE,HIGH
+ADV_D1_003,DRAIN_2PLUS,,More than 2 days,2 दिनों से अधिक,5,75,0.75,FALSE,FALSE,,🌊,TRUE,May need drainage improvement,DRAINAGE_SIGNAL,POOR,FALSE,,FALSE,HIGH
+ADV_D1_004,FLAT,,Flat (less than 0.5% slope),समतल (0.5% से कम ढलान),1,100,0.85,FALSE,FALSE,,➡️,TRUE,Ideal for AWD,SLOPE_CLASS,FLAT,FALSE,,FALSE,HIGH
+ADV_D1_004,GENTLE,,Gentle (0.5% to 1% slope),मंद (0.5% से 1% ढलान),2,85,0.85,FALSE,FALSE,,↗️,TRUE,"Good, may need leveling",SLOPE_CLASS,GENTLE,FALSE,,FALSE,HIGH
+ADV_D1_004,MODERATE,,Moderate (1% to 2% slope),मध्यम (1% से 2% ढलान),3,60,0.85,FALSE,FALSE,,⬆️,TRUE,Needs terracing/bunds,SLOPE_CLASS,MODERATE,FALSE,,FALSE,MEDIUM
+ADV_D1_004,STEEP,,Steep (more than 2% slope),तीव्र (2% से अधिक ढलान),4,30,0.85,FALSE,FALSE,,⏫,TRUE,Difficult for AWD,SLOPE_CLASS,STEEP,FALSE,,FALSE,LOW
+ADV_D1_005,NONE,,No waterlogging areas,कोई जलभराव क्षेत्र नहीं,1,100,0.8,FALSE,FALSE,,✅,TRUE,Excellent drainage,WATERLOG_RISK,NONE,FALSE,,FALSE,HIGH
+ADV_D1_005,LESS_10,,Less than 10% area,10% से कम क्षेत्र,2,85,0.8,FALSE,FALSE,,🟢,TRUE,Minor waterlogging,WATERLOG_RISK,LOW,FALSE,,FALSE,HIGH
+ADV_D1_005,PCT_10_25,,10% to 25% area,10% से 25% क्षेत्र,3,65,0.8,FALSE,FALSE,,🟡,TRUE,Moderate issue,WATERLOG_RISK,MODERATE,FALSE,,FALSE,MEDIUM
+ADV_D1_005,PCT_25_50,,25% to 50% area,25% से 50% क्षेत्र,4,40,0.8,FALSE,FALSE,,🟠,TRUE,Significant problem,WATERLOG_RISK,HIGH,FALSE,,FALSE,MEDIUM
+ADV_D1_005,MORE_50,,More than 50% area,50% से अधिक क्षेत्र,5,20,0.8,FALSE,FALSE,,🔴,TRUE,Major drainage needed,WATERLOG_RISK,SEVERE,FALSE,,FALSE,LOW
+ADV_D1_006,YES,,"Yes, I have soil test report","हाँ, मेरे पास मिट्टी परीक्षण रिपोर्ट है",1,0,1,TRUE,TRUE,ADV_D1_007,✅,TRUE,Triggers lab-value questions,SOIL_TEST_AVAILABLE,YES,FALSE,,FALSE,LOW
+ADV_D1_006,NO,,"No, I don't have test","नहीं, मेरे पास परीक्षण नहीं है",2,0,0.6,FALSE,TRUE,ADV_D1_009,❌,TRUE,Uses proxy questions,SOIL_TEST_AVAILABLE,NO,FALSE,,FALSE,LOW
+ADV_D1_007,NUMERIC,,Numeric value (0-10 %),संख्यात्मक मान (0-10 %),0,0,0.9,TRUE,FALSE,,,TRUE,SOC from lab report; scored by numeric bounds/desirability,,,FALSE,,TRUE,LOW
+ADV_D1_008,NUMERIC,,Numeric value (pH 4.5-9.5),pH संख्यात्मक मान (4.5-9.5),0,0,0.95,TRUE,FALSE,,,TRUE,Soil pH from lab report; scored by numeric logic,,,FALSE,,TRUE,LOW
+ADV_D1_009,DARK_BLACK,,Dark black or very dark brown,गहरा काला या बहुत गहरा भूरा,1,85,0.65,FALSE,FALSE,,⬛,TRUE,High SOC indicator,SOC_PROXY,HIGH,FALSE,,FALSE,HIGH
+ADV_D1_009,BROWN,,Medium brown,मध्यम भूरा,2,65,0.65,FALSE,FALSE,,🟫,TRUE,Medium SOC,SOC_PROXY,MEDIUM,FALSE,,FALSE,MEDIUM
+ADV_D1_009,LIGHT_BROWN,,Light brown or tan,हल्का भूरा या टैन,3,45,0.65,FALSE,FALSE,,🟤,TRUE,Low SOC,SOC_PROXY,LOW,FALSE,,FALSE,MEDIUM
+ADV_D1_009,GREY,,Grey or greyish,ग्रे या ग्रे-सा,4,35,0.65,FALSE,FALSE,,⚪,TRUE,Very low SOC,SOC_PROXY,VERY_LOW,FALSE,,FALSE,LOW
+ADV_D1_009,RED,,Reddish or laterite,लाल या लेटराइट,5,40,0.65,FALSE,FALSE,,🔴,TRUE,Oxidized profile; usually lower SOC,SOC_PROXY,LOW_OXIDIZED,FALSE,,FALSE,MEDIUM
+ADV_D1_010,NO,,Soil not alkaline / pH likely ≤ 8.2,मिट्टी क्षारीय नहीं / pH संभवतः ≤ 8.2,1,80,0.6,FALSE,FALSE,,🧪,TRUE,Better expected ERW benefit,,,FALSE,,FALSE,HIGH
+ADV_D1_010,DONT_KNOW,,Don’t know soil alkalinity,मिट्टी की क्षारीयता पता नहीं,2,55,0.6,FALSE,TRUE,ADV_D1_008,❓,TRUE,Recommend soil pH test,,,FALSE,,TRUE,MEDIUM
+ADV_D1_010,YES_ALKALINE,,Soil is alkaline / pH likely > 8.2,मिट्टी क्षारीय / pH संभवतः > 8.2,3,30,0.6,FALSE,FALSE,,⚠️,TRUE,ERW benefit may be reduced; careful selection needed,,,FALSE,,FALSE,LOW
+ADV_D2_001,OWN_TUBE_ELEC,,Own tubewell with electric pump,बिजली पंप के साथ अपना ट्यूबवेल,1,100,0.95,FALSE,FALSE,,⚡,TRUE,"Full control, low cost",IRRIGATION_SOURCE,OWN_TUBE_ELECTRIC,FALSE,,FALSE,HIGH
+ADV_D2_001,OWN_TUBE_DIESEL,,Own tubewell with diesel pump,डीजल पंप के साथ अपना ट्यूबवेल,2,85,0.95,FALSE,FALSE,,⛽,TRUE,"Full control, higher cost",IRRIGATION_SOURCE,OWN_TUBE_DIESEL,FALSE,,FALSE,HIGH
+ADV_D2_001,SHARED_TUBE,,Shared tubewell (with other farmers),साझा ट्यूबवेल (अन्य किसानों के साथ),3,70,0.9,FALSE,FALSE,,👥,TRUE,"Some control, coordination needed",IRRIGATION_SOURCE,SHARED_TUBEWELL,FALSE,,FALSE,MEDIUM
+ADV_D2_001,CANAL,,Canal irrigation,नहर सिंचाई,4,45,0.85,FALSE,FALSE,,🌊,TRUE,Limited control,IRRIGATION_SOURCE,CANAL,FALSE,,FALSE,MEDIUM
+ADV_D2_001,RAINFED,,Rainfed only (no irrigation),केवल वर्षा आधारित (कोई सिंचाई नहीं),5,10,0.95,FALSE,FALSE,,🌧️,TRUE,AWD not applicable,IRRIGATION_SOURCE,RAINFED,FALSE,,FALSE,LOW
+ADV_D2_002,FULL_CONTROL,,I control completely (irrigate whenever I want),मैं पूरी तरह नियंत्रित करता/करती हूँ (जब चाहूँ सिंचाई),1,100,0.95,FALSE,FALSE,,💯,TRUE,Ideal for AWD,IRRIGATION_CONTROL,FULL_CONTROL,FALSE,,FALSE,HIGH
+ADV_D2_002,SHARED_SCHEDULE,,Shared schedule (coordinate with 2-5 farmers),साझा कार्यक्रम (2-5 किसानों के साथ समन्वय),2,75,0.9,FALSE,FALSE,,🤝,TRUE,"Good, needs coordination",IRRIGATION_CONTROL,SHARED_SCHEDULE,FALSE,,FALSE,HIGH
+ADV_D2_002,CANAL_SCHEDULE,,Fixed canal schedule (no flexibility),निश्चित नहर कार्यक्रम (कोई लचीलापन नहीं),3,40,0.85,FALSE,FALSE,,📅,TRUE,Limited AWD potential,IRRIGATION_CONTROL,CANAL_SCHEDULE,FALSE,,FALSE,MEDIUM
+ADV_D2_002,NO_CONTROL,,No control (dependent on others/rain),कोई नियंत्रण नहीं (दूसरों/बारिश पर निर्भर),4,15,0.9,FALSE,FALSE,,❌,TRUE,AWD not feasible,IRRIGATION_CONTROL,NO_CONTROL,FALSE,,FALSE,LOW
+ADV_D2_003,EXCELLENT,,"Excellent (no leaks, strong, well-maintained)","उत्कृष्ट (कोई रिसाव नहीं, मजबूत, अच्छी तरह से बनाए रखा)",1,100,0.9,TRUE,FALSE,,💯,TRUE,Perfect for water control,BUND_CONDITION,EXCELLENT,FALSE,,FALSE,HIGH
+ADV_D2_003,GOOD,,"Good (minor cracks, mostly holds water)","अच्छा (मामूली दरारें, ज्यादातर पानी रोकता है)",2,85,0.85,FALSE,FALSE,,👍,TRUE,Adequate,BUND_CONDITION,GOOD,FALSE,,FALSE,HIGH
+ADV_D2_003,MINOR_LEAKS,,Some leaks (loses water but manageable),कुछ रिसाव (पानी खोता है लेकिन प्रबंधनीय),3,60,0.8,FALSE,FALSE,,🔧,TRUE,Needs minor repair,BUND_CONDITION,MINOR_LEAKS,FALSE,,FALSE,MEDIUM
+ADV_D2_003,POOR,,"Poor (major leaks, rat holes, broken)","खराब (बड़े रिसाव, चूहे के छेद, टूटे हुए)",4,30,0.85,TRUE,FALSE,,⚠️,TRUE,Needs major repair,BUND_CONDITION,POOR,FALSE,,FALSE,LOW
+ADV_D2_003,NO_BUNDS,,No bunds or very low,कोई मेड़ नहीं या बहुत कम,5,10,0.9,TRUE,FALSE,,❌,TRUE,Cannot retain water,BUND_CONDITION,NONE,FALSE,,FALSE,LOW
+ADV_D2_004,LASER_LEVELED,,Laser leveled (professionally done),लेजर लेवल (पेशेवर रूप से किया गया),1,100,0.95,TRUE,FALSE,,📐,TRUE,Perfect uniformity,LEVELING_STATUS,LASER,FALSE,,FALSE,HIGH
+ADV_D2_004,WELL_LEVELED,,Well leveled (manual but uniform),अच्छी तरह समतल (मैनुअल लेकिन एक समान),2,85,0.85,FALSE,FALSE,,✅,TRUE,Good enough,LEVELING_STATUS,GOOD,FALSE,,FALSE,HIGH
+ADV_D2_004,MODERATE,,Moderately leveled (some low/high spots),मध्यम रूप से समतल (कुछ नीचे/ऊँचे स्थान),3,65,0.8,FALSE,FALSE,,〰️,TRUE,Can improve,LEVELING_STATUS,MODERATE,FALSE,,FALSE,MEDIUM
+ADV_D2_004,UNEVEN,,Uneven (significant variation),असमान (महत्वपूर्ण भिन्नता),4,40,0.85,FALSE,FALSE,,⚠️,TRUE,Needs leveling,LEVELING_STATUS,POOR,FALSE,,FALSE,MEDIUM
+ADV_D2_005,YES,,"Yes, I can measure water depth","हाँ, मैं पानी की गहराई माप सकता/सकती हूँ",1,100,0.9,FALSE,FALSE,,✅,TRUE,Essential for AWD,MONITORING_CAPACITY,YES,FALSE,,FALSE,HIGH
+ADV_D2_005,NO,,"No, I cannot measure yet","नहीं, अभी माप नहीं सकता/सकती",2,50,0.8,FALSE,FALSE,,❌,TRUE,Needs setup/support,MONITORING_CAPACITY,NO,FALSE,,FALSE,MEDIUM
+ADV_D2_005,NEED_TRAINING,,"No, but can learn if trained","नहीं, लेकिन प्रशिक्षण मिले तो सीख सकता/सकती हूँ",3,80,0.85,FALSE,FALSE,,📚,TRUE,Trainable and feasible,MONITORING_CAPACITY,NEED_TRAINING,FALSE,,FALSE,HIGH
+ADV_D2_006,ELECTRIC_GRID,,Electric (grid connection),बिजली (ग्रिड कनेक्शन),1,85,0.9,FALSE,FALSE,,🔌,TRUE,Cheapest per hour,PUMP_POWER_TYPE,ELECTRIC,FALSE,,FALSE,HIGH
+ADV_D2_006,DIESEL,,Diesel engine,डीजल इंजन,2,70,0.9,FALSE,FALSE,,⛽,TRUE,More flexible,PUMP_POWER_TYPE,DIESEL,FALSE,,FALSE,MEDIUM
+ADV_D2_006,SOLAR,,Solar powered,सौर ऊर्जा से संचालित,3,90,0.9,FALSE,FALSE,,☀️,TRUE,"Clean, low recurring cost",PUMP_POWER_TYPE,SOLAR,FALSE,,FALSE,HIGH
+ADV_D2_006,NOT_APPLICABLE,,Not applicable (rainfed),लागू नहीं (वर्षा आधारित),4,50,0.95,FALSE,FALSE,,➖,TRUE,Neutral score for non-irrigated case,PUMP_POWER_TYPE,NONE,FALSE,,FALSE,MEDIUM
+ADV_D2_007,YES_WITHIN_10,,Source within 10 km,10 किमी के भीतर स्रोत,1,95,0.7,FALSE,FALSE,,⛏️,TRUE,Excellent logistics for ERW,ERW_SOURCE_DISTANCE,NEAR,FALSE,,FALSE,HIGH
+ADV_D2_007,YES_10_50,,Source within 10-50 km,10-50 किमी के भीतर स्रोत,2,75,0.7,FALSE,FALSE,,🚚,TRUE,Feasible with transport planning,ERW_SOURCE_DISTANCE,MID,FALSE,,FALSE,HIGH
+ADV_D2_007,NO,,No known source within 50 km,50 किमी के भीतर स्रोत ज्ञात नहीं,3,15,0.7,FALSE,FALSE,,🚫,TRUE,ERW unlikely without supply chain,ERW_SOURCE_DISTANCE,FAR_OR_NONE,FALSE,,FALSE,LOW
+ADV_D2_007,DONT_KNOW,,Not sure about nearby source,निकट स्रोत की जानकारी नहीं,4,40,0.7,FALSE,TRUE,ADV_D2_007_FU_SOURCECHECK,❓,TRUE,Trigger follow-up: check crusher/quarry/cement list,ERW_SOURCE_DISTANCE,UNKNOWN,TRUE,ADVPROBE_064,TRUE,MEDIUM
+ADV_D2_008,YES_WITHIN_5,,Biochar unit available within 5 km,5 किमी के भीतर बायोचार यूनिट उपलब्ध,1,95,0.7,FALSE,FALSE,,🏭,TRUE,Very strong logistics for regular supply,BIO_PYROLYSIS_ACCESS,NEAR,FALSE,,FALSE,HIGH
+ADV_D2_008,YES_5_20,,Biochar unit available within 5-20 km,5-20 किमी के भीतर बायोचार यूनिट उपलब्ध,2,75,0.7,FALSE,FALSE,,🚚,TRUE,Moderate transport cost,BIO_PYROLYSIS_ACCESS,MID,FALSE,,FALSE,HIGH
+ADV_D2_008,NO,,No unit/supplier access within 20 km,20 किमी के भीतर यूनिट/सप्लायर नहीं,3,20,0.7,FALSE,FALSE,,🚫,TRUE,Needs external supply chain,BIO_PYROLYSIS_ACCESS,NO,FALSE,,FALSE,LOW
+ADV_D2_008,DONT_KNOW,,Not sure about local biochar availability,स्थानीय बायोचार उपलब्धता पता नहीं,4,40,0.7,FALSE,TRUE,ADV_D2_008_FU_SUPPLIER,❓,TRUE,Trigger follow-up: identify nearest supplier,BIO_PYROLYSIS_ACCESS,UNKNOWN,TRUE,ADVPROBE_070,TRUE,MEDIUM
+ADV_D2_009,BUY,,Buy biochar directly,सीधे बायोचार खरीदना,1,70,0.7,FALSE,FALSE,,🛒,TRUE,Feasible if supply exists and price works,BIO_SOURCING_MODE,BUY,FALSE,,FALSE,MEDIUM
+ADV_D2_009,LOCAL_UNIT,,Produce via local unit (you supply feedstock or buy),स्थानीय यूनिट से बनवाना (फीडस्टॉक देना/खरीदना),2,85,0.7,FALSE,FALSE,,🏭,TRUE,Often best balance of quality + scale,BIO_SOURCING_MODE,LOCAL_UNIT,FALSE,,FALSE,HIGH
+ADV_D2_009,ON_FARM,,On-farm small kiln method,खेत पर छोटा भट्ठा/किल्न विधि,3,55,0.7,TRUE,FALSE,,🧱,TRUE,Needs training + safety + emissions control,BIO_SOURCING_MODE,ON_FARM,FALSE,,FALSE,MEDIUM
+ADV_D2_009,UNSURE,,Not sure yet,अभी निश्चित नहीं,4,50,0.7,FALSE,TRUE,ADV_D2_009_FU_OPTIONS,❓,TRUE,Trigger follow-up: compare 3 sourcing modes,BIO_SOURCING_MODE,UNSURE,TRUE,ADVPROBE_071,FALSE,MEDIUM
+ADV_D2_010,NUMERIC,,Numeric value (0-100 km),संख्यात्मक मान (0-100 किमी),0,0,0.9,FALSE,FALSE,,,TRUE,Distance to nearest input/output market; scored by formula,,,FALSE,,TRUE,LOW
+ADV_D3_001,NUMERIC,,Numeric value (0-100 km),संख्यात्मक मान (0-100 किमी),0,0,0.9,FALSE,FALSE,,,TRUE,Distance to KVK/extension center; scored by distance formula,,,FALSE,,TRUE,LOW
+ADV_D3_002,FREQUENT,,Frequent (more than 5 times),बार-बार (5 बार से अधिक),1,95,0.9,FALSE,FALSE,,📞,TRUE,Strong extension support,EXTENSION_CONTACT,STRONG,FALSE,,FALSE,HIGH
+ADV_D3_002,MODERATE,,Moderate (2 to 5 times),मध्यम (2 से 5 बार),2,75,0.9,FALSE,FALSE,,📱,TRUE,Regular contact,EXTENSION_CONTACT,MODERATE,FALSE,,FALSE,HIGH
+ADV_D3_002,RARE,,Rare (only 1 time),दुर्लभ (केवल 1 बार),3,50,0.9,FALSE,FALSE,,📧,TRUE,Weak support,EXTENSION_CONTACT,WEAK,FALSE,,FALSE,MEDIUM
+ADV_D3_002,NONE,,None (no contact),कोई नहीं (कोई संपर्क नहीं),4,25,0.9,FALSE,FALSE,,❌,TRUE,No extension access,EXTENSION_CONTACT,NONE,FALSE,,FALSE,LOW
+ADV_D3_003,COMMON,,Common (more than 30% farmers),सामान्य (30% से अधिक किसान),1,100,0.85,FALSE,FALSE,,👥,TRUE,Strong peer learning for AWD,AWD_PEER_LEARNING,STRONG,FALSE,,FALSE,HIGH
+ADV_D3_003,SOME,,Some (10% to 30% farmers),कुछ (10% से 30% किसान),2,75,0.85,FALSE,FALSE,,👤,TRUE,Growing adoption,AWD_PEER_LEARNING,MODERATE,FALSE,,FALSE,HIGH
+ADV_D3_003,FEW,,Few (less than 10% farmers),कुछ (10% से कम किसान),3,50,0.85,FALSE,FALSE,,🚶,TRUE,Early stage adoption,AWD_PEER_LEARNING,WEAK,FALSE,,FALSE,MEDIUM
+ADV_D3_003,NONE,,None (I would be first),कोई नहीं (मैं पहला/पहली होऊँगा/होऊँगी),4,30,0.85,FALSE,FALSE,,🌟,TRUE,Pioneer - higher behavior risk,AWD_PEER_LEARNING,PIONEER,FALSE,,FALSE,LOW
+ADV_D3_004,YES_MANY,,"Yes, I know 5 or more","हाँ, मैं 5 या अधिक किसानों को जानता/जानती हूँ",1,90,0.85,FALSE,FALSE,,👥,TRUE,Strong peer network,,,FALSE,,FALSE,HIGH
+ADV_D3_004,YES_FEW,,"Yes, I know 1-4 farmers","हाँ, मैं 1-4 किसानों को जानता/जानती हूँ",2,70,0.85,FALSE,FALSE,,👤,TRUE,Some peer support,,,FALSE,,FALSE,MEDIUM
+ADV_D3_004,NO,,"No, I don't know anyone","नहीं, मैं किसी को नहीं जानता/जानती",3,40,0.85,FALSE,FALSE,,❌,TRUE,Limited peer learning,,,FALSE,,FALSE,MEDIUM
+ADV_D3_005,WELL_KNOWN,,Well known (many farmers ask my advice),अच्छी तरह से जाना जाता है (कई किसान सलाह लेते हैं),1,90,0.8,FALSE,FALSE,,⭐,TRUE,Opinion leader,,,FALSE,,FALSE,HIGH
+ADV_D3_005,KNOWN,,Known (some farmers know me as progressive),जाना जाता है (कुछ किसान प्रगतिशील मानते हैं),2,75,0.8,FALSE,FALSE,,✅,TRUE,Respected,,,FALSE,,FALSE,HIGH
+ADV_D3_005,AVERAGE,,Average (not particularly known for innovation),औसत (नवाचार के लिए विशेष रूप से नहीं जाना जाता),3,55,0.8,FALSE,FALSE,,➖,TRUE,Neutral,,,FALSE,,FALSE,MEDIUM
+ADV_D3_005,NOT_KNOWN,,Not known / traditional profile,नहीं जाना जाता / पारंपरिक प्रोफाइल,4,40,0.8,FALSE,FALSE,,⬇️,TRUE,Conservative adoption profile,,,FALSE,,FALSE,MEDIUM
+ADV_D4_001,OWNED_CLEAR,,Owned with clear title (no dispute),स्पष्ट शीर्षक के साथ स्वामित्व (कोई विवाद नहीं),1,100,0.95,TRUE,FALSE,,✅,TRUE,Best for carbon projects,LAND_TENURE,OWNED_CLEAR,FALSE,,FALSE,HIGH
+ADV_D4_001,OWNED_DISPUTED,,Owned but some dispute/unclear title,स्वामित्व लेकिन कुछ विवाद/अस्पष्ट शीर्षक,2,60,0.9,TRUE,TRUE,ADV_D4_002,⚠️,TRUE,Needs document/legal resolution,LAND_TENURE,OWNED_DISPUTED,FALSE,,FALSE,MEDIUM
+ADV_D4_001,LEASED_LONG,,Leased (5+ years remaining),पट्टे पर (5+ वर्ष शेष),3,85,0.9,TRUE,FALSE,,📜,TRUE,Acceptable for carbon,LAND_TENURE,LEASED_5PLUS,FALSE,,FALSE,HIGH
+ADV_D4_001,LEASED_SHORT,,Leased (less than 5 years),पट्टे पर (5 वर्ष से कम),4,40,0.85,TRUE,FALSE,,⏱️,TRUE,Too short for carbon projects,LAND_TENURE,LEASED_SHORT,FALSE,,FALSE,MEDIUM
+ADV_D4_001,SHARECROP,,Sharecropping/tenant farming,बटाई/किरायेदार खेती,5,20,0.9,TRUE,FALSE,,❌,TRUE,Typically not eligible for carbon MRV ownership requirements,LAND_TENURE,SHARECROP,FALSE,,FALSE,LOW
+ADV_D4_002,YES,,"Yes, I have all documents","हाँ, मेरे पास सभी दस्तावेज हैं",1,100,0.95,TRUE,FALSE,,📋,TRUE,Ready for verification,LAND_DOCUMENTS,YES,FALSE,,FALSE,HIGH
+ADV_D4_002,NO,,"No, I don't have documents","नहीं, मेरे पास दस्तावेज नहीं हैं",2,30,0.9,TRUE,FALSE,,❌,TRUE,Must obtain documents,LAND_DOCUMENTS,NO,FALSE,,FALSE,LOW
+ADV_D4_003,CONTINUOUS_FLOOD,,Continuous flooding (keep water 5-10 cm always),निरंतर जलभराव (हमेशा 5-10 सेमी पानी),1,100,0.95,FALSE,FALSE,,🌊,TRUE,Best baseline for AWD additionality,BASELINE_PRACTICE,CONTINUOUS_FLOOD,FALSE,,FALSE,HIGH
+ADV_D4_003,INTERMITTENT,,Intermittent (flood-dry cycles but not systematic AWD),रुक-रुक कर (बाढ़-सूखे चक्र लेकिन व्यवस्थित AWD नहीं),2,75,0.9,FALSE,FALSE,,〰️,TRUE,Some water saving already,BASELINE_PRACTICE,INTERMITTENT,FALSE,,FALSE,HIGH
+ADV_D4_003,AWD_ALREADY,,Already practicing systematic AWD,पहले से व्यवस्थित AWD कर रहे हैं,3,30,0.95,FALSE,FALSE,,❌,TRUE,Low/no additionality for AWD carbon credits,BASELINE_PRACTICE,AWD_ALREADY,FALSE,,FALSE,LOW
+ADV_D4_003,AEROBIC,,Aerobic rice (no flooding),एरोबिक चावल (कोई जलभराव नहीं),4,20,0.95,FALSE,FALSE,,🌱,TRUE,Different pathway; AWD not relevant,BASELINE_PRACTICE,AEROBIC,FALSE,,FALSE,LOW
+ADV_D4_003,RAINFED,,Rainfed upland rice,वर्षा आधारित ऊँची जमीन का चावल,5,10,0.95,FALSE,FALSE,,🌧️,TRUE,Not applicable for AWD,BASELINE_PRACTICE,RAINFED,FALSE,,FALSE,LOW
+ADV_D4_004,NUMERIC,,Numeric value (0-50 years),संख्यात्मक मान (0-50 वर्ष),0,0,0.95,FALSE,FALSE,,,TRUE,Baseline practice duration; additionality logic uses numeric value,,,FALSE,,TRUE,LOW
+ADV_D4_005,YES,,"Yes, there are restrictions","हाँ, प्रतिबंध हैं",1,30,0.9,FALSE,TRUE,ADV_D4_005_FU_LEGAL,⚠️,TRUE,Needs clarification on rule/mandate,,,FALSE,,FALSE,LOW
+ADV_D4_005,NO,,No restrictions,कोई प्रतिबंध नहीं,2,100,0.9,FALSE,FALSE,,✅,TRUE,Free to change practice,,,FALSE,,FALSE,HIGH
+ADV_D4_005,UNSURE,,Not sure / don't know,निश्चित नहीं / पता नहीं,3,60,0.75,FALSE,TRUE,ADV_D4_005_FU_LEGALCHECK,❓,TRUE,Needs investigation,,,FALSE,,FALSE,MEDIUM
+ADV_D5_001,NUMERIC,,Numeric value (0-15 t/ha),संख्यात्मक मान (0-15 टन/हेक्टेयर),0,0,0.9,FALSE,FALSE,,,TRUE,Baseline yield for risk assessment,,,FALSE,,TRUE,LOW
+ADV_D5_002,NUMERIC,,Numeric value (0-100000 INR/ha),संख्यात्मक मान (0-100000 रु/हेक्टेयर),0,0,0.85,FALSE,FALSE,,,TRUE,Baseline irrigation cost for savings calculation,,,FALSE,,TRUE,LOW
+ADV_D5_003,FAMILY_ADEQUATE,,Adequate family labor available,पर्याप्त पारिवारिक श्रम उपलब्ध,1,95,0.9,FALSE,FALSE,,👨‍👩‍👦,TRUE,Can manage frequent monitoring,LABOR_AVAILABILITY,ADEQUATE,FALSE,,FALSE,HIGH
+ADV_D5_003,FAMILY_SOME,,"Some family labor, but limited","कुछ पारिवारिक श्रम, लेकिन सीमित",2,75,0.85,FALSE,FALSE,,👥,TRUE,May need planning,LABOR_AVAILABILITY,SOME,FALSE,,FALSE,HIGH
+ADV_D5_003,NEED_HIRE,,Need to hire labor,श्रम किराए पर लेना होगा,3,55,0.85,FALSE,FALSE,,💼,TRUE,Higher operating cost,LABOR_AVAILABILITY,NEED_HIRE,FALSE,,FALSE,MEDIUM
+ADV_D5_003,DIFFICULT,,Difficult to arrange labor,श्रम की व्यवस्था करना मुश्किल,4,35,0.85,FALSE,FALSE,,⚠️,TRUE,Major operational constraint,LABOR_AVAILABILITY,DIFFICULT,FALSE,,FALSE,LOW
+ADV_D5_004,MORE_50K,,"More than ₹50,000","₹50,000 से अधिक",1,90,0.9,FALSE,FALSE,,💰,TRUE,High capacity,INVESTMENT_CAPACITY,HIGH,FALSE,,FALSE,HIGH
+ADV_D5_004,INR_25_50K,,"₹25,000 to ₹50,000","₹25,000 से ₹50,000",2,75,0.9,FALSE,FALSE,,💵,TRUE,Good capacity,INVESTMENT_CAPACITY,MEDIUM_HIGH,FALSE,,FALSE,HIGH
+ADV_D5_004,INR_10_25K,,"₹10,000 to ₹25,000","₹10,000 से ₹25,000",3,60,0.9,FALSE,FALSE,,💳,TRUE,Moderate capacity,INVESTMENT_CAPACITY,MEDIUM,FALSE,,FALSE,MEDIUM
+ADV_D5_004,LESS_10K,,"Less than ₹10,000","₹10,000 से कम",4,40,0.85,FALSE,FALSE,,💸,TRUE,Low capacity; needs support,INVESTMENT_CAPACITY,LOW,FALSE,,FALSE,MEDIUM
+ADV_D5_004,NONE,,No investment capacity,कोई निवेश क्षमता नहीं,5,20,0.9,FALSE,FALSE,,❌,TRUE,Requires subsidy/support,INVESTMENT_CAPACITY,NONE,FALSE,,FALSE,LOW
+ADV_D5_005,EASY,,Easy (can get loan within 1 month),आसान (1 महीने में ऋण मिल सकता है),1,90,0.85,FALSE,FALSE,,✅,TRUE,Good financial resilience,,,FALSE,,FALSE,HIGH
+ADV_D5_005,MODERATE,,Moderate (takes 2-3 months),मध्यम (2-3 महीने लगते हैं),2,70,0.85,FALSE,FALSE,,⏱️,TRUE,Acceptable,,,FALSE,,FALSE,MEDIUM
+ADV_D5_005,DIFFICULT,,Difficult (uncertain/takes 6+ months),मुश्किल (अनिश्चित/6+ महीने लगते हैं),3,45,0.85,FALSE,FALSE,,⚠️,TRUE,Limited financial buffer,,,FALSE,,FALSE,MEDIUM
+ADV_D5_005,NO_ACCESS,,No access to formal credit,औपचारिक ऋण तक कोई पहुंच नहीं,4,25,0.85,FALSE,FALSE,,❌,TRUE,High financial risk,,,FALSE,,FALSE,LOW
+ADV_D5_006,EASY,,Easy to transport & spread (vehicle/labor available),ढोना व फैलाना आसान (वाहन/श्रम उपलब्ध),1,95,0.7,FALSE,FALSE,,🚜,TRUE,Strong operational feasibility,,,FALSE,,FALSE,HIGH
+ADV_D5_006,POSSIBLE_WITH_SUPPORT,,Possible with project support (transport/spreader),परियोजना सहायता से संभव,2,70,0.7,FALSE,FALSE,,🤝,TRUE,Feasible if logistics support provided,,,FALSE,,FALSE,MEDIUM
+ADV_D5_006,DIFFICULT,,Difficult due to labor/vehicle constraints,श्रम/वाहन बाधा के कारण कठिन,3,35,0.7,FALSE,FALSE,,⚠️,TRUE,May limit application rates/area,,,FALSE,,FALSE,LOW
+ADV_D5_006,NOT_POSSIBLE,,Not possible currently,वर्तमान में संभव नहीं,4,5,0.7,FALSE,FALSE,,🚫,TRUE,ERW not feasible,,,FALSE,,FALSE,LOW
+ADV_D6_001,NUMERIC,,Numeric value (0.01-100 ha),संख्यात्मक मान (0.01-100 हेक्टेयर),0,0,0.95,FALSE,FALSE,,,TRUE,Project scale and carbon potential,,,FALSE,,TRUE,LOW
+ADV_D6_002,ONE,,One season per year,प्रति वर्ष एक सीजन,1,70,0.9,FALSE,FALSE,,1️⃣,TRUE,Single season carbon opportunity,RICE_SEASONS,ONE,FALSE,,FALSE,MEDIUM
+ADV_D6_002,TWO,,Two seasons per year,प्रति वर्ष दो सीजन,2,100,0.95,FALSE,FALSE,,2️⃣,TRUE,Double seasonal opportunity,RICE_SEASONS,TWO,FALSE,,FALSE,HIGH
+ADV_D6_002,THREE,,Three seasons per year,प्रति वर्ष तीन सीजन,3,95,0.9,FALSE,FALSE,,3️⃣,TRUE,Rare but high annual potential,,,FALSE,,FALSE,HIGH
+ADV_D6_003,YES,,"Yes, plan to expand","हाँ, विस्तार की योजना है",1,85,0.8,FALSE,FALSE,,📈,TRUE,Growth potential,,,FALSE,,FALSE,HIGH
+ADV_D6_003,NO,,"No, will maintain current area","नहीं, वर्तमान क्षेत्र बनाए रखूँगा/रखूँगी",2,70,0.85,FALSE,FALSE,,➖,TRUE,Stable scale,,,FALSE,,FALSE,MEDIUM
+ADV_D6_003,UNSURE,,Not sure yet,अभी निश्चित नहीं,3,60,0.75,FALSE,FALSE,,❓,TRUE,Wait-and-see approach,,,FALSE,,FALSE,MEDIUM
+ADV_D6_004,YES,,"Yes, participated before","हाँ, पहले भाग लिया है",1,40,0.9,TRUE,TRUE,ADV_D6_004_FU_HISTORY,⚠️,TRUE,Check double-counting / prior registry history,PREVIOUS_CARBON,YES,FALSE,,FALSE,MEDIUM
+ADV_D6_004,NO,,"No, this is first time","नहीं, यह पहली बार है",2,100,0.95,FALSE,FALSE,,✅,TRUE,No conflict expected,PREVIOUS_CARBON,NO,FALSE,,FALSE,HIGH
+ADV_D6_005,WITHIN_2_WEEKS,,Within 2 weeks,2 सप्ताह के भीतर,1,95,0.8,FALSE,FALSE,,⏱️,TRUE,Cohort scheduling: immediate window,NEXT_SEASON_START,WITHIN_2_WEEKS,FALSE,,FALSE,HIGH
+ADV_D6_005,WITHIN_1_MONTH,,Within 1 month,1 महीने के भीतर,2,85,0.8,FALSE,FALSE,,📅,TRUE,Cohort scheduling: near-term window,NEXT_SEASON_START,WITHIN_1_MONTH,FALSE,,FALSE,HIGH
+ADV_D6_005,IN_1_3_MONTHS,,In 1-3 months,1-3 महीनों में,3,70,0.8,FALSE,FALSE,,🗓️,TRUE,Cohort scheduling: medium-term window,NEXT_SEASON_START,IN_1_3_MONTHS,FALSE,,FALSE,MEDIUM
+ADV_D6_005,IN_3_6_MONTHS,,In 3-6 months,3-6 महीनों में,4,55,0.75,FALSE,FALSE,,⌛,TRUE,Cohort scheduling: later window,NEXT_SEASON_START,IN_3_6_MONTHS,FALSE,,FALSE,MEDIUM
+ADV_D6_005,NOT_SURE,,Not sure,अभी निश्चित नहीं,5,40,0.7,FALSE,TRUE,ADV_D6_005_FU_DATE,❓,TRUE,Needs follow-up date confirmation,NEXT_SEASON_START,NOT_SURE,TRUE,ADVPROBE_018,FALSE,MEDIUM
+ADV_D7_001,DEEP_PLOUGH,,Deep ploughing,गहरी जुताई,1,30,0.7,TRUE,FALSE,,🟥,TRUE,High disturbance; low current regen score (high improvement potential),REGEN_TILLAGE_INTENSITY,HIGH_DISTURBANCE,FALSE,,FALSE,LOW
+ADV_D7_001,MULTIPLE_TILL,,Multiple tillage passes,कई बार जुताई,2,55,0.7,TRUE,FALSE,,🟧,TRUE,Moderate disturbance,REGEN_TILLAGE_INTENSITY,MODERATE_HIGH_DISTURBANCE,FALSE,,FALSE,MEDIUM
+ADV_D7_001,MIN_TILL,,Minimum tillage,न्यूनतम जुताई,3,80,0.7,TRUE,FALSE,,🟨,TRUE,Good regen alignment,REGEN_TILLAGE_INTENSITY,MIN_TILL,FALSE,,FALSE,HIGH
+ADV_D7_001,ZERO_TILL,,Zero till / no ploughing,जीरो टिल / बिना जुताई,4,95,0.7,TRUE,FALSE,,🟩,TRUE,Strong regen alignment (low disturbance),REGEN_TILLAGE_INTENSITY,ZERO_TILL,FALSE,,FALSE,HIGH
+ADV_D7_002,BURN,,Burn residues,अवशेष जलाना,1,10,0.75,TRUE,FALSE,,🔥,TRUE,Negative for regen + air quality,REGEN_RESIDUE_MANAGEMENT,BURN,FALSE,,FALSE,LOW
+ADV_D7_002,REMOVE,,Remove residues from field,अवशेष खेत से हटाना,2,45,0.75,TRUE,FALSE,,🚚,TRUE,Reduced carbon return,REGEN_RESIDUE_MANAGEMENT,REMOVE,FALSE,,FALSE,MEDIUM
+ADV_D7_002,PARTIAL_RETAIN,,Retain some residues,कुछ अवशेष रखना,3,75,0.75,TRUE,FALSE,,🌱,TRUE,Moderate carbon return,REGEN_RESIDUE_MANAGEMENT,PARTIAL_RETAIN,FALSE,,FALSE,HIGH
+ADV_D7_002,FULL_RETAIN_MULCH,,Retain/mulch most residues,अधिकांश अवशेष रखना/मल्चिंग,4,95,0.75,TRUE,FALSE,,🌿,TRUE,Strong carbon input retention,REGEN_RESIDUE_MANAGEMENT,FULL_RETAIN_MULCH,FALSE,,FALSE,HIGH
+ADV_D7_002,COMPOST,,Compost residues,अवशेष कम्पोस्ट करना,5,70,0.75,TRUE,FALSE,,♻️,TRUE,Good carbon return via compost pathway,REGEN_RESIDUE_MANAGEMENT,COMPOST,FALSE,,FALSE,MEDIUM
+ADV_D7_003,EVERY_SEASON,,Apply FYM/compost every season,हर सीजन गोबर खाद/कम्पोस्ट डालते हैं,1,95,0.7,FALSE,FALSE,,🪱,TRUE,Strong SOC building lever,REGEN_ORGANIC_AMENDMENTS,REGULAR,FALSE,,FALSE,HIGH
+ADV_D7_003,ONCE_YEAR,,Apply once per year,साल में एक बार डालते हैं,2,75,0.7,FALSE,FALSE,,🌱,TRUE,Moderate,REGEN_ORGANIC_AMENDMENTS,ANNUAL,FALSE,,FALSE,HIGH
+ADV_D7_003,OCCASIONAL,,Occasionally (not consistent),कभी-कभी (नियमित नहीं),3,50,0.7,FALSE,FALSE,,🟨,TRUE,Some benefit; needs consistency,REGEN_ORGANIC_AMENDMENTS,OCCASIONAL,FALSE,,FALSE,MEDIUM
+ADV_D7_003,NEVER,,Never apply organic amendments,कभी नहीं डालते,4,20,0.7,FALSE,FALSE,,🚫,TRUE,Low current regen practice (high delta potential),REGEN_ORGANIC_AMENDMENTS,NONE,FALSE,,FALSE,LOW
+ADV_D7_004,YES_REGULAR,,"Yes, regular cover crop/green manure","हाँ, नियमित कवर क्रॉप/हरी खाद",1,95,0.7,FALSE,FALSE,,🌾,TRUE,Strong living-roots lever,REGEN_COVER_CROP,REGULAR,FALSE,,FALSE,HIGH
+ADV_D7_004,SOMETIMES,,Sometimes,कभी-कभी,2,65,0.7,FALSE,FALSE,,🌿,TRUE,Moderate,REGEN_COVER_CROP,SOMETIMES,FALSE,,FALSE,MEDIUM
+ADV_D7_004,NO,,No cover crop / soil left bare,"नहीं, मिट्टी खाली रहती है",3,20,0.7,FALSE,FALSE,,🚫,TRUE,Low living-root continuity,REGEN_COVER_CROP,NO,FALSE,,FALSE,LOW
+ADV_D7_005,MONOCROP,,Monocrop / same crop repeated,एक ही फसल बार-बार,1,25,0.7,FALSE,FALSE,,⚠️,TRUE,Low diversity; high improvement potential,REGEN_ROTATION_DIVERSITY,MONOCROP,FALSE,,FALSE,LOW
+ADV_D7_005,TWO_CROPS,,2 crops rotation,2 फसल चक्र,2,60,0.7,FALSE,FALSE,,🔁,TRUE,Moderate diversity,REGEN_ROTATION_DIVERSITY,TWO_CROPS,FALSE,,FALSE,MEDIUM
+ADV_D7_005,THREEPLUS_CROPS,,3+ crops in rotation (diverse),फसल चक्र में 3+ फसलें,3,80,0.7,FALSE,FALSE,,🌈,TRUE,Good diversity,REGEN_ROTATION_DIVERSITY,DIVERSE,FALSE,,FALSE,HIGH
+ADV_D7_005,INCLUDES_LEGUME,,Rotation includes legumes,फसल चक्र में दलहन शामिल,4,90,0.7,FALSE,FALSE,,🫘,TRUE,High regen alignment,REGEN_ROTATION_DIVERSITY,LEGUME_ROTATION,FALSE,,FALSE,HIGH
+ADV_D7_006,REGULAR,,Regular intercropping/legumes,नियमित इंटरक्रॉपिंग/दलहन,1,85,0.7,FALSE,FALSE,,🫘,TRUE,Supports N cycling + soil biology,REGEN_LEGUME_INTEGRATION,REGULAR,FALSE,,FALSE,HIGH
+ADV_D7_006,SOMETIMES,,Sometimes,कभी-कभी,2,60,0.7,FALSE,FALSE,,🌱,TRUE,Moderate,REGEN_LEGUME_INTEGRATION,SOMETIMES,FALSE,,FALSE,MEDIUM
+ADV_D7_006,NO,,No intercropping/legumes,नहीं,3,25,0.7,FALSE,FALSE,,🚫,TRUE,Low practice adoption,REGEN_LEGUME_INTEGRATION,NONE,FALSE,,FALSE,LOW
+ADV_D7_007,YES_STRONG,,"Yes, livestock + manure regularly used","हाँ, पशु + नियमित गोबर उपयोग",1,80,0.7,TRUE,FALSE,,🐄,TRUE,Strong organic input access,REGEN_MANURE_ACCESS,REGULAR,FALSE,,FALSE,HIGH
+ADV_D7_007,YES_SOME,,"Yes, some livestock/manure use","हाँ, कुछ उपयोग",2,60,0.7,TRUE,FALSE,,🐄,TRUE,Moderate,REGEN_MANURE_ACCESS,SOME,FALSE,,FALSE,MEDIUM
+ADV_D7_007,NO,,No livestock/manure use,नहीं,3,35,0.7,FALSE,FALSE,,🚫,TRUE,May rely on compost/other sources,REGEN_MANURE_ACCESS,NONE,FALSE,,FALSE,LOW
+ADV_D8_001,BASALT,,Basalt rock dust,बेसाल्ट रॉक डस्ट,1,95,0.65,FALSE,FALSE,,🪨,TRUE,Generally preferred for ERW,ERW_ROCK_TYPE,BASALT,FALSE,,FALSE,HIGH
+ADV_D8_001,GRANITE,,Granite rock dust,ग्रेनाइट रॉक डस्ट,2,55,0.65,FALSE,FALSE,,🪨,TRUE,Lower weathering reactivity than basalt (often),ERW_ROCK_TYPE,OTHER,FALSE,,FALSE,MEDIUM
+ADV_D8_001,LIMESTONE,,Limestone dust,लाइमस्टोन डस्ट,3,35,0.65,FALSE,FALSE,,🧪,TRUE,Mostly liming effect; ERW carbon benefit uncertain,ERW_ROCK_TYPE,OTHER,FALSE,,FALSE,LOW
+ADV_D8_001,DOLOMITE,,Dolomite dust,डोलोमाइट डस्ट,4,45,0.65,FALSE,FALSE,,🧪,TRUE,Acts more like liming; pathway differs,ERW_ROCK_TYPE,OTHER,FALSE,,FALSE,MEDIUM
+ADV_D8_001,MIXED,,Mixed/unknown blend,मिश्रित/अस्पष्ट मिश्रण,5,40,0.65,FALSE,TRUE,ADV_D8_001_FU_SPEC,❓,TRUE,Need supplier composition/spec,ERW_ROCK_TYPE,OTHER,FALSE,,FALSE,MEDIUM
+ADV_D8_001,UNKNOWN,,Unknown,अज्ञात,6,30,0.65,FALSE,TRUE,ADV_D8_001_FU_SPEC,❓,TRUE,Trigger follow-up on source/material type,ERW_ROCK_TYPE,NONE,FALSE,,FALSE,LOW
+ADV_D8_002,FINE,,Fine powder available (<1 mm),महीन पाउडर उपलब्ध (<1 मिमी),1,95,0.7,TRUE,FALSE,,🌫️,TRUE,Higher reactive surface area,ERW_PARTICLE_FINENESS,FINE,FALSE,,FALSE,HIGH
+ADV_D8_002,MIXED,,"Mixed (some fine, some coarse)","मिश्रित (कुछ महीन, कुछ मोटा)",2,65,0.7,TRUE,FALSE,,🪨,TRUE,Moderate reactivity,ERW_PARTICLE_FINENESS,MIXED,FALSE,,FALSE,MEDIUM
+ADV_D8_002,COARSE,,Mostly coarse grit,अधिकतर मोटा कण,3,25,0.7,TRUE,FALSE,,🧱,TRUE,Low reactivity; not ideal for ERW,ERW_PARTICLE_FINENESS,COARSE,FALSE,,FALSE,LOW
+ADV_D8_002,UNKNOWN,,Not sure,निश्चित नहीं,4,40,0.7,FALSE,TRUE,ADV_D8_002_FU_PHOTO,❓,TRUE,Trigger follow-up with sample photo/spec,ERW_PARTICLE_FINENESS,UNKNOWN,TRUE,ADVPROBE_066,FALSE,MEDIUM
+ADV_D8_003,YES_TRACTOR_TILL,,Yes (tractor tillage available),हाँ (ट्रैक्टर जुताई उपलब्ध),1,90,0.7,TRUE,FALSE,,🚜,TRUE,Best incorporation feasibility,ERW_INCORPORATION_ABILITY,STRONG,FALSE,,FALSE,HIGH
+ADV_D8_003,YES_LIGHT_TILL,,Yes (light tillage/harrow),हाँ (हल्की जुताई/हैरो),2,70,0.7,TRUE,FALSE,,🧑‍🌾,TRUE,Moderate incorporation feasibility,ERW_INCORPORATION_ABILITY,MODERATE,FALSE,,FALSE,MEDIUM
+ADV_D8_003,NO_ZERO_TILL_ONLY,,No (only zero till; cannot mix),नहीं (केवल जीरो टिल; मिलाना संभव नहीं),3,35,0.7,FALSE,FALSE,,🚫,TRUE,Possible but less effective; method redesign needed,ERW_INCORPORATION_ABILITY,LOW,FALSE,,FALSE,LOW
+ADV_D8_003,UNSURE,,Not sure,निश्चित नहीं,4,45,0.7,FALSE,TRUE,ADV_D8_003_FU_EQUIP,❓,TRUE,Trigger follow-up on equipment access,ERW_INCORPORATION_ABILITY,UNSURE,TRUE,ADVPROBE_067,FALSE,MEDIUM
+ADV_D8_004,RELIABLE,,Reliable rainfall/irrigation after application,आवेदन के बाद विश्वसनीय वर्षा/सिंचाई,1,80,0.7,FALSE,FALSE,,💧,TRUE,Supports dissolution/weathering,ERW_POST_APPLICATION_MOISTURE,RELIABLE,FALSE,,FALSE,HIGH
+ADV_D8_004,SOMETIMES,,Sometimes available,कभी-कभी उपलब्ध,2,60,0.7,FALSE,FALSE,,🌦️,TRUE,Moderate,ERW_POST_APPLICATION_MOISTURE,SOMETIMES,FALSE,,FALSE,MEDIUM
+ADV_D8_004,RARE,,Rarely available,कभी-कभार,3,35,0.7,FALSE,FALSE,,🏜️,TRUE,May slow reaction,ERW_POST_APPLICATION_MOISTURE,RARE,FALSE,,FALSE,LOW
+ADV_D8_004,NONE,,Not available,उपलब्ध नहीं,4,15,0.7,FALSE,FALSE,,🚫,TRUE,ERW performance likely weak without moisture,ERW_POST_APPLICATION_MOISTURE,NONE,FALSE,,FALSE,LOW
+ADV_D9_001,YES,,"Yes, I am committed for 5+ years","हाँ, मैं 5+ वर्षों के लिए प्रतिबद्ध हूँ",1,100,0.95,FALSE,FALSE,,✅,TRUE,Essential for carbon participation,,,FALSE,,FALSE,HIGH
+ADV_D9_001,NO,,"No, not ready for 5+ years","नहीं, 5+ वर्षों के लिए तैयार नहीं",2,30,0.9,FALSE,FALSE,,❌,TRUE,Low program permanence suitability,,,FALSE,,FALSE,LOW
+ADV_D9_001,UNSURE,,"Unsure, want to try first","निश्चित नहीं, पहले कोशिश करना चाहता/चाहती हूँ",3,60,0.85,FALSE,FALSE,,❓,TRUE,Conditional participant,,,FALSE,,FALSE,MEDIUM
+ADV_D9_002,YES,,"Yes, enroll me and I can share required data/photos","हाँ, नामांकन करें और मैं आवश्यक डेटा/फोटो साझा कर सकता/सकती हूँ",1,100,0.9,TRUE,FALSE,,✅,TRUE,Program consent: ready to enroll + share verification data,PROGRAM_CONSENT,YES,FALSE,,FALSE,HIGH
+ADV_D9_002,MAYBE,,"Maybe, I want to understand benefits/requirements first","शायद, पहले लाभ/आवश्यकताएँ समझना चाहता/चाहती हूँ",2,60,0.85,FALSE,TRUE,ADV_D9_002_FU_COUNSEL,❓,TRUE,Needs counseling before enrollment,PROGRAM_CONSENT,MAYBE,FALSE,,FALSE,MEDIUM
+ADV_D9_002,NO,,"No, I do not want to share data/photos","नहीं, मैं डेटा/फोटो साझा नहीं करना चाहता/चाहती",3,0,0.9,FALSE,FALSE,,❌,TRUE,Program consent denied; cannot enroll in verification-based program,PROGRAM_CONSENT,NO,FALSE,,FALSE,LOW
+ADV_D9_003,YES,,"Yes, willing to adopt at least 2 new practices for 3+ years","हाँ, 3+ वर्षों के लिए कम से कम 2 नई प्रथाएँ अपनाने को तैयार",1,95,0.7,FALSE,FALSE,,✅,TRUE,Strong regen commitment signal,REGEN_COMMITMENT,YES,FALSE,,FALSE,HIGH
+ADV_D9_003,DEPENDS,,Depends on support/incentives/training,सहायता/प्रोत्साहन/प्रशिक्षण पर निर्भर,2,65,0.7,FALSE,FALSE,,🤝,TRUE,Feasible with program design,REGEN_COMMITMENT,DEPENDS,FALSE,,FALSE,MEDIUM
+ADV_D9_003,NO,,Not willing,तैयार नहीं,3,10,0.7,FALSE,FALSE,,🚫,TRUE,Low adoption probability for regen pathway,REGEN_COMMITMENT,NO,FALSE,,FALSE,LOW
+ADV_D9_004,YES,,Will avoid open burning of residues,अवशेष खुले में नहीं जलाएँगे,1,95,0.7,FALSE,FALSE,,✅,TRUE,Strong integrity + co-benefits,,,FALSE,,FALSE,HIGH
+ADV_D9_004,NO,,Will continue / open burning possible,अवशेष जलाना जारी रह सकता है,2,10,0.7,FALSE,FALSE,,🔥,TRUE,High leakage risk for biochar programs,,,FALSE,,FALSE,LOW
+ADV_D9_005,YES,,"Yes, can keep receipts and records","हाँ, रसीद और रिकॉर्ड रख सकता/सकती हूँ",1,95,0.8,TRUE,FALSE,,🧾,TRUE,Strong ERW MRV readiness,,,FALSE,,FALSE,HIGH
+ADV_D9_005,YES_WITH_HELP,,"Yes, with help from project/team","हाँ, सहायता के साथ",2,75,0.8,TRUE,FALSE,,🤝,TRUE,Feasible MRV with support,,,FALSE,,FALSE,HIGH
+ADV_D9_005,DIFFICULT,,Difficult to maintain records,रिकॉर्ड रखना कठिन,3,40,0.8,FALSE,FALSE,,⚠️,TRUE,MRV risk; may need simplification,,,FALSE,,FALSE,MEDIUM
+ADV_D9_005,NO,,"No, cannot keep such records","नहीं, ऐसे रिकॉर्ड नहीं रख सकता/सकती",4,10,0.8,FALSE,FALSE,,🚫,TRUE,ERW MRV not feasible,,,FALSE,,FALSE,LOW
+ADV_D9_006,YES,,"Yes, can keep receipts and records","हाँ, रसीद और रिकॉर्ड रख सकता/सकती हूँ",1,95,0.8,TRUE,FALSE,,🧾,TRUE,Biochar MRV readiness: can maintain proof + application records,BIOCHAR_TRACEABILITY_WILLINGNESS,YES,FALSE,,FALSE,HIGH
+ADV_D9_006,YES_WITH_HELP,,"Yes, with help from project/team","हाँ, टीम की सहायता के साथ",2,80,0.8,TRUE,FALSE,,🤝,TRUE,Feasible with support templates/field staff,BIOCHAR_TRACEABILITY_WILLINGNESS,YES_WITH_HELP,FALSE,,FALSE,HIGH
+ADV_D9_006,DIFFICULT,,Difficult for me to keep records,मेरे लिए रिकॉर्ड रखना कठिन है,3,45,0.8,FALSE,TRUE,ADV_D9_006_FU_SIMPLEMRV,⚠️,TRUE,Needs simplification/support,BIOCHAR_TRACEABILITY_WILLINGNESS,DIFFICULT,FALSE,,FALSE,MEDIUM
+ADV_D9_006,NO,,"No, I cannot keep such records","नहीं, मैं ऐसे रिकॉर्ड नहीं रख सकता/सकती",4,10,0.8,FALSE,FALSE,,🚫,TRUE,Biochar MRV not feasible,BIOCHAR_TRACEABILITY_WILLINGNESS,NO,FALSE,,FALSE,LOW
+ADV_D10_001,HIGH,,Biomass surplus (enough residue remains after current uses),जैव-अवशेष अधिक (वर्तमान उपयोग के बाद भी पर्याप्त बचता है),1,95,0.75,FALSE,FALSE,,🌾,TRUE,Strong feedstock availability for biochar,BIO_FEEDSTOCK_AVAILABILITY,HIGH,FALSE,,FALSE,HIGH
+ADV_D10_001,MEDIUM,,Some biomass available (may need partial diversion),कुछ जैव-अवशेष उपलब्ध (आंशिक डायवर्जन की आवश्यकता),2,70,0.75,FALSE,FALSE,,🌿,TRUE,Feasible with planning,BIO_FEEDSTOCK_AVAILABILITY,MEDIUM,FALSE,,FALSE,MEDIUM
+ADV_D10_001,LOW,,Little biomass available,कम जैव-अवशेष उपलब्ध,3,35,0.75,FALSE,FALSE,,🍂,TRUE,May not support meaningful biochar volumes,BIO_FEEDSTOCK_AVAILABILITY,LOW,FALSE,,FALSE,LOW
+ADV_D10_001,NONE,,No usable biomass residue available,उपयोग योग्य जैव-अवशेष उपलब्ध नहीं,4,5,0.75,FALSE,FALSE,,🚫,TRUE,Biochar pathway unlikely without external supply,BIO_FEEDSTOCK_AVAILABILITY,NONE,FALSE,,FALSE,LOW
+ADV_D10_002,FODDER,,Use as livestock fodder,पशु चारे के रूप में उपयोग,1,40,0.7,FALSE,FALSE,,🐄,TRUE,Strong competing use; diversion harder,BIO_RESIDUE_CURRENT_USE,FODDER,FALSE,,FALSE,MEDIUM
+ADV_D10_002,BURN,,Open burning,खुले में जलाते हैं,2,30,0.7,FALSE,FALSE,,🔥,TRUE,Biochar can be attractive alternative but behavior change needed,BIO_RESIDUE_CURRENT_USE,BURN,FALSE,,FALSE,LOW
+ADV_D10_002,INCORPORATE,,Incorporate into soil (plough in),मिट्टी में मिलाते हैं (जुताई से),3,70,0.7,FALSE,FALSE,,🌱,TRUE,Competing use; may divert portion if willing,BIO_RESIDUE_CURRENT_USE,INCORPORATE,FALSE,,FALSE,MEDIUM
+ADV_D10_002,SELL,,Sell residues/husk,अवशेष/भूसी बेचते हैं,4,60,0.7,FALSE,FALSE,,💰,TRUE,May switch if biochar economics attractive,BIO_RESIDUE_CURRENT_USE,SELL,FALSE,,FALSE,MEDIUM
+ADV_D10_002,COMPOST,,Compost/manure pit (already composting residues),कम्पोस्ट/खाद गड्ढा (अवशेष पहले से कम्पोस्ट),5,80,0.7,FALSE,FALSE,,♻️,TRUE,Competing use; biochar possible if surplus exists,BIO_RESIDUE_CURRENT_USE,COMPOST,FALSE,,FALSE,HIGH
+ADV_D10_002,OTHER,,Other use,अन्य उपयोग,6,50,0.7,FALSE,TRUE,ADV_D10_002_FU_OTHERUSE,❓,TRUE,Specify competing use,BIO_RESIDUE_CURRENT_USE,OTHER,FALSE,,TRUE,MEDIUM
+ADV_D10_003,YES,,Willing to divert residues for biochar,बायोचार के लिए अवशेष देने को तैयार,1,95,0.7,FALSE,FALSE,,✅,TRUE,Key feasibility and commitment signal,BIO_RESIDUE_DIVERT_WILLING,YES,FALSE,,FALSE,HIGH
+ADV_D10_003,DEPENDS,,Depends (price/support/need clarity),निर्भर (कीमत/सहायता/स्पष्टता पर),2,60,0.7,FALSE,FALSE,,🤝,TRUE,Feasible with incentives + support,BIO_RESIDUE_DIVERT_WILLING,DEPENDS,FALSE,,FALSE,MEDIUM
+ADV_D10_003,NO,,Not willing to divert residues,अवशेष देने को तैयार नहीं,3,5,0.7,FALSE,FALSE,,🚫,TRUE,Biochar pathway unlikely unless purchased externally,BIO_RESIDUE_DIVERT_WILLING,NO,FALSE,,FALSE,LOW
+ADV_D10_004,MIX_WITH_MANURE,,Mix with FYM/compost then apply,गोबर खाद/कम्पोस्ट के साथ मिलाकर डालना,1,90,0.7,FALSE,FALSE,,🌱,TRUE,Best practice for nutrient retention + soil contact,BIO_APPLICATION_METHOD,MIX_WITH_MANURE,FALSE,,FALSE,HIGH
+ADV_D10_004,BROADCAST_AND_INCORPORATE,,Broadcast then incorporate into soil,बिखेरकर मिट्टी में मिलाना,2,80,0.7,TRUE,FALSE,,🚜,TRUE,Good method if incorporation possible,BIO_APPLICATION_METHOD,BROADCAST_AND_INCORPORATE,FALSE,,FALSE,HIGH
+ADV_D10_004,BAND_ROW,,Apply in rows/bands near root zone,कतार/बैंड में जड़ों के पास देना,3,75,0.7,FALSE,FALSE,,📍,TRUE,Efficient for limited biochar/high-value crops,BIO_APPLICATION_METHOD,BAND_ROW,FALSE,,FALSE,HIGH
+ADV_D10_004,ONLY_TOPDRESS,,Only top-dress (no mixing),केवल ऊपर से डालना (मिलाना नहीं),4,50,0.7,FALSE,FALSE,,🟤,TRUE,Less effective without incorporation,BIO_APPLICATION_METHOD,ONLY_TOPDRESS,FALSE,,FALSE,MEDIUM
+ADV_D10_004,NOT_SURE,,Not sure how to apply,कैसे डालना है पता नहीं,5,40,0.7,FALSE,TRUE,ADV_D10_004_FU_TRAINING,❓,TRUE,Trigger follow-up training/demo,BIO_APPLICATION_METHOD,NOT_SURE,TRUE,ADVPROBE_075,FALSE,MEDIUM
+ADV_D10_005,LOW_WATER_HOLDING,,Soil dries quickly / low water holding,मिट्टी जल्दी सूखती / जलधारण कम,1,90,0.7,FALSE,FALSE,,💧,TRUE,Biochar often helps in light soils,,,FALSE,,FALSE,HIGH
+ADV_D10_005,LOW_FERTILITY,,Low fertility / poor crop response,कम उर्वरता / फसल प्रतिक्रिया कमजोर,2,80,0.7,FALSE,FALSE,,🌾,TRUE,Biochar + nutrients/compost may help,,,FALSE,,FALSE,HIGH
+ADV_D10_005,ACIDIC,,Acidic soil suspected,अम्लीय मिट्टी का संदेह,3,75,0.7,FALSE,FALSE,,🧪,TRUE,Certain chars can help acidity (needs pH check),,,FALSE,,FALSE,HIGH
+ADV_D10_005,SALINITY_HARDNESS,,Salinity/alkalinity symptoms present,लवणता/क्षारीयता के लक्षण,4,50,0.7,FALSE,FALSE,,🧂,TRUE,Use caution; needs soil test + plan,,,FALSE,,FALSE,MEDIUM
+ADV_D10_005,HARD_SOIL,,Soil is hard/compact (poor structure),मिट्टी कड़ी/सघन (संरचना खराब),5,70,0.7,FALSE,FALSE,,🧱,TRUE,Char + organics may improve structure over time,,,FALSE,,FALSE,MEDIUM
+ADV_D10_005,NONE,,No major soil problem,कोई बड़ी मिट्टी समस्या नहीं,6,40,0.7,FALSE,FALSE,,✅,TRUE,Motivation may be lower though co-benefits exist,,,FALSE,,FALSE,MEDIUM
+ADV_I1_001,NUMERIC,,Numeric value (0-60 years),संख्यात्मक मान (0-60 वर्ष),0,0,0.8,FALSE,FALSE,,,TRUE,Farming experience indicator,,,FALSE,,TRUE,LOW
+ADV_I1_002,GRADUATE,,Graduate or higher,स्नातक या उच्चतर,1,95,0.85,FALSE,FALSE,,🎓,TRUE,High learning capacity,EDUCATION_LEVEL,GRADUATE,FALSE,,FALSE,HIGH
+ADV_I1_002,SECONDARY,,Secondary/high school (10th-12th),माध्यमिक/हाई स्कूल (10वीं-12वीं),2,85,0.85,FALSE,FALSE,,📚,TRUE,Good capacity,EDUCATION_LEVEL,SECONDARY,FALSE,,FALSE,HIGH
+ADV_I1_002,PRIMARY,,Primary (up to 8th class),प्राथमिक (8वीं कक्षा तक),3,70,0.8,FALSE,FALSE,,📖,TRUE,Moderate capacity,EDUCATION_LEVEL,PRIMARY,FALSE,,FALSE,MEDIUM
+ADV_I1_002,LITERATE,,Literate (can read/write),साक्षर (पढ़/लिख सकते हैं),4,60,0.75,FALSE,FALSE,,✍️,TRUE,Basic capacity,EDUCATION_LEVEL,LITERATE,FALSE,,FALSE,MEDIUM
+ADV_I1_002,ILLITERATE,,Cannot read/write,पढ़/लिख नहीं सकते,5,45,0.7,FALSE,FALSE,,❌,TRUE,Needs support person,EDUCATION_LEVEL,ILLITERATE,FALSE,,FALSE,MEDIUM
+ADV_I1_003,YES,,"Yes, smartphone with internet access","हाँ, इंटरनेट वाला स्मार्टफोन है",1,85,0.8,FALSE,FALSE,,📱,TRUE,Digital support possible,,,FALSE,,FALSE,HIGH
+ADV_I1_003,NO,,No smartphone / no internet,स्मार्टफोन नहीं / इंटरनेट नहीं,2,60,0.8,FALSE,FALSE,,❌,TRUE,Traditional support needed,,,FALSE,,FALSE,MEDIUM
+ADV_I1_004,YES_COMFORTABLE,,"Yes, comfortable with record keeping","हाँ, रिकॉर्ड रखने में सहज",1,100,0.9,FALSE,FALSE,,📋,TRUE,Essential for MRV,RECORD_KEEPING,YES,FALSE,,FALSE,HIGH
+ADV_I1_004,YES_WITH_HELP,,"Yes, but need some help initially","हाँ, लेकिन शुरू में कुछ मदद चाहिए",2,80,0.85,FALSE,FALSE,,🤝,TRUE,Trainable,RECORD_KEEPING,YES_WITH_HELP,FALSE,,FALSE,HIGH
+ADV_I1_004,DIFFICULT,,Will be difficult for me,मेरे लिए मुश्किल होगा,3,55,0.8,FALSE,FALSE,,⚠️,TRUE,Needs support person,RECORD_KEEPING,DIFFICULT,FALSE,,FALSE,MEDIUM
+ADV_I1_004,NO,,Cannot keep records,रिकॉर्ड नहीं रख सकता/सकती,4,30,0.85,FALSE,FALSE,,❌,TRUE,Major MRV constraint,RECORD_KEEPING,NO,FALSE,,FALSE,LOW
+ADV_I1_005,YES_MANY,,"Yes, tried 3+ new practices","हाँ, 3+ नई प्रथाएँ आजमाईं",1,95,0.85,FALSE,FALSE,,🌟,TRUE,Innovator,INNOVATION_HISTORY,INNOVATOR,FALSE,,FALSE,HIGH
+ADV_I1_005,YES_FEW,,"Yes, tried 1-2 new practices","हाँ, 1-2 नई प्रथाएँ आजमाईं",2,80,0.85,FALSE,FALSE,,✅,TRUE,Open to change,INNOVATION_HISTORY,OPEN_TO_CHANGE,FALSE,,FALSE,HIGH
+ADV_I1_005,NO,,"No, stick to traditional methods","नहीं, पारंपरिक विधियों का पालन करता/करती हूँ",3,50,0.85,FALSE,FALSE,,➖,TRUE,Conservative,INNOVATION_HISTORY,TRADITIONAL,FALSE,,FALSE,MEDIUM
+ADV_I1_006,NUMERIC,,Numeric count (0-20),संख्यात्मक गणना (0-20),0,0,0.75,FALSE,FALSE,,,TRUE,Training exposure indicator,,,FALSE,,TRUE,LOW
+ADV_I2_001,NUMERIC,,Numeric count (0-15),संख्यात्मक गणना (0-15),0,0,0.85,FALSE,FALSE,,,TRUE,Working-age family labor availability,,,FALSE,,TRUE,LOW
+ADV_I2_002,YES,,"Yes, someone can visit daily","हाँ, कोई दैनिक रूप से दौरा कर सकता/सकती है",1,100,0.9,FALSE,FALSE,,✅,TRUE,Critical for AWD,DAILY_MONITORING,YES,FALSE,,FALSE,HIGH
+ADV_I2_002,MOST_DAYS,,Most days (5-6 days per week),अधिकांश दिन (सप्ताह में 5-6 दिन),2,85,0.85,FALSE,FALSE,,📅,TRUE,Acceptable,DAILY_MONITORING,MOST_DAYS,FALSE,,FALSE,HIGH
+ADV_I2_002,NO,,"No, difficult to visit daily","नहीं, दैनिक दौरा कठिन है",3,50,0.85,FALSE,FALSE,,❌,TRUE,Major constraint,DAILY_MONITORING,NO,FALSE,,FALSE,MEDIUM
+ADV_I2_003,EASY,,Easy to hire when needed,जरूरत पर श्रमिक मिल जाते हैं,1,85,0.8,FALSE,FALSE,,✅,TRUE,Good labor market,,,FALSE,,FALSE,HIGH
+ADV_I2_003,MODERATE,,Moderate (sometimes available),मध्यम (कभी-कभी उपलब्ध),2,70,0.8,FALSE,FALSE,,〰️,TRUE,Acceptable,,,FALSE,,FALSE,MEDIUM
+ADV_I2_003,DIFFICULT,,Difficult (scarce/expensive),मुश्किल (दुर्लभ/महंगा),3,50,0.8,FALSE,FALSE,,⚠️,TRUE,Labor constraint,,,FALSE,,FALSE,MEDIUM
+ADV_I2_003,NOT_AVAILABLE,,Not available,उपलब्ध नहीं,4,30,0.85,FALSE,FALSE,,❌,TRUE,Major operational issue,,,FALSE,,FALSE,LOW
+ADV_I2_004,PUMP,,Irrigation pump,सिंचाई पंप,1,15,0.85,FALSE,FALSE,,💧,TRUE,Multi-select option,,,FALSE,,FALSE,LOW
+ADV_I2_004,SPRAYER,,Sprayer/pesticide equipment,स्प्रेयर/कीटनाशक उपकरण,2,10,0.8,FALSE,FALSE,,🌿,TRUE,Multi-select option,,,FALSE,,FALSE,LOW
+ADV_I2_004,TOOLS,,Basic farm tools,बुनियादी खेती के औजार,3,5,0.8,FALSE,FALSE,,🔨,TRUE,Multi-select option,,,FALSE,,FALSE,LOW
+ADV_I2_004,VEHICLE,,Vehicle,वाहन,4,20,0.8,FALSE,FALSE,,🚚,TRUE,Multi-select option,,,FALSE,,FALSE,LOW
+ADV_I2_004,TRACTOR,,Tractor,ट्रैक्टर,5,25,0.8,FALSE,FALSE,,🚜,TRUE,Multi-select option,,,FALSE,,FALSE,LOW
+ADV_I2_004,POWER_TILLER,,Power tiller,पावर टिलर,6,20,0.8,FALSE,FALSE,,⚙️,TRUE,Multi-select option,,,FALSE,,FALSE,LOW
+ADV_I2_004,OTHER,,Other equipment/tools,अन्य उपकरण/औजार,7,5,0.7,FALSE,TRUE,ADV_I2_004_FU_OTHER,❓,TRUE,Specify other equipment if relevant,,,FALSE,,TRUE,LOW
+ADV_I3_001,ACTIVE_KCC,,Active KCC (Kisan Credit Card),सक्रिय KCC (किसान क्रेडिट कार्ड),1,100,0.9,TRUE,FALSE,,💳,TRUE,Best for payouts and transactions,,,FALSE,,FALSE,HIGH
+ADV_I3_001,ACTIVE_SAVINGS,,Active savings account,सक्रिय बचत खाता,2,90,0.9,TRUE,FALSE,,🏦,TRUE,Good,,,FALSE,,FALSE,HIGH
+ADV_I3_001,INACTIVE,,Inactive account,निष्क्रिय खाता,3,60,0.85,FALSE,FALSE,,⏸️,TRUE,Needs reactivation,,,FALSE,,FALSE,MEDIUM
+ADV_I3_001,NONE,,No bank account,कोई बैंक खाता नहीं,4,30,0.9,TRUE,FALSE,,❌,TRUE,Must open account,,,FALSE,,FALSE,LOW
+ADV_I3_002,MORE_100K,,"More than ₹1,00,000","₹1,00,000 से अधिक",1,95,0.85,FALSE,FALSE,,💰,TRUE,High financial buffer,,,FALSE,,FALSE,HIGH
+ADV_I3_002,INR_50_100K,,"₹50,000 to ₹1,00,000","₹50,000 से ₹1,00,000",2,85,0.85,FALSE,FALSE,,💵,TRUE,Good buffer,,,FALSE,,FALSE,HIGH
+ADV_I3_002,INR_25_50K,,"₹25,000 to ₹50,000","₹25,000 से ₹50,000",3,70,0.85,FALSE,FALSE,,💳,TRUE,Moderate buffer,,,FALSE,,FALSE,MEDIUM
+ADV_I3_002,INR_10_25K,,"₹10,000 to ₹25,000","₹10,000 से ₹25,000",4,55,0.8,FALSE,FALSE,,💸,TRUE,Low buffer,,,FALSE,,FALSE,MEDIUM
+ADV_I3_002,LESS_10K,,"Less than ₹10,000","₹10,000 से कम",5,35,0.8,FALSE,FALSE,,⚠️,TRUE,Minimal buffer,,,FALSE,,FALSE,LOW
+ADV_I3_003,NO_DEBT,,No debt,कोई ऋण नहीं,1,100,0.85,FALSE,FALSE,,✅,TRUE,Best financial health,DEBT_STATUS,NO_DEBT,FALSE,,FALSE,HIGH
+ADV_I3_003,MANAGEABLE,,Manageable debt (can repay easily),प्रबंधनीय ऋण (आसानी से चुका सकते हैं),2,80,0.85,FALSE,FALSE,,👍,TRUE,Good,DEBT_STATUS,MANAGEABLE,FALSE,,FALSE,HIGH
+ADV_I3_003,HIGH,,High debt (struggling to repay),उच्च ऋण (चुकाने में संघर्ष),3,50,0.85,FALSE,FALSE,,⚠️,TRUE,Financial stress,DEBT_STATUS,HIGH,FALSE,,FALSE,MEDIUM
+ADV_I3_003,VERY_HIGH,,Very high debt (severe stress),बहुत उच्च ऋण (गंभीर तनाव),4,25,0.85,FALSE,FALSE,,🔴,TRUE,High risk,DEBT_STATUS,VERY_HIGH,FALSE,,FALSE,LOW
+ADV_I3_004,YES,,"Yes, enrolled in crop insurance","हाँ, फसल बीमा में नामांकित",1,85,0.8,FALSE,FALSE,,🛡️,TRUE,Risk protection during transition,,,FALSE,,FALSE,HIGH
+ADV_I3_004,NO,,No insurance,कोई बीमा नहीं,2,60,0.8,FALSE,FALSE,,❌,TRUE,Higher risk exposure,,,FALSE,,FALSE,MEDIUM
+ADV_I3_005,YES,,"Yes, willing to co-invest 30%","हाँ, 30% सह-निवेश करने को तैयार",1,100,0.9,FALSE,FALSE,,✅,TRUE,Strong commitment,COINVESTMENT_WILLING,YES,FALSE,,FALSE,HIGH
+ADV_I3_005,MAYBE,,"Maybe, depends on results","शायद, परिणामों पर निर्भर",2,70,0.8,FALSE,FALSE,,❓,TRUE,Conditional,COINVESTMENT_WILLING,MAYBE,FALSE,,FALSE,MEDIUM
+ADV_I3_005,NO,,"No, cannot invest","नहीं, निवेश नहीं कर सकता/सकती",3,40,0.85,FALSE,FALSE,,❌,TRUE,Needs full subsidy,COINVESTMENT_WILLING,NO,FALSE,,FALSE,MEDIUM
+ADV_I4_001,YES_MANY,,"Yes, 3+ different crops","हाँ, 3+ विभिन्न फसलें",1,90,0.8,FALSE,FALSE,,🌾,TRUE,Well diversified,,,FALSE,,FALSE,HIGH
+ADV_I4_001,YES_FEW,,"Yes, 1-2 other crops","हाँ, 1-2 अन्य फसलें",2,75,0.8,FALSE,FALSE,,🌱,TRUE,Some diversification,,,FALSE,,FALSE,HIGH
+ADV_I4_001,NO,,"No, only rice/main single crop","नहीं, केवल चावल/मुख्य एकल फसल",3,50,0.85,FALSE,FALSE,,🍚,TRUE,Higher dependency risk,,,FALSE,,FALSE,MEDIUM
+ADV_I4_002,YES_SIGNIFICANT,,"Yes, significant off-farm income (>50%)","हाँ, महत्वपूर्ण खेती-बाहर आय (>50%)",1,90,0.75,FALSE,FALSE,,💼,TRUE,Strong safety net,,,FALSE,,FALSE,HIGH
+ADV_I4_002,YES_MINOR,,"Yes, minor off-farm income (<50%)","हाँ, मामूली खेती-बाहर आय (<50%)",2,75,0.75,FALSE,FALSE,,💵,TRUE,Some safety net,,,FALSE,,FALSE,HIGH
+ADV_I4_002,NO,,"No, farming only","नहीं, केवल खेती",3,55,0.8,FALSE,FALSE,,🌾,TRUE,Full farming dependency,,,FALSE,,FALSE,MEDIUM
+ADV_I4_003,HIGH,,High (willing to try with some risk),उच्च (कुछ जोखिम के साथ कोशिश करने को तैयार),1,95,0.85,FALSE,FALSE,,🎯,TRUE,Early adopter profile,RISK_TOLERANCE,HIGH,FALSE,,FALSE,HIGH
+ADV_I4_003,MODERATE,,Moderate (will try if others succeed),मध्यम (अगर दूसरे सफल हों तो कोशिश करूँगा/करूँगी),2,75,0.85,FALSE,FALSE,,⚖️,TRUE,Follower profile,RISK_TOLERANCE,MODERATE,FALSE,,FALSE,HIGH
+ADV_I4_003,LOW,,Low (prefer proven methods),कम (सिद्ध विधियाँ पसंद),3,55,0.85,FALSE,FALSE,,⚠️,TRUE,Risk averse,RISK_TOLERANCE,LOW,FALSE,,FALSE,MEDIUM
+ADV_I4_003,VERY_LOW,,Very low (never try new things),बहुत कम (नई चीजें नहीं आजमाते),4,35,0.85,FALSE,FALSE,,🛑,TRUE,Very conservative,RISK_TOLERANCE,VERY_LOW,FALSE,,FALSE,LOW
+ADV_I4_004,MUST_BE,,Must be reversible,प्रतिवर्ती होना चाहिए,1,65,0.8,FALSE,FALSE,,🔄,TRUE,Low commitment comfort,,,FALSE,,FALSE,MEDIUM
+ADV_I4_004,PREFER,,Prefer reversible but flexible,प्रतिवर्ती पसंद लेकिन लचीला,2,75,0.8,FALSE,FALSE,,〰️,TRUE,Moderate commitment comfort,,,FALSE,,FALSE,HIGH
+ADV_I4_004,FLEXIBLE,,"Flexible, open to commitment","लचीला, प्रतिबद्धता के लिए खुला",3,85,0.8,FALSE,FALSE,,✅,TRUE,Good adoption comfort,,,FALSE,,FALSE,HIGH
+ADV_I4_004,COMMITTED_LONG,,Committed for long-term,दीर्घकालिक के लिए प्रतिबद्ध,4,95,0.85,FALSE,FALSE,,💯,TRUE,Best for carbon programs,,,FALSE,,FALSE,HIGH
+ADV_I5_001,YES,,"Yes, member of FPO/SHG/cooperative","हाँ, FPO/SHG/सहकारी का सदस्य",1,90,0.85,FALSE,FALSE,,👥,TRUE,Collective support access,FARMER_GROUP_MEMBER,YES,FALSE,,FALSE,HIGH
+ADV_I5_001,NO,,"No, not a member","नहीं, सदस्य नहीं",2,60,0.85,FALSE,FALSE,,❌,TRUE,Individual farmer support model needed,FARMER_GROUP_MEMBER,NO,FALSE,,FALSE,MEDIUM
+ADV_I5_002,STRONG,,Strong network (interact with 10+ farmers),मजबूत नेटवर्क (10+ किसानों से नियमित बातचीत),1,95,0.8,FALSE,FALSE,,👥,TRUE,High peer learning potential,,,FALSE,,FALSE,HIGH
+ADV_I5_002,MODERATE,,Moderate (interact with 5-10 farmers),मध्यम (5-10 किसानों से बातचीत),2,80,0.8,FALSE,FALSE,,👤,TRUE,Good network,,,FALSE,,FALSE,HIGH
+ADV_I5_002,WEAK,,Weak (interact with 2-4 farmers),कमजोर (2-4 किसानों से बातचीत),3,60,0.8,FALSE,FALSE,,🚶,TRUE,Limited network,,,FALSE,,FALSE,MEDIUM
+ADV_I5_002,ISOLATED,,Isolated (rarely interact),अलग-थलग (शायद ही बातचीत),4,40,0.8,FALSE,FALSE,,❌,TRUE,No peer support,,,FALSE,,FALSE,MEDIUM
+ADV_I5_003,HIGH,,High trust,उच्च विश्वास,1,90,0.75,FALSE,FALSE,,✅,TRUE,Good extension uptake,,,FALSE,,FALSE,HIGH
+ADV_I5_003,MODERATE,,Moderate trust,मध्यम विश्वास,2,70,0.75,FALSE,FALSE,,〰️,TRUE,Some skepticism but workable,,,FALSE,,FALSE,MEDIUM
+ADV_I5_003,LOW,,Low trust,कम विश्वास,3,50,0.75,FALSE,FALSE,,⚠️,TRUE,Prefers peer advice,,,FALSE,,FALSE,MEDIUM
+ADV_I5_003,NONE,,No trust,कोई विश्वास नहीं,4,30,0.75,FALSE,FALSE,,❌,TRUE,Extension disconnect,,,FALSE,,FALSE,LOW
+ADV_I5_004,INTENSIVE,,Intensive (weekly visits/calls),गहन (साप्ताहिक विज़िट/कॉल),1,80,0.85,FALSE,FALSE,,📞,TRUE,Preferred support level: high-touch,SUPPORT_LEVEL_GENERAL,INTENSIVE,FALSE,,FALSE,HIGH
+ADV_I5_004,MODERATE,,Moderate (monthly follow-up + training),मध्यम (मासिक फॉलो-अप + प्रशिक्षण),2,90,0.85,FALSE,FALSE,,📅,TRUE,Preferred support level: best balance,SUPPORT_LEVEL_GENERAL,MODERATE,FALSE,,FALSE,HIGH
+ADV_I5_004,MINIMAL,,Minimal (quarterly check-ins),न्यूनतम (त्रैमासिक चेक-इन),3,75,0.85,FALSE,FALSE,,📧,TRUE,Preferred support level: light-touch,SUPPORT_LEVEL_GENERAL,MINIMAL,FALSE,,FALSE,HIGH
+ADV_I5_004,SELF,,Self-managed (only WhatsApp/video guides),स्व-प्रबंधित (केवल व्हाट्सएप/वीडियो गाइड),4,60,0.8,FALSE,FALSE,,📱,TRUE,Preferred support level: self-managed with digital guidance,SUPPORT_LEVEL_GENERAL,SELF,FALSE,,FALSE,MEDIUM
+ADV_I5_005,YES,,"Yes, willing to train others","हाँ, दूसरों को प्रशिक्षित करने को तैयार",1,95,0.8,FALSE,FALSE,,👨‍🏫,TRUE,Peer trainer potential,TRAINER_WILLINGNESS,YES,FALSE,,FALSE,HIGH
+ADV_I5_005,MAYBE,,"Maybe, if trained well","शायद, यदि अच्छी तरह प्रशिक्षित किया जाए",2,75,0.75,FALSE,FALSE,,❓,TRUE,Possible trainer with support,TRAINER_WILLINGNESS,MAYBE,FALSE,,FALSE,HIGH
+ADV_I5_005,NO,,"No, not comfortable training","नहीं, प्रशिक्षण देने में सहज नहीं",3,55,0.8,FALSE,FALSE,,❌,TRUE,Not a trainer role,TRAINER_WILLINGNESS,NO,FALSE,,FALSE,MEDIUM
+ADV_D4_006,YES,,"Yes, committed for 5+ years","हाँ, 5+ वर्षों के लिए प्रतिबद्ध",1,100,0.95,FALSE,FALSE,,✅,TRUE,Meets carbon permanence requirement,COMMITMENT_5YR,YES,FALSE,,FALSE,HIGH
+ADV_D4_006,NO,,"No, not ready for 5+ years","नहीं, 5+ वर्षों के लिए तैयार नहीं",2,30,0.9,FALSE,FALSE,,❌,TRUE,Carbon pathway constrained,COMMITMENT_5YR,NO,FALSE,,FALSE,LOW
+ADV_D4_006,UNSURE,,"Unsure, want to try first","निश्चित नहीं, पहले कोशिश करना चाहता/चाहती हूँ",3,60,0.85,FALSE,FALSE,,❓,TRUE,Conditional commitment,COMMITMENT_5YR,UNSURE,TRUE,ADVPROBE_013,FALSE,MEDIUM
+ADV_D4_007,YES,,Will avoid open burning,अवशेष खुले में नहीं जलाएँगे,1,95,0.9,FALSE,FALSE,,✅,TRUE,Strong integrity signal,BIO_NO_OPEN_BURNING_COMMIT,YES,FALSE,,FALSE,HIGH
+ADV_D4_007,NO,,Will continue / open burning possible,अवशेष जलाना जारी रह सकता है,2,10,0.9,FALSE,FALSE,,🔥,TRUE,Biochar integrity risk,BIO_NO_OPEN_BURNING_COMMIT,NO,FALSE,,FALSE,LOW
+ADV_D4_008,YES,,"Yes, can keep receipts and records","हाँ, रसीद और रिकॉर्ड रख सकता/सकती हूँ",1,95,0.8,TRUE,FALSE,,🧾,TRUE,ERW MRV ready,ERW_TRACEABILITY_WILLINGNESS,YES,FALSE,,FALSE,HIGH
+ADV_D4_008,YES_WITH_HELP,,"Yes, with help","हाँ, सहायता के साथ",2,75,0.8,TRUE,FALSE,,🤝,TRUE,ERW MRV feasible with support,ERW_TRACEABILITY_WILLINGNESS,YES_WITH_HELP,FALSE,,FALSE,HIGH
+ADV_D4_008,DIFFICULT,,Difficult to maintain records,रिकॉर्ड रखना कठिन,3,40,0.8,FALSE,FALSE,,âš ï¸,TRUE,ERW MRV risk,ERW_TRACEABILITY_WILLINGNESS,DIFFICULT,FALSE,,FALSE,MEDIUM
+ADV_D4_008,NO,,"No, cannot keep such records","नहीं, ऐसे रिकॉर्ड नहीं रख सकता/सकती",4,10,0.8,FALSE,FALSE,,🚫,TRUE,ERW MRV not feasible,ERW_TRACEABILITY_WILLINGNESS,NO,FALSE,,FALSE,LOW
+ADV_D7_008,YES,,Yes willing to try,हाँ आजमाने को तैयार,1,90,0.7,FALSE,FALSE,,✅,TRUE,Regen pathway open,REGEN_WILLINGNESS,YES,FALSE,,FALSE,HIGH
+ADV_D7_008,MAYBE,,Maybe with demo/support,शायद डेमो/सहायता के साथ,2,60,0.7,FALSE,FALSE,,🤝,TRUE,Conditional,REGEN_WILLINGNESS,MAYBE,FALSE,,FALSE,MEDIUM
+ADV_D7_008,NO,,Not willing currently,वर्तमान में तैयार नहीं,3,20,0.7,FALSE,FALSE,,🚫,TRUE,Regen pathway unlikely,REGEN_WILLINGNESS,NO,FALSE,,FALSE,LOW
+ADV_D8_005,YES_TRACTOR_TILL,,Yes (tractor tillage available),हाँ (ट्रैक्टर जुताई उपलब्ध),1,90,0.7,TRUE,FALSE,,🚜,TRUE,Best incorporation,ERW_INCORPORATION_ABILITY,STRONG,FALSE,,FALSE,HIGH
+ADV_D8_005,YES_LIGHT_TILL,,Yes (light tillage/harrow),हाँ (हल्की जुताई/हैरो),2,70,0.7,TRUE,FALSE,,🧑‍🌾,TRUE,Moderate incorporation,ERW_INCORPORATION_ABILITY,MODERATE,FALSE,,FALSE,MEDIUM
+ADV_D8_005,NO_ZERO_TILL_ONLY,,No (only zero till),नहीं (केवल जीरो टिल),3,35,0.7,FALSE,FALSE,,🚫,TRUE,Surface-only limitation,ERW_INCORPORATION_ABILITY,LOW,FALSE,,FALSE,LOW
+ADV_D8_005,UNSURE,,Not sure,निश्चित नहीं,4,45,0.7,FALSE,TRUE,,❓,TRUE,Needs field planning,ERW_INCORPORATION_ABILITY,UNSURE,TRUE,ADVPROBE_067,FALSE,MEDIUM
+ADV_D8_006,RELIABLE,,Reliable rainfall/irrigation after application,आवेदन के बाद विश्वसनीय वर्षा/सिंचाई,1,80,0.7,FALSE,FALSE,,💧,TRUE,Supports dissolution,ERW_MOISTURE_RELIABILITY,RELIABLE,FALSE,,FALSE,HIGH
+ADV_D8_006,SOMETIMES,,Sometimes available,कभी-कभी उपलब्ध,2,60,0.7,FALSE,FALSE,,🌦️,TRUE,Moderate support,ERW_MOISTURE_RELIABILITY,SOMETIMES,FALSE,,FALSE,MEDIUM
+ADV_D8_006,RARE,,Rarely available,कभी-कभार,3,35,0.7,FALSE,FALSE,,🏜️,TRUE,May slow reaction,ERW_MOISTURE_RELIABILITY,RARE,FALSE,,FALSE,LOW
+ADV_D8_006,NONE,,Not available,उपलब्ध नहीं,4,15,0.7,FALSE,FALSE,,🚫,TRUE,ERW performance weak,ERW_MOISTURE_RELIABILITY,NONE,FALSE,,FALSE,LOW
+ADV_D8_007,YES,,"Yes, can keep receipts and records","हाँ, रसीद और रिकॉर्ड रख सकता/सकती ��ूँ",1,95,0.8,TRUE,FALSE,,🧾,TRUE,ERW MRV ready,ERW_TRACEABILITY_WILLINGNESS,YES,FALSE,,FALSE,HIGH
+ADV_D8_007,YES_WITH_HELP,,"Yes, with help","हाँ, सहायता के साथ",2,75,0.8,TRUE,FALSE,,🤝,TRUE,ERW MRV feasible with support,ERW_TRACEABILITY_WILLINGNESS,YES_WITH_HELP,FALSE,,FALSE,HIGH
+ADV_D8_007,DIFFICULT,,Difficult to maintain records,रिकॉर्ड रखना कठिन,3,40,0.8,FALSE,FALSE,,âš ï¸,TRUE,ERW MRV risk,ERW_TRACEABILITY_WILLINGNESS,DIFFICULT,FALSE,,FALSE,MEDIUM
+ADV_D8_007,NO,,"No, cannot keep such records","नहीं, ऐसे रिकॉर्ड नहीं रख सकता/सकती",4,10,0.8,FALSE,FALSE,,🚫,TRUE,ERW MRV not feasible,ERW_TRACEABILITY_WILLINGNESS,NO,FALSE,,FALSE,LOW
+ADV_D9_007,PAPER_NOTEBOOK,,Paper notebook/register,कागज नोटबुक/रजिस्टर,1,80,0.85,FALSE,FALSE,,📋,TRUE,Traditional format,,,FALSE,,FALSE,HIGH
+ADV_D9_007,PRINTED_FORM,,Printed form,छपा हुआ फॉर्म,2,85,0.85,FALSE,FALSE,,📄,TRUE,Structured format,,,FALSE,,FALSE,HIGH
+ADV_D9_007,WHATSAPP_PHOTO,,WhatsApp/photo notes,व्हाट्सएप/फोटो नोट्स,3,75,0.8,FALSE,FALSE,,📱,TRUE,Digital format,,,FALSE,,FALSE,HIGH
+ADV_D9_007,VOICE_NOTES,,Voice notes,वॉइस नोट्स,4,65,0.75,FALSE,FALSE,,🎤,TRUE,Low-literacy friendly,,,FALSE,,FALSE,MEDIUM
+ADV_D9_007,CANNOT_DO,,Cannot do regularly,नियमित नहीं कर सकता/सकती,5,30,0.8,FALSE,FALSE,,❌,TRUE,Major MRV constraint,,,FALSE,,FALSE,LOW
+ADV_D9_008,NO_SELF,,No help needed (self),मदद नहीं चाहिए (स्वयं),1,95,0.9,FALSE,FALSE,,💪,TRUE,Independent MRV,,,FALSE,,FALSE,HIGH
+ADV_D9_008,YES_INITIAL,,Help needed initially only,शुरू में ही मदद चाहिए,2,80,0.85,FALSE,FALSE,,📚,TRUE,Trainable,,,FALSE,,FALSE,HIGH
+ADV_D9_008,YES_ONGOING,,Ongoing help needed,निरंतर मदद चाहिए,3,55,0.8,FALSE,FALSE,,🤝,TRUE,High support mode,,,FALSE,,FALSE,MEDIUM
+ADV_D9_008,CANNOT_DO_ALONE,,Cannot do alone at all,अकेले बिल्कुल नहीं कर सकता/सकती,4,30,0.8,FALSE,FALSE,,❌,TRUE,Needs dedicated support person,,,FALSE,,FALSE,LOW
+ADV_D10_006,MIX_WITH_MANURE,,Mix with FYM/compost then apply,गोबर खाद/कम्पोस्ट के साथ मिलाकर डालना,1,90,0.7,FALSE,FALSE,,🌱,TRUE,Best practice,BIO_APPLICATION_METHOD,MIX_WITH_MANURE,FALSE,,FALSE,HIGH
+ADV_D10_006,BROADCAST_AND_INCORPORATE,,Broadcast then incorporate,बिखेरकर मिट्टी में मिलाना,2,80,0.7,TRUE,FALSE,,🚜,TRUE,Good method,BIO_APPLICATION_METHOD,BROADCAST_AND_INCORPORATE,FALSE,,FALSE,HIGH
+ADV_D10_006,BAND_ROW,,Apply in rows/bands,कतार/बैंड में देना,3,75,0.7,FALSE,FALSE,,📍,TRUE,Efficient targeted,BIO_APPLICATION_METHOD,BAND_ROW,FALSE,,FALSE,HIGH
+ADV_D10_006,ONLY_TOPDRESS,,Only top-dress (no mixing),केवल ऊपर से डालना,4,50,0.7,FALSE,FALSE,,🟤,TRUE,Less effective,BIO_APPLICATION_METHOD,ONLY_TOPDRESS,FALSE,,FALSE,MEDIUM
+ADV_D10_006,NOT_SURE,,Not sure how to apply,कैसे डालना है पता नहीं,5,40,0.7,FALSE,TRUE,,❓,TRUE,Needs training,BIO_APPLICATION_METHOD,NOT_SURE,TRUE,ADVPROBE_075,FALSE,MEDIUM
+ADV_D10_007,LOW_WATER_HOLDING,,Soil dries quickly,मिट्टी जल्दी सूखती है,1,90,0.7,FALSE,FALSE,,💧,TRUE,Biochar strong use-case,BIO_PRIORITY_SOIL_PROBLEM,LOW_WATER_HOLDING,FALSE,,FALSE,HIGH
+ADV_D10_007,LOW_FERTILITY,,Low fertility / poor crop response,कम उर्वरता / फसल प्रतिक्रिया कमजोर,2,80,0.7,FALSE,FALSE,,🌾,TRUE,Nutrient retention use-case,BIO_PRIORITY_SOIL_PROBLEM,LOW_FERTILITY,FALSE,,FALSE,HIGH
+ADV_D10_007,ACIDIC,,Acidic soil suspected,अम्लीय मिट्टी का संदेह,3,75,0.7,FALSE,FALSE,,🧪,TRUE,pH-dependent,BIO_PRIORITY_SOIL_PROBLEM,ACIDIC,FALSE,,FALSE,HIGH
+ADV_D10_007,SALINITY_HARDNESS,,Salinity/alkalinity symptoms,लवणता/क्षारीयता लक्षण,4,50,0.7,FALSE,FALSE,,🧂,TRUE,Context-specific,BIO_PRIORITY_SOIL_PROBLEM,SALINITY_HARDNESS,FALSE,,FALSE,MEDIUM
+ADV_D10_007,HARD_SOIL,,Soil is hard/compact,मिट्टी कड़ी/सघन,5,70,0.7,FALSE,FALSE,,🧱,TRUE,Structure improvement,BIO_PRIORITY_SOIL_PROBLEM,HARD_SOIL,FALSE,,FALSE,MEDIUM
+ADV_D10_007,NONE,,No major soil problem,कोई बड़ी मिट्टी समस्या नहीं,6,40,0.7,FALSE,FALSE,,✅,TRUE,Lower biochar motivation,BIO_PRIORITY_SOIL_PROBLEM,NONE,FALSE,,FALSE,MEDIUM
+ADV_D10_008,YES,,Will avoid open burning,खुले में नहीं जलाएँगे,1,95,0.7,FALSE,FALSE,,✅,TRUE,Integrity supported,BIO_NO_OPEN_BURNING_COMMIT,YES,FALSE,,FALSE,HIGH
+ADV_D10_008,NO,,Will continue burning,जलाना जारी रह सकता है,2,10,0.7,FALSE,FALSE,,🔥,TRUE,Integrity risk,BIO_NO_OPEN_BURNING_COMMIT,NO,FALSE,,FALSE,LOW
+ADV_D10_009,YES,,"Yes, can keep receipts and records","हाँ, रसीद और रिकॉर्ड रख सकता/सकती हूँ",1,95,0.8,TRUE,FALSE,,🧾,TRUE,Biochar MRV ready,BIOCHAR_TRACEABILITY_WILLINGNESS,YES,FALSE,,FALSE,HIGH
+ADV_D10_009,YES_WITH_HELP,,"Yes, with help","हाँ, सहायता के साथ",2,80,0.8,TRUE,FALSE,,🤝,TRUE,Feasible with support,BIOCHAR_TRACEABILITY_WILLINGNESS,YES_WITH_HELP,FALSE,,FALSE,HIGH
+ADV_D10_009,DIFFICULT,,Difficult,कठिन,3,45,0.8,FALSE,FALSE,,âš ï¸,TRUE,MRV risk,BIOCHAR_TRACEABILITY_WILLINGNESS,DIFFICULT,FALSE,,FALSE,MEDIUM
+ADV_D10_009,NO,,"No, cannot keep records","नहीं, रिकॉर्ड नहीं रख सकता/सकती",4,10,0.8,FALSE,FALSE,,🚫,TRUE,MRV not feasible,BIOCHAR_TRACEABILITY_WILLINGNESS,NO,FALSE,,FALSE,LOW
+ADV_D10_010,YES_ENTHUSIASTIC,,Very willing / enthusiastic,बहुत इच्छुक / उत्साहित,1,95,0.75,FALSE,FALSE,,🌟,TRUE,Strong biochar candidate,BIO_OVERALL_WILLINGNESS,YES,FALSE,,FALSE,HIGH
+ADV_D10_010,YES_CAUTIOUS,,Willing but cautious,इच्छुक पर सतर्क,2,75,0.75,FALSE,FALSE,,✅,TRUE,Good candidate with support,BIO_OVERALL_WILLINGNESS,YES,FALSE,,FALSE,HIGH
+ADV_D10_010,MAYBE,,Maybe / need more information,शायद / अधिक जानकारी चाहिए,3,50,0.7,FALSE,FALSE,,❓,TRUE,Conditional,BIO_OVERALL_WILLINGNESS,MAYBE,FALSE,,FALSE,MEDIUM
+ADV_D10_010,NO,,Not interested,रुचि नहीं,4,15,0.75,FALSE,FALSE,,🚫,TRUE,Biochar pathway unlikely,BIO_OVERALL_WILLINGNESS,NO,FALSE,,FALSE,LOW
+ADV_I2_005,LABOR,,Labor availability/management,मजदूर उपलब्धता / प्रबंधन,1,50,0.8,FALSE,FALSE,,💧,TRUE,AWD-critical bottleneck,OPS_BOTTLENECK,LABOR,FALSE,,FALSE,MEDIUM
+ADV_I2_005,EQUIPMENT,,Equipment / tools,उपकरण / औज़ार,2,50,0.8,FALSE,FALSE,,💧,TRUE,AWD-critical bottleneck,OPS_BOTTLENECK,EQUIPMENT,FALSE,,FALSE,MEDIUM
+ADV_I2_005,WATER,,Water availability / timing,पानी की उपलब्धता / समय,3,50,0.8,FALSE,FALSE,,💧,TRUE,AWD-critical bottleneck,OPS_BOTTLENECK,WATER,FALSE,,FALSE,MEDIUM
+ADV_I2_005,TIME,,Time / supervision,समय / निगरानी,4,50,0.8,FALSE,FALSE,,💧,TRUE,AWD-critical bottleneck,OPS_BOTTLENECK,TIME,FALSE,,FALSE,MEDIUM
+ADV_I2_005,FINANCE,,Finance / cash flow,वित्त / नकदी प्रवाह,5,50,0.8,FALSE,FALSE,,💧,TRUE,AWD-critical bottleneck,OPS_BOTTLENECK,FINANCE,FALSE,,FALSE,MEDIUM
+ADV_I2_005,NONE,,No major bottleneck,कोई बड़ा अवरोध नहीं,6,90,0.8,FALSE,FALSE,,💧,TRUE,AWD-critical bottleneck,OPS_BOTTLENECK,NONE,FALSE,,FALSE,HIGH
+ADV_I3_006,PRE_SOWING,,Before sowing,बुवाई से पहले,1,50,0.8,FALSE,FALSE,,🌱,TRUE,Input purchase stress,FINANCIAL_STRESS_WINDOW,PRE_SOWING,FALSE,,FALSE,MEDIUM
+ADV_I3_006,MID_SEASON,,Mid-season,मौसम के बीच में,2,50,0.8,FALSE,FALSE,,🌿,TRUE,Operational cost period,FINANCIAL_STRESS_WINDOW,MID_SEASON,FALSE,,FALSE,MEDIUM
+ADV_I3_006,HARVEST,,At harvest,कटाई के समय,3,50,0.8,FALSE,FALSE,,🌾,TRUE,Labor cost peak,FINANCIAL_STRESS_WINDOW,HARVEST,FALSE,,FALSE,MEDIUM
+ADV_I3_006,POST_HARVEST_REPAYMENT,,Post-harvest repayment period,कटाई के बाद भुगतान अवधि,4,50,0.8,FALSE,FALSE,,💰,TRUE,Debt repayment stress,FINANCIAL_STRESS_WINDOW,POST_HARVEST,FALSE,,FALSE,MEDIUM
+ADV_I3_006,NO_MAJOR_STRESS,,No major financial stress period,कोई बड़ा वित्तीय तनाव काल नहीं,6,90,0.8,FALSE,FALSE,,✅,TRUE,Financially resilient,FINANCIAL_STRESS_WINDOW,NONE,FALSE,,FALSE,HIGH
+ADV_I4_005,PCT_10,,Start with ~10% of field,लगभग 10% खेत से शुरू करें,1,60,0.8,FALSE,FALSE,,👁️,TRUE,Visual proof reduces risk,TRIAL_AREA_PREFERENCE,SMALL,FALSE,,FALSE,MEDIUM
+ADV_I4_005,PCT_25,,Start with ~25% of field,लगभग 25% खेत से शुरू करें,2,75,0.8,FALSE,FALSE,,👁️,TRUE,Visual proof reduces risk,TRIAL_AREA_PREFERENCE,MODERATE,FALSE,,FALSE,HIGH
+ADV_I4_005,PCT_50,,Start with ~50% of field,लगभग 50% खेत से शुरू करें,3,85,0.8,FALSE,FALSE,,👁️,TRUE,Visual proof reduces risk,TRIAL_AREA_PREFERENCE,LARGE,FALSE,,FALSE,HIGH
+ADV_I4_005,FULL_AREA,,Start on full area directly,सीधे पूरे क्षेत्र पर शुरू करें,4,95,0.8,FALSE,FALSE,,👁️,TRUE,Visual proof reduces risk,TRIAL_AREA_PREFERENCE,FULL,FALSE,,FALSE,HIGH
+ADV_I4_005,NO_TRIAL,,Do not want trial / not interested,ट्रायल नहीं करना / रुचि नहीं,5,30,0.8,FALSE,FALSE,,👁️,TRUE,Visual proof reduces risk,TRIAL_AREA_PREFERENCE,NONE,FALSE,,FALSE,LOW
+ADV_I5_006,WEEKLY_VISITS,,Weekly field visits/calls,साप्ताहिक फील्ड विजिट/कॉल,1,80,0.85,FALSE,FALSE,,📞,TRUE,High-touch support,,,FALSE,,FALSE,HIGH
+ADV_I5_006,BIWEEKLY,,Every 2 weeks,हर 2 सप्ताह,2,85,0.85,FALSE,FALSE,,📅,TRUE,Moderate-high support,,,FALSE,,FALSE,HIGH
+ADV_I5_006,MONTHLY,,Monthly follow-up,मासिक फॉलो-अप,3,90,0.85,FALSE,FALSE,,🗓️,TRUE,Standard support,,,FALSE,,FALSE,HIGH
+ADV_I5_006,QUARTERLY,,Quarterly check-ins,त्रैमासिक चेक-इन,4,75,0.85,FALSE,FALSE,,📧,TRUE,Light-touch,,,FALSE,,FALSE,HIGH
+ADV_I5_006,SELF_MANAGED,,Self-managed (digital only),स्व-प्रबंधित (केवल डिजिटल),5,60,0.8,FALSE,FALSE,,📱,TRUE,Independent with digital guidance,,,FALSE,,FALSE,MEDIUM
+ADV_I3_006,YEAR_ROUND,,Year-round / no single peak stress period,साल भर / कोई एक प्रमुख तनाव अवधि नहीं,5,30,0.8,FALSE,FALSE,,🌱,TRUE,Input purchase stress,FINANCIAL_STRESS_WINDOW,YEAR_ROUND,FALSE,,FALSE,LOW
+ADV_D2_007_FU_SOURCECHECK,YES_FOUND,,"Yes, found a nearby source","हाँ, निकट स्रोत मिला",1,90,1,FALSE,FALSE,,,TRUE,,ERW_SOURCE_DISTANCE,NEAR,FALSE,,FALSE,HIGH
+ADV_D2_007_FU_SOURCECHECK,YES_FAR,,"Yes, but only far away (>50 km)","हाँ, लेकिन दूर (>50 km)",2,30,1,FALSE,FALSE,,,TRUE,,ERW_SOURCE_DISTANCE,FAR_OR_NONE,FALSE,,FALSE,LOW
+ADV_D2_007_FU_SOURCECHECK,NEED_HELP,,Need project team help to find,परियोजना टीम की मदद चाहिए,3,50,0.7,FALSE,FALSE,,,TRUE,,,,FALSE,,FALSE,MEDIUM
+ADV_D2_007_FU_SOURCECHECK,NO,,No source found,कोई स्रोत नहीं मिला,4,0,1,FALSE,FALSE,,,TRUE,,ERW_SOURCE_DISTANCE,FAR_OR_NONE,FALSE,,FALSE,LOW
+ADV_D2_008_FU_SUPPLIER,YES_FOUND,,"Yes, found a local supplier","हाँ, स्थानीय आपूर्तिकर्ता मिला",1,90,1,FALSE,FALSE,,,TRUE,,BIO_PYROLYSIS_ACCESS,NEAR,FALSE,,FALSE,HIGH
+ADV_D2_008_FU_SUPPLIER,NEED_HELP,,Need team help to find one,खोजने में टीम की मदद चाहिए,2,50,0.7,FALSE,FALSE,,,TRUE,,,,FALSE,,FALSE,MEDIUM
+ADV_D2_008_FU_SUPPLIER,NO,,No supplier found,कोई आपूर्तिकर्ता नहीं मिला,3,0,1,FALSE,FALSE,,,TRUE,,BIO_PYROLYSIS_ACCESS,NO,FALSE,,FALSE,LOW
+ADV_D2_009_FU_OPTIONS,PREFER_BUY,,Prefer to buy ready biochar,तैयार बायोचार खरीदना पसंद करेंगे,1,75,0.8,FALSE,FALSE,,,TRUE,,BIO_SOURCING_MODE,BUY,FALSE,,FALSE,HIGH
+ADV_D2_009_FU_OPTIONS,PREFER_LOCAL,,Prefer shared/local unit,साझा/स्थानीय इकाई पसंद करेंगे,2,80,0.8,FALSE,FALSE,,,TRUE,,BIO_SOURCING_MODE,LOCAL_UNIT,FALSE,,FALSE,HIGH
+ADV_D2_009_FU_OPTIONS,PREFER_ON_FARM,,Prefer on-farm kiln,खेत पर किलन पसंद करेंगे,3,70,0.75,FALSE,FALSE,,,TRUE,,BIO_SOURCING_MODE,ON_FARM,FALSE,,FALSE,MEDIUM
+ADV_D2_009_FU_OPTIONS,STILL_UNSURE,,Still unsure,अभी भी अनिश्चित,4,20,0.6,FALSE,FALSE,,,TRUE,,BIO_SOURCING_MODE,UNSURE,FALSE,,FALSE,LOW
+ADV_D4_005_FU_LEGAL,CANAL_RULES,,Canal water-turn restrictions,नहर जल-बारी प्रतिबंध,1,30,0.9,FALSE,FALSE,,,TRUE,,,,FALSE,,FALSE,LOW
+ADV_D4_005_FU_LEGAL,COOPERATIVE_RULES,,Irrigation cooperative rules,सिंचाई सहकारिता नियम,2,40,0.9,FALSE,FALSE,,,TRUE,,,,FALSE,,FALSE,MEDIUM
+ADV_D4_005_FU_LEGAL,LAND_DISPUTE,,Land ownership/boundary dispute,भूमि स्वामित्व/सीमा विवाद,3,0,0.9,FALSE,FALSE,,,TRUE,,,,FALSE,,FALSE,LOW
+ADV_D4_005_FU_LEGAL,OTHER_LEGAL,,Other legal restriction,अन्य कानूनी प्रतिबंध,4,20,0.8,FALSE,FALSE,,,TRUE,,,,FALSE,,FALSE,LOW
+ADV_D4_005_FU_LEGALCHECK,YES,,"Yes, will check","हाँ, जांच करेंगे",1,80,1,FALSE,FALSE,,,TRUE,,,,FALSE,,FALSE,HIGH
+ADV_D4_005_FU_LEGALCHECK,MAYBE,,"Maybe, need help","शायद, मदद चाहिए",2,50,0.85,FALSE,FALSE,,,TRUE,,,,FALSE,,FALSE,MEDIUM
+ADV_D4_005_FU_LEGALCHECK,NO,,"No, cannot verify","नहीं, सत्यापन नहीं कर सकते",3,0,0.9,FALSE,FALSE,,,TRUE,,,,FALSE,,FALSE,LOW
+ADV_D6_004_FU_HISTORY,TEXT_PROVIDED,,Program name/details shared (text),कार्यक्रम का नाम/विवरण साझा किया (पाठ),1,70,0.8,FALSE,FALSE,,,TRUE,,,,FALSE,,FALSE,MEDIUM
+ADV_D6_004_FU_HISTORY,DONT_REMEMBER,,Don't remember details,विवरण याद नहीं,2,40,0.6,FALSE,FALSE,,,TRUE,,,,FALSE,,FALSE,MEDIUM
+ADV_D6_004_FU_HISTORY,WILL_PROVIDE,,Will provide documents later,बाद में दस्तावेज़ प्रदान करेंगे,3,60,0.7,FALSE,FALSE,,,TRUE,,,,FALSE,,FALSE,MEDIUM
+ADV_D6_005_FU_DATE,DATE_PROVIDED,,Approximate date shared (text),अनुमानित तिथि साझा की (पाठ),1,70,0.8,FALSE,FALSE,,,TRUE,,,,FALSE,,FALSE,MEDIUM
+ADV_D6_005_FU_DATE,CANNOT_SAY,,Cannot estimate start date,प्रारंभ तिथि का अनुमान नहीं लगा सकते,2,20,0.7,FALSE,FALSE,,,TRUE,,,,FALSE,,FALSE,LOW
+ADV_D8_001_FU_SPEC,WILL_GET_RECEIPT,,Will get receipt/challan from supplier,आपूर्तिकर्ता से रसीद/चालान लाएंगे,1,80,0.85,FALSE,FALSE,,,TRUE,,,,FALSE,,FALSE,HIGH
+ADV_D8_001_FU_SPEC,CONFIRMED_BASALT,,Confirmed basalt (supplier certified),बेसाल्ट की पुष्टि (आपूर्तिकर्ता प्रमाणित),2,100,0.9,FALSE,FALSE,,,TRUE,,ERW_ROCK_TYPE,BASALT,FALSE,,FALSE,HIGH
+ADV_D8_001_FU_SPEC,CANNOT_CONFIRM,,Cannot confirm rock type,चट्टान प्रकार की पुष्टि नहीं कर सकते,3,0,0.7,FALSE,FALSE,,,TRUE,,ERW_ROCK_TYPE,NONE,FALSE,,FALSE,LOW
+ADV_D8_002_FU_PHOTO,PHOTO_TAKEN,,Photo taken (fine powder confirmed),फोटो ली (बारीक पाउडर की पुष्टि),1,100,0.85,FALSE,FALSE,,,TRUE,,ERW_PARTICLE_FINENESS,FINE,FALSE,,FALSE,HIGH
+ADV_D8_002_FU_PHOTO,PHOTO_COARSE,,Photo taken (appears coarse/gritty),फोटो ली (दानेदार दिखता है),2,20,0.8,FALSE,FALSE,,,TRUE,,ERW_PARTICLE_FINENESS,COARSE,FALSE,,FALSE,LOW
+ADV_D8_002_FU_PHOTO,CANNOT_PHOTO,,Cannot take photo right now,अभी फोटो नहीं ले सकते,3,30,0.6,FALSE,FALSE,,,TRUE,,,,FALSE,,FALSE,LOW
+ADV_D2_007_FU_SOURCECHECK,YES_FOUND,,"Yes, found a nearby source","हाँ, निकट स्रोत मिला",1,90,1,FALSE,FALSE,,,TRUE,,ERW_SOURCE_DISTANCE,NEAR,FALSE,,FALSE,HIGH
+ADV_D2_007_FU_SOURCECHECK,YES_FAR,,"Yes, but only far away (>50 km)","हाँ, लेकिन दूर (>50 km)",2,30,1,FALSE,FALSE,,,TRUE,,ERW_SOURCE_DISTANCE,FAR_OR_NONE,FALSE,,FALSE,LOW
+ADV_D2_007_FU_SOURCECHECK,NEED_HELP,,Need project team help to find,परियोजना टीम की मदद चाहिए,3,50,0.7,FALSE,FALSE,,,TRUE,,,,FALSE,,FALSE,MEDIUM
+ADV_D2_007_FU_SOURCECHECK,NO,,No source found,कोई स्रोत नहीं मिला,4,0,1,FALSE,FALSE,,,TRUE,,ERW_SOURCE_DISTANCE,FAR_OR_NONE,FALSE,,FALSE,LOW
+ADV_D2_008_FU_SUPPLIER,YES_FOUND,,"Yes, found a local supplier","हाँ, स्थानीय आपूर्तिकर्ता मिला",1,90,1,FALSE,FALSE,,,TRUE,,BIO_PYROLYSIS_ACCESS,NEAR,FALSE,,FALSE,HIGH
+ADV_D2_008_FU_SUPPLIER,NEED_HELP,,Need team help to find one,खोजने में टीम की मदद चाहिए,2,50,0.7,FALSE,FALSE,,,TRUE,,,,FALSE,,FALSE,MEDIUM
+ADV_D2_008_FU_SUPPLIER,NO,,No supplier found,कोई आपूर्तिकर्ता नहीं मिला,3,0,1,FALSE,FALSE,,,TRUE,,BIO_PYROLYSIS_ACCESS,NO,FALSE,,FALSE,LOW
+ADV_D2_009_FU_OPTIONS,PREFER_BUY,,Prefer to buy ready biochar,तैयार बायोचार खरीदना पसंद करेंगे,1,75,0.8,FALSE,FALSE,,,TRUE,,BIO_SOURCING_MODE,BUY,FALSE,,FALSE,HIGH
+ADV_D2_009_FU_OPTIONS,PREFER_LOCAL,,Prefer shared/local unit,साझा/स्थानीय इकाई पसंद करेंगे,2,80,0.8,FALSE,FALSE,,,TRUE,,BIO_SOURCING_MODE,LOCAL_UNIT,FALSE,,FALSE,HIGH
+ADV_D2_009_FU_OPTIONS,PREFER_ON_FARM,,Prefer on-farm kiln,खेत पर किलन पसंद करेंगे,3,70,0.75,FALSE,FALSE,,,TRUE,,BIO_SOURCING_MODE,ON_FARM,FALSE,,FALSE,HIGH
+ADV_D2_009_FU_OPTIONS,STILL_UNSURE,,Still unsure,अभी भी अनिश्चित,4,20,0.6,FALSE,FALSE,,,TRUE,,BIO_SOURCING_MODE,UNSURE,FALSE,,FALSE,LOW
+ADV_D4_005_FU_LEGAL,CANAL_RULES,,Canal water-turn restrictions,नहर जल-बारी प्रतिबंध,1,30,0.9,FALSE,FALSE,,,TRUE,,,,FALSE,,FALSE,LOW
+ADV_D4_005_FU_LEGAL,COOPERATIVE_RULES,,Irrigation cooperative rules,सिंचाई सहकारिता नियम,2,40,0.9,FALSE,FALSE,,,TRUE,,,,FALSE,,FALSE,LOW
+ADV_D4_005_FU_LEGAL,LAND_DISPUTE,,Land ownership/boundary dispute,भूमि स्वामित्व/सीमा विवाद,3,0,0.9,FALSE,FALSE,,,TRUE,,,,FALSE,,FALSE,LOW
+ADV_D4_005_FU_LEGAL,OTHER_LEGAL,,Other legal restriction,अन्य कानूनी प्रतिबंध,4,20,0.8,FALSE,FALSE,,,TRUE,,,,FALSE,,TRUE,LOW
+ADV_D4_005_FU_LEGALCHECK,YES,,"Yes, will check","हाँ, जांच करेंगे",1,80,1,FALSE,FALSE,,,TRUE,,,,FALSE,,FALSE,HIGH
+ADV_D4_005_FU_LEGALCHECK,MAYBE,,"Maybe, need help","शायद, मदद चाहिए",2,50,0.85,FALSE,FALSE,,,TRUE,,,,FALSE,,FALSE,MEDIUM
+ADV_D4_005_FU_LEGALCHECK,NO,,"No, cannot verify","नहीं, सत्यापन नहीं कर सकते",3,0,0.9,FALSE,FALSE,,,TRUE,,,,FALSE,,FALSE,LOW
+ADV_D6_004_FU_HISTORY,TEXT_PROVIDED,,Program name/details shared (text),कार्यक्रम का नाम/विवरण साझा किया (पाठ),1,70,0.8,FALSE,FALSE,,,TRUE,,,,FALSE,,TRUE,MEDIUM
+ADV_D6_004_FU_HISTORY,DONT_REMEMBER,,Don't remember details,विवरण याद नहीं,2,40,0.6,FALSE,FALSE,,,TRUE,,,,FALSE,,FALSE,MEDIUM
+ADV_D6_004_FU_HISTORY,WILL_PROVIDE,,Will provide documents later,बाद में दस्तावेज़ प्रदान करेंगे,3,60,0.7,FALSE,FALSE,,,TRUE,,,,FALSE,,FALSE,MEDIUM
+ADV_D6_005_FU_DATE,DATE_PROVIDED,,Approximate date shared (text),अनुमानित तिथि साझा की (पाठ),1,70,0.8,FALSE,FALSE,,,TRUE,,,,FALSE,,TRUE,MEDIUM
+ADV_D6_005_FU_DATE,CANNOT_SAY,,Cannot estimate start date,प्रारंभ तिथि का अनुमान नहीं लगा सकते,2,20,0.7,FALSE,FALSE,,,TRUE,,,,FALSE,,FALSE,LOW
+ADV_D8_001_FU_SPEC,WILL_GET_RECEIPT,,Will get receipt/challan from supplier,आपूर्तिकर्ता से रसीद/चालान लाएंगे,1,80,0.85,FALSE,FALSE,,,TRUE,,,,FALSE,,FALSE,HIGH
+ADV_D8_001_FU_SPEC,CONFIRMED_BASALT,,Confirmed basalt (supplier certified),बेसाल्ट की पुष्टि (आपूर्तिकर्ता प्रमाणित),2,100,0.9,FALSE,FALSE,,,TRUE,,ERW_ROCK_TYPE,BASALT,FALSE,,FALSE,HIGH
+ADV_D8_001_FU_SPEC,CANNOT_CONFIRM,,Cannot confirm rock type,चट्टान प्रकार की पुष्टि नहीं कर सकते,3,0,0.7,FALSE,FALSE,,,TRUE,,ERW_ROCK_TYPE,NONE,FALSE,,FALSE,LOW
+ADV_D8_002_FU_PHOTO,PHOTO_TAKEN,,Photo taken (fine powder confirmed),फोटो ली (बारीक पाउडर की पुष्टि),1,100,0.85,FALSE,FALSE,,,TRUE,,ERW_PARTICLE_FINENESS,FINE,FALSE,,FALSE,HIGH
+ADV_D8_002_FU_PHOTO,PHOTO_COARSE,,Photo taken (appears coarse/gritty),फोटो ली (दानेदार दिखता है),2,20,0.8,FALSE,FALSE,,,TRUE,,ERW_PARTICLE_FINENESS,COARSE,FALSE,,FALSE,LOW
+ADV_D8_002_FU_PHOTO,CANNOT_PHOTO,,Cannot take photo right now,अभी फोटो नहीं ले सकते,3,30,0.6,FALSE,FALSE,,,TRUE,,,,FALSE,,FALSE,LOW
+ADV_D8_003_FU_EQUIP,TRACTOR_HIRE,,Tractor hire available nearby,निकट ट्रैक्टर किराए पर मिलता है,1,85,0.85,FALSE,FALSE,,,TRUE,,ERW_INCORPORATION_ABILITY,STRONG,FALSE,,FALSE,HIGH
+ADV_D8_003_FU_EQUIP,POWER_TILLER,,Own power tiller,अपना पावर टिलर है,2,70,0.85,FALSE,FALSE,,,TRUE,,ERW_INCORPORATION_ABILITY,MODERATE,FALSE,,FALSE,HIGH
+ADV_D8_003_FU_EQUIP,MANUAL_ONLY,,Only manual tools,केवल हाथ के औजार,3,20,0.8,FALSE,FALSE,,,TRUE,,ERW_INCORPORATION_ABILITY,LOW,FALSE,,FALSE,LOW
+ADV_D8_003_FU_EQUIP,NO_EQUIPMENT,,No equipment accessible,कोई उपकरण उपलब्ध नहीं,4,0,0.85,FALSE,FALSE,,,TRUE,,ERW_INCORPORATION_ABILITY,LOW,FALSE,,FALSE,LOW
+ADV_D9_002_FU_COUNSEL,MORE_INFO,,More information needed,अधिक जानकारी चाहिए,1,60,0.8,FALSE,FALSE,,,TRUE,,,,FALSE,,FALSE,MEDIUM
+ADV_D9_002_FU_COUNSEL,DEMO_VISIT,,Demo/field visit would help,प्रदर्शनी/खेत दौरा मदद करेगा,2,70,0.85,FALSE,FALSE,,,TRUE,,,,FALSE,,FALSE,HIGH
+ADV_D9_002_FU_COUNSEL,PEER_INTRO,,Want to talk to another farmer first,पहले किसी किसान से बात करना चाहता हूँ,3,65,0.8,FALSE,FALSE,,,TRUE,,,,FALSE,,FALSE,MEDIUM
+ADV_D9_002_FU_COUNSEL,PAYMENT_FIRST,,Need to see payment proof first,पहले भुगतान प्रमाण देखना है,4,50,0.75,FALSE,FALSE,,,TRUE,,,,FALSE,,FALSE,MEDIUM
+ADV_D9_006_FU_SIMPLEMRV,YES_SIMPLE,,"Yes, simplified system would work","हाँ, सरल प्रणाली काम करेगी",1,70,0.85,FALSE,FALSE,,,TRUE,,RECORD_KEEPING,YES_WITH_HELP,FALSE,,FALSE,HIGH
+ADV_D9_006_FU_SIMPLEMRV,MAYBE_HELP,,Maybe with team visiting monthly,शायद टीम के मासिक दौरे से,2,50,0.75,FALSE,FALSE,,,TRUE,,RECORD_KEEPING,YES_WITH_HELP,FALSE,,FALSE,MEDIUM
+ADV_D9_006_FU_SIMPLEMRV,NO_EVEN_SIMPLE,,"No, even simplified system too hard","नहीं, सरल प्रणाली भी कठिन है",3,0,0.85,FALSE,FALSE,,,TRUE,,RECORD_KEEPING,NO,FALSE,,FALSE,LOW
+ADV_D10_002_FU_OTHERUSE,TEXT_PROVIDED,,Description provided (text),विवरण प्रदान किया (पाठ),1,50,0.7,FALSE,FALSE,,,TRUE,,,,FALSE,,TRUE,MEDIUM
+ADV_D10_002_FU_OTHERUSE,CONSTRUCTION,,Used for thatching/construction,छत/निर्माण में उपयोग,2,30,0.8,FALSE,FALSE,,,TRUE,,BIO_RESIDUE_CURRENT_USE,OTHER,FALSE,,FALSE,LOW
+ADV_D10_004_FU_TRAINING,YES_DEMO_HELPFUL,,"Yes, demo would help me decide","हाँ, प्रदर्शनी तय करने में मदद करेगी",1,70,0.85,FALSE,FALSE,,,TRUE,,BIO_APPLICATION_METHOD,MIX_WITH_MANURE,FALSE,,FALSE,HIGH
+ADV_D10_004_FU_TRAINING,YES_TRAIN_NEEDED,,"Yes, training needed before deciding","हाँ, तय करने से पहले प्रशिक्षण चाहिए",2,60,0.8,FALSE,FALSE,,,TRUE,,,,FALSE,,FALSE,MEDIUM
+ADV_D10_004_FU_TRAINING,NO_NOT_INTERESTED,,"No, not interested in learning","नहीं, सीखने में रुचि नहीं",3,0,0.9,FALSE,FALSE,,,TRUE,,BIO_APPLICATION_METHOD,NOT_SURE,FALSE,,FALSE,LOW
+ADV_I2_004_FU_OTHER,TEXT_PROVIDED,,Description provided (text),विवरण प्रदान किया (पाठ),1,50,0.7,FALSE,FALSE,,,TRUE,,,,FALSE,,TRUE,MEDIUM
+ADV_I2_004_FU_OTHER,BIOCHAR_KILN,,Biochar kiln or pyrolysis unit,बायोचार किलन या पायरोलिसिस इकाई,2,90,0.9,FALSE,FALSE,,,TRUE,,BIO_PYROLYSIS_ACCESS,NEAR,FALSE,,FALSE,HIGH
+ADV_I2_004_FU_OTHER,CHAFF_CUTTER,,Chaff cutter / straw chopper,चाफ कटर / पुआल काटने की मशीन,3,60,0.8,FALSE,FALSE,,,TRUE,,,,FALSE,,FALSE,MEDIUM

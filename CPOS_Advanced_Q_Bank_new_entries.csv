@@ -1,0 +1,4 @@
+# APPEND THESE ROWS TO CPOS_Advanced_Q_Bank (new questions)
+# ----------------------------------------------------------------
+Question_ID,Dimension_ID,Sub_Dimension,Question_Type,Question_Label_EN,Question_Label_HI,Question_Order,Priority_Score,Is_Required,Is_Active,Adaptive_Weight,Tags,Max_Score,Notes
+ADV_D8_T01,D8,ERW_Logistics,single_select,Can ERW/rock dust material be economically transported and spread on your field?,क्या ERW/रॉक डस्ट सामग्री को आपके खेत में आर्थिक रूप से परिवहन और फैलाया जा सकता है?,12,8,TRUE,TRUE,0.85,"ERW,logistics,transport,spreading",100,Assesses ERW_TRANSPORT_SPREAD_FEASIBILITY — critical for all ERW pathway scoring

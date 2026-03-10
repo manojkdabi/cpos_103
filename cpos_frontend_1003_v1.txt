@@ -415,7 +415,7 @@
       font-size: 20px;
     }
 
-    //  CSOP MODULE - All existing styles preserved
+    /*  CSOP MODULE - All existing styles preserved */
     #csopModule .app {
       max-width: 100%;
       margin: 0;
@@ -946,9 +946,34 @@
       .feature-grid {
         grid-template-columns: 1fr;
       }
+
+      /* Hamburger button - visible only on mobile */
+      .mobile-menu-btn {
+        display: flex;
+      }
     }
 
-    //ADVANCED ASSESSMENT MODULE - INDEPENDENT STYLES
+    /* Hamburger button - hidden on desktop */
+    .mobile-menu-btn {
+      display: none;
+      position: fixed;
+      top: 14px;
+      left: 14px;
+      z-index: 1100;
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--primary);
+      border: none;
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    }
+
+    /* ADVANCED ASSESSMENT MODULE - INDEPENDENT STYLES */
 
     /* Shimmer animation for progress bar */
     @keyframes shimmer {
@@ -1374,6 +1399,9 @@
       </div>
     </div>
   </div>
+
+  <!-- MOBILE HAMBURGER BUTTON (visible only on small screens) -->
+  <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMobileMenu()" aria-label="Open navigation menu">☰</button>
 
   <!-- MAIN CONTENT AREA -->
   <div class="main-content" id="mainContent">
@@ -2286,11 +2314,18 @@
 
         window.toggleSidebar = toggleSidebar;
 
-        // Mobile menu toggle (optional)
+        // Mobile menu toggle
         function toggleMobileMenu() {
             const sidebar = document.getElementById('sidebar');
-            sidebar.classList.toggle('mobile-open');
+            const isOpen = sidebar.classList.toggle('mobile-open');
+            const btn = document.getElementById('mobileMenuBtn');
+            if (btn) {
+                btn.textContent = isOpen ? '✕' : '☰';
+                btn.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+            }
         }
+
+        window.toggleMobileMenu = toggleMobileMenu;
 
 
         // ADMIN MODULE - ADVANCED SHEET ROW EDITOR
@@ -4108,26 +4143,30 @@
 
         function showConsistencyWarning(violation) {
             var lang = CPOSL.language;
-            var warningHtml = '<div class="warning-box">' + '<div style="display:flex;gap:10px;align-items:flex-start">' + '<span style="font-size:24px">⚠️</span>' + '<div style="flex:1">' + '<div style="font-weight:700;margin-bottom:6px;color:var(--warn)">' + (lang === 'HI' ? 'त्वरित जाँच' : 'Quick Check') + '</div>' + '<div style="font-size:13px;line-height:1.5;margin-bottom:10px">' + escapeHtml(violation.message) + '</div>' + '<div style="display:flex;gap:8px;flex-wrap:wrap">' + '<button class="btn ghost" onclick="reviewConflict(\'' + violation.ruleId + '\')">' + (lang === 'HI' ? 'पिछले उत्तर देखें' : 'Review Previous Answers') + '</button>' + '<button class="btn primary" onclick="continueAnyway()">' + (lang === 'HI' ? 'फिर भी जारी रखें' : 'Continue Anyway') + '</button>' + '</div></div></div></div>';
+            var warningHtml = '<div class="warning-box">' + '<div style="display:flex;gap:10px;align-items:flex-start">' + '<span style="font-size:24px">⚠️</span>' + '<div style="flex:1">' + '<div style="font-weight:700;margin-bottom:6px;color:var(--warn)">' + (lang === 'HI' ? 'त्वरित जाँच' : 'Quick Check') + '</div>' + '<div style="font-size:13px;line-height:1.5;margin-bottom:10px">' + escapeHtml(violation.message) + '</div>' + '<div style="display:flex;gap:8px;flex-wrap:wrap">' + '<button class="btn ghost" id="btnReviewConflict">' + (lang === 'HI' ? 'पिछले उत्तर देखें' : 'Review Previous Answers') + '</button>' + '<button class="btn primary" id="btnContinueAnyway">' + (lang === 'HI' ? 'फिर भी जारी रखें' : 'Continue Anyway') + '</button>' + '</div></div></div></div>';
 
             document.getElementById('qNavStatus').innerHTML = warningHtml;
-            CPOSL.qState.pendingWarning = violation;
+            // Attach handlers after DOM insertion using closures over 'violation' to avoid
+            // inline onclick attribute injection and global-state race conditions.
+            var btnReview = document.getElementById('btnReviewConflict');
+            if (btnReview) {
+                btnReview.addEventListener('click', function() { reviewConflict(violation); });
+            }
+            var btnContinue = document.getElementById('btnContinueAnyway');
+            if (btnContinue) {
+                btnContinue.addEventListener('click', function() { continueAnyway(violation); });
+            }
         }
 
-        function reviewConflict(ruleId) {
-            var violation = CPOSL.qState.pendingWarning;
-
+        function reviewConflict(violation) {
             if (violation && violation.conflictingQuestions && violation.conflictingQuestions.length > 0) {
                 alert('Conflicting answers from questions: ' + violation.conflictingQuestions.join(', '));
             }
 
             document.getElementById('qNavStatus').textContent = 'Review your answers, then click Next.';
-            CPOSL.qState.pendingWarning = null;
         }
 
-        function continueAnyway() {
-            var violation = CPOSL.qState.pendingWarning;
-
+        function continueAnyway(violation) {
             if (violation && violation.conflictingQuestions) {
                 violation.conflictingQuestions.forEach(function(qid) {
                         var ans = CPOSL.qState.answered[qid];
@@ -4148,7 +4187,6 @@
             }
 
             document.getElementById('qNavStatus').textContent = '';
-            CPOSL.qState.pendingWarning = null;
             proceedToNextQuestion();
         }
 
@@ -5012,7 +5050,7 @@
             );
 
             routes.forEach(function(r) {
-                    var fromQ = getField(r, ['From_Question_ID', 'FromQuestionID', 'Current_Question_ID']);
+                    var fromQ = getField(r, ['From_Question_ID', 'FromQuestionID', 'Current_Question_ID', 'CurrentQuestionID']);
                     if (!fromQ) return;
                     if (!idx.qRoutesByCurrentQ.has(fromQ)) idx.qRoutesByCurrentQ.set(fromQ, []);
                     idx.qRoutesByCurrentQ.get(fromQ).push(r);
@@ -6388,8 +6426,35 @@
                 return;
             }
 
-            // Find next question
-            var next = findNextQuestion(qid);
+            // Find next question - honour routing queue and stop flag first
+            var next = null;
+
+            if (CPOSL.qState.stop) {
+                // END action was fired by a routing rule
+                CPOSL.qState.stop = false;
+                CPOSL.qState.current = null;
+                // Jump to completion state instead of the normal round-complete flow
+                if (typeof showRoundTransition === 'function') {
+                    // Advance beyond the last round so showRoundTransition() enters its
+                    // "ALL ROUNDS COMPLETE" branch (which requires current > total).
+                    CPOSL.rounds.current = CPOSL.rounds.total + 1;
+                    showRoundTransition();
+                } else {
+                    updateQuestionnaireUIState();
+                }
+                return;
+            }
+
+            if (CPOSL.qState.queue && CPOSL.qState.queue.length > 0) {
+                // Routing rule fired — consume the first queued question
+                next = CPOSL.qState.queue.shift();
+                if (!next || CPOSL.qState.answered[next]) {
+                    // Already answered or invalid; fall through to normal selection
+                    next = findNextQuestion(qid);
+                }
+            } else {
+                next = findNextQuestion(qid);
+            }
 
             if (next) {
                 CPOSL.qState.current = next;
@@ -8047,7 +8112,8 @@
             'HIGH': 'HIGH',
 
             'MODERATE': 'MODERATE',
-            'MEDIUM': 'MODERATE',
+            // NOTE: 'MEDIUM' is intentionally omitted here; the canonical mapping
+            //       'MEDIUM': 'MEDIUM' appears in the SOC LEVELS section below.
 
             // CROP TYPE VALUES
             'RICE': 'RICE',
@@ -8067,7 +8133,8 @@
             'LOW': 'LOW',
 
             'NEUTRAL': 'NEUTRAL',
-            'MEDIUM': 'NEUTRAL',
+            // NOTE: 'MEDIUM' is not mapped to 'NEUTRAL' here to avoid conflicting with
+            //       the SOC-level mapping. pH inputs should use 'NEUTRAL' directly.
 
             'ALKALINE': 'HIGH',
             'BASIC': 'HIGH',
@@ -8095,7 +8162,9 @@
             'DRIP': 'DRIP',
             'SPRINKLER': 'SPRINKLER',
             'FURROW': 'FURROW',
-            'NONE': 'RAINFED',
+            // NOTE: 'NONE' is intentionally omitted here to avoid overriding the tillage
+            //       domain mapping ('NONE' = no-till). Use 'NO_IRRIGATION' for absent irrigation.
+            'NO_IRRIGATION': 'RAINFED',
             'RAINFED': 'RAINFED',
 
             // ORGANIC AMENDMENTS
@@ -8262,17 +8331,38 @@
                     var condVal = getField(rule, ['Condition_Value', 'ConditionValue']);
                     var nextQ = getField(rule, ['Next_Question_ID', 'NextQuestionID']);
                     var action = String(getField(rule, ['Route_Action', 'RouteAction'], 'ASK')).toUpperCase();
+                    // Normalise legacy/alternative action names
+                    if (action === 'ASK_NEXT') action = 'ASK';
+                    if (action === 'SKIP') action = 'SKIP_TO';
 
                     var matches = false;
 
                     if (sigKey && sigKey !== 'ANY') {
                         var signal = CPOSL.qState.signals[sigKey];
-                        if (!signal) return;
-                        var sigVal = String(signal.value || '');
+                        var sigVal = String(signal ? (signal.value || '') : '');
+                        var sigValUpper = sigVal.toUpperCase();
+                        var condValUpper = String(condVal).toUpperCase();
+                        var sigPresent = !!signal;
 
-                        if (op === 'EQUALS' || op === '=') matches = sigVal === condVal;
-                        else if (op === '!=') matches = sigVal !== condVal;
-                        else if (op === 'CONTAINS') matches = sigVal.toLowerCase().indexOf(condVal.toLowerCase()) >= 0;
+                        if (op === 'IS_SET') {
+                            matches = sigPresent && sigVal !== '';
+                        } else if (op === 'IS_NOT_SET' || op === 'IS_BLANK') {
+                            matches = !sigPresent || sigVal === '';
+                        } else if (!signal) {
+                            matches = false; // signal absent, non-existence operators already handled above
+                        } else if (op === 'EQUALS' || op === '=') {
+                            matches = sigValUpper === condValUpper;
+                        } else if (op === 'NOT_EQUALS' || op === '!=') {
+                            matches = sigValUpper !== condValUpper;
+                        } else if (op === 'IN') {
+                            var inTokens = condValUpper.replace(/[()]/g, '').split(/[|,]/).map(function(t) { return t.trim(); });
+                            matches = inTokens.indexOf(sigValUpper) >= 0;
+                        } else if (op === 'CONTAINS') {
+                            matches = sigVal.toLowerCase().indexOf(String(condVal).toLowerCase()) >= 0;
+                        } else {
+                            // Fallback: case-insensitive equality
+                            matches = sigValUpper === condValUpper;
+                        }
                     } else {
                         matches = true;
                     }
@@ -10574,19 +10664,20 @@ ADVANCED.state.currentQuestionIndex = idx;
             sorted.forEach(function(rule) {
                 var isActive = String(rule.Is_Active || rule.IsActive || 'TRUE').toUpperCase();
                 if (isActive === 'FALSE') return;
-                var whenQ = rule.When_Question_ID || rule.WhenQuestionID || '';
-                if (whenQ !== questionId) return;
+                var whenQ = String(rule.When_Question_ID || rule.WhenQuestionID || '').trim();
+                if (whenQ !== String(questionId || '').trim()) return;
                 var op = String(rule.When_Operator || '=').toUpperCase().trim();
-                var whenVal = String(rule.When_Value || '');
+                var whenVal = String(rule.When_Value || '').trim();
                 var numMin = parseFloat(rule.When_Numeric_Min);
                 var numMax = parseFloat(rule.When_Numeric_Max);
                 var matches = false;
+                var ansCodeUpper = String(answerCode || '').toUpperCase();
                 if (op === '=' || op === 'EQUALS') {
-                    matches = answerCode === whenVal;
+                    matches = ansCodeUpper === whenVal.toUpperCase();
                 } else if (op === '!=' || op === 'NOT_EQUALS') {
-                    matches = answerCode !== whenVal;
+                    matches = ansCodeUpper !== whenVal.toUpperCase();
                 } else if (op === 'IN') {
-                    matches = whenVal.split(/[|,]/).map(function(v) { return v.trim(); }).indexOf(answerCode) >= 0;
+                    matches = whenVal.split(/[|,]/).map(function(v) { return v.trim().toUpperCase(); }).indexOf(ansCodeUpper) >= 0;
                 } else if (op === 'BETWEEN') {
                     // Uses When_Numeric_Min and When_Numeric_Max columns
                     matches = !isNaN(answerNum) && !isNaN(numMin) && !isNaN(numMax) &&
@@ -10599,6 +10690,14 @@ ADVANCED.state.currentQuestionIndex = idx;
                     matches = !isNaN(answerNum) && answerNum > parseFloat(whenVal);
                 } else if (op === 'LT' || op === '<') {
                     matches = !isNaN(answerNum) && answerNum < parseFloat(whenVal);
+                // Sheet aliases: GREATER_EQUAL / LESS_EQUAL / GREATER / LESS
+                // These use When_Numeric_Min as the threshold (When_Value is empty for these rules)
+                } else if (op === 'GREATER_EQUAL' || op === 'GREATER' || op === 'LESS_EQUAL' || op === 'LESS') {
+                    var threshold = (numMin != null && !isNaN(numMin)) ? numMin : parseFloat(whenVal);
+                    if (op === 'GREATER_EQUAL') matches = !isNaN(answerNum) && answerNum >= threshold;
+                    else if (op === 'GREATER')  matches = !isNaN(answerNum) && answerNum > threshold;
+                    else if (op === 'LESS_EQUAL') matches = !isNaN(answerNum) && answerNum <= threshold;
+                    else                          matches = !isNaN(answerNum) && answerNum < threshold;
                 } else {
                     matches = answerCode === whenVal;
                 }
@@ -11118,7 +11217,12 @@ function advFindNextEligibleQuestionIndex(currentIdx) {
                         }
 
                         // Step 1b: Apply derivation rules to emit additional signals
-                        advApplyDerivationRules(answer.questionId, answer.answerCode || '');
+                        // For numeric_direct questions answerCode is absent; fall back to the
+                        // string representation of answerValue so numeric operators can match.
+                        var ansCodeForDeriv = answer.answerCode != null
+                            ? String(answer.answerCode)
+                            : (answer.answerValue != null ? String(answer.answerValue) : '');
+                        advApplyDerivationRules(answer.questionId, ansCodeForDeriv);
 
                         // Step 1c: Re-evaluate composite rules after new signals are available
                         advApplyCompositeRules();
@@ -11126,8 +11230,10 @@ function advFindNextEligibleQuestionIndex(currentIdx) {
                         // Step 1d: Check probe templates — queue confidence-based follow-up probes
                         advCheckAndTriggerProbes(answer.questionId);
 
-                        // Step 2: Apply inference rules (skip questions + emit signals based on derived signals)
-                        advCheckInferenceDisqualifiers(answer);
+                        // Step 2: Apply inference rules (skip questions + emit signals, check disqualification)
+                        if (typeof advCheckDisqualifiers === 'function' && advCheckDisqualifiers(answer)) {
+                            return; // disqualified — advCheckDisqualifiers has shown the screen
+                        }
                         // Re-evaluate composite rules in case inference emitted new signals
                         advApplyCompositeRules();
 

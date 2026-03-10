@@ -1,0 +1,220 @@
+Map_ID,Is_Active,Signal_Key,Lite_Variable_Name,Mapping_Method,When_Signal_Value,Then_Lite_Class,Confidence_0_1,Estimate_Formula,Notes
+ADVM_001,TRUE,SOIL_TEXTURE_SIGNAL,clay_fraction,DIRECT,HEAVY_CLAY,High,0.85,,Heavy clay => high clay fraction
+ADVM_002,TRUE,SOIL_TEXTURE_SIGNAL,clay_fraction,DIRECT,CLAY_LOAM,Medium-High,0.85,,Clay loam => medium-high clay fraction
+ADVM_003,TRUE,SOIL_TEXTURE_SIGNAL,clay_fraction,DIRECT,LOAM,Medium,0.8,,Loam => medium clay fraction
+ADVM_004,TRUE,SOIL_TEXTURE_SIGNAL,clay_fraction,DIRECT,SANDY_LOAM,Low-Medium,0.75,,Sandy loam => low-medium clay fraction
+ADVM_005,TRUE,SOIL_TEXTURE_SIGNAL,clay_fraction,DIRECT,SANDY,Low,0.8,,Sandy => low clay fraction
+ADVM_006,TRUE,SOIL_TEXTURE_SIGNAL,sand_fraction,DIRECT,SANDY,High,0.85,,Sandy => high sand fraction
+ADVM_007,TRUE,SOIL_TEXTURE_SIGNAL,sand_fraction,DIRECT,SANDY_LOAM,Medium-High,0.8,,Sandy loam => medium-high sand fraction
+ADVM_008,TRUE,SOIL_TEXTURE_SIGNAL,sand_fraction,DIRECT,LOAM,Medium,0.8,,Loam => medium sand fraction
+ADVM_009,TRUE,SOIL_TEXTURE_SIGNAL,sand_fraction,DIRECT,CLAY_LOAM,Low-Medium,0.75,,Clay loam => low-medium sand fraction
+ADVM_010,TRUE,SOIL_TEXTURE_SIGNAL,sand_fraction,DIRECT,HEAVY_CLAY,Low,0.8,,Heavy clay => low sand fraction
+ADVM_011,TRUE,DRAINAGE_SIGNAL,drainage_class,DIRECT,VERY_FAST,Very fast drained,0.8,,<1 hr drainage => very fast drained
+ADVM_012,TRUE,DRAINAGE_SIGNAL,drainage_class,DIRECT,MODERATE,Moderately drained,0.8,,1-6 hr drainage => moderately drained
+ADVM_013,TRUE,DRAINAGE_SIGNAL,drainage_class,DIRECT,GOOD,Well drained,0.85,,6-24 hr drainage => well drained
+ADVM_014,TRUE,DRAINAGE_SIGNAL,drainage_class,DIRECT,EXCELLENT,Slow-to-moderate drained,0.85,,1-2 day drainage => excellent AWD holding (not “fast”)
+ADVM_015,TRUE,DRAINAGE_SIGNAL,drainage_class,DIRECT,POOR,Poorly drained,0.8,,>2 day drainage => waterlogging risk / poorly drained
+ADVM_016,TRUE,SOC_LEVEL,soc_initial,DIRECT,HIGH,High (>1.5%),0.95,,Measured SOC high
+ADVM_017,TRUE,SOC_LEVEL,soc_initial,DIRECT,MEDIUM,Medium (0.75-1.5%),0.95,,Measured SOC medium
+ADVM_018,TRUE,SOC_LEVEL,soc_initial,DIRECT,LOW,Low (<0.75%),0.95,,Measured SOC low
+ADVM_019,TRUE,SOC_PROXY,soc_initial,PROXY,HIGH,Medium,0.6,,Color proxy tends to over/underestimate; map to medium with low confidence
+ADVM_020,TRUE,SOC_PROXY,soc_initial,PROXY,MEDIUM,Medium,0.6,,Color proxy medium
+ADVM_021,TRUE,SOC_PROXY,soc_initial,PROXY,LOW,Low,0.65,,Color proxy low
+ADVM_022,TRUE,SOC_PROXY,soc_initial,PROXY,VERY_LOW,Very low,0.65,,Grey soil proxy very low SOC
+ADVM_023,TRUE,SOC_PROXY,soc_initial,PROXY,LOW_OXIDIZED,Low,0.6,,Red/lateritic proxy low SOC (oxidized)
+ADVM_024,TRUE,SLOPE_CLASS,field_slope,DIRECT,FLAT,Flat (<0.5%),0.9,,Flat field
+ADVM_025,TRUE,SLOPE_CLASS,field_slope,DIRECT,GENTLE,Gentle (0.5-1%),0.9,,Gentle slope
+ADVM_026,TRUE,SLOPE_CLASS,field_slope,DIRECT,MODERATE,Moderate (1-2%),0.9,,Moderate slope
+ADVM_027,TRUE,SLOPE_CLASS,field_slope,DIRECT,STEEP,Steep (>2%),0.9,,Steep slope
+ADVM_028,TRUE,WATERLOG_RISK,waterlogging_prone,DIRECT,NONE,No risk,0.85,,No waterlogging
+ADVM_029,TRUE,WATERLOG_RISK,waterlogging_prone,DIRECT,LOW,Low (<10%),0.85,,Minor waterlogging
+ADVM_030,TRUE,WATERLOG_RISK,waterlogging_prone,DIRECT,MODERATE,Moderate (10-25%),0.85,,Moderate waterlogging
+ADVM_031,TRUE,WATERLOG_RISK,waterlogging_prone,DIRECT,HIGH,High (25-50%),0.85,,Significant waterlogging
+ADVM_032,TRUE,WATERLOG_RISK,waterlogging_prone,DIRECT,SEVERE,Severe (>50%),0.85,,Major waterlogging
+ADVM_033,TRUE,IRRIGATION_SOURCE,irrigation_source,DIRECT,OWN_TUBE_ELECTRIC,Own tubewell (electric),0.95,,Full control
+ADVM_034,TRUE,IRRIGATION_SOURCE,irrigation_source,DIRECT,OWN_TUBE_DIESEL,Own tubewell (diesel),0.95,,Full control; higher cost
+ADVM_035,TRUE,IRRIGATION_SOURCE,irrigation_source,DIRECT,SHARED_TUBEWELL,Shared tubewell,0.9,,Some control; coordination needed
+ADVM_036,TRUE,IRRIGATION_SOURCE,irrigation_source,DIRECT,CANAL,Canal,0.9,,Limited control
+ADVM_037,TRUE,IRRIGATION_SOURCE,irrigation_source,DIRECT,RAINFED,Rainfed,0.95,,No irrigation
+ADVM_038,TRUE,IRRIGATION_CONTROL,irrigation_control_level,DIRECT,FULL_CONTROL,Full control,0.95,,Complete autonomy
+ADVM_039,TRUE,IRRIGATION_CONTROL,irrigation_control_level,DIRECT,SHARED_SCHEDULE,Shared/partial control,0.9,,Coordination needed
+ADVM_040,TRUE,IRRIGATION_CONTROL,irrigation_control_level,DIRECT,CANAL_SCHEDULE,Low/restricted,0.9,,Fixed schedule
+ADVM_041,TRUE,IRRIGATION_CONTROL,irrigation_control_level,DIRECT,NO_CONTROL,Low/restricted,0.95,,No control
+ADVM_042,TRUE,BUND_CONDITION,bund_quality,DIRECT,EXCELLENT,Excellent,0.95,,Perfect condition
+ADVM_043,TRUE,BUND_CONDITION,bund_quality,DIRECT,GOOD,Good,0.9,,Adequate
+ADVM_044,TRUE,BUND_CONDITION,bund_quality,DIRECT,MINOR_LEAKS,Needs repair,0.85,,Repairable leaks
+ADVM_045,TRUE,BUND_CONDITION,bund_quality,DIRECT,POOR,Poor,0.9,,Major leaks
+ADVM_046,TRUE,BUND_CONDITION,bund_quality,DIRECT,NONE,Absent,0.95,,No bunds
+ADVM_047,TRUE,LEVELING_STATUS,field_leveling,DIRECT,LASER,Laser leveled,0.95,,Professional leveling
+ADVM_048,TRUE,LEVELING_STATUS,field_leveling,DIRECT,GOOD,Well leveled,0.9,,Manual but uniform
+ADVM_049,TRUE,LEVELING_STATUS,field_leveling,DIRECT,MODERATE,Moderate leveling,0.85,,Some unevenness
+ADVM_050,TRUE,LEVELING_STATUS,field_leveling,DIRECT,POOR,Uneven,0.9,,Needs leveling
+ADVM_051,TRUE,MONITORING_CAPACITY,monitoring_capacity,DIRECT,YES,Yes,0.9,,Can measure water depth
+ADVM_052,TRUE,MONITORING_CAPACITY,monitoring_capacity,DIRECT,NEED_TRAINING,Trainable,0.85,,Can learn with training
+ADVM_053,TRUE,MONITORING_CAPACITY,monitoring_capacity,DIRECT,NO,No/difficult,0.85,,Cannot measure currently
+ADVM_054,TRUE,BASELINE_PRACTICE,water_management_baseline,DIRECT,CONTINUOUS_FLOOD,Continuous flooding,0.95,,Eligible AWD baseline
+ADVM_055,TRUE,BASELINE_PRACTICE,water_management_baseline,DIRECT,INTERMITTENT,Intermittent flooding,0.9,,Partial baseline; eligibility depends on AWD definition
+ADVM_056,TRUE,BASELINE_PRACTICE,water_management_baseline,DIRECT,AWD_ALREADY,Already AWD,0.95,,No additionality for AWD credits
+ADVM_057,TRUE,BASELINE_PRACTICE,water_management_baseline,DIRECT,AEROBIC,Aerobic rice,0.95,,AWD not applicable
+ADVM_058,TRUE,BASELINE_PRACTICE,water_management_baseline,DIRECT,RAINFED,Rainfed rice,0.95,,AWD not applicable
+ADVM_059,TRUE,YIELD_LEVEL,rice_yield,ESTIMATE,HIGH,High,0.85,4.5,High yield proxy (t/ha)
+ADVM_060,TRUE,YIELD_LEVEL,rice_yield,ESTIMATE,MEDIUM,Medium,0.85,3.2,Medium yield proxy (t/ha)
+ADVM_061,TRUE,YIELD_LEVEL,rice_yield,ESTIMATE,LOW,Low,0.85,2,Low yield proxy (t/ha)
+ADVM_062,TRUE,IRRIGATION_COST,irrigation_cost_level,DIRECT,LOW,Low,0.85,,Low baseline irrigation cost
+ADVM_063,TRUE,IRRIGATION_COST,irrigation_cost_level,DIRECT,MEDIUM,Medium,0.85,,Medium baseline irrigation cost
+ADVM_064,TRUE,IRRIGATION_COST,irrigation_cost_level,DIRECT,HIGH,High,0.85,,High baseline irrigation cost
+ADVM_065,TRUE,LABOR_AVAILABILITY,labor_availability,DIRECT,ADEQUATE,Adequate,0.9,,Sufficient labor
+ADVM_066,TRUE,LABOR_AVAILABILITY,labor_availability,DIRECT,SOME,Some/limited,0.85,,Some labor available
+ADVM_067,TRUE,LABOR_AVAILABILITY,labor_availability,DIRECT,NEED_HIRE,Needs hiring,0.85,,Hired labor required
+ADVM_068,TRUE,LABOR_AVAILABILITY,labor_availability,DIRECT,DIFFICULT,Difficult,0.85,,Labor constraint
+ADVM_069,TRUE,DAILY_MONITORING,daily_visit_capacity,DIRECT,YES,Yes,0.9,,Can visit daily
+ADVM_070,TRUE,DAILY_MONITORING,daily_visit_capacity,DIRECT,MOST_DAYS,Most days,0.85,,5-6 days/week
+ADVM_071,TRUE,DAILY_MONITORING,daily_visit_capacity,DIRECT,NO,No,0.85,,Cannot visit daily
+ADVM_072,TRUE,RECORD_KEEPING,mrv_capacity,DIRECT,YES,High,0.9,,Comfortable record keeping
+ADVM_073,TRUE,RECORD_KEEPING,mrv_capacity,DIRECT,YES_WITH_HELP,Medium,0.85,,Feasible with support
+ADVM_074,TRUE,RECORD_KEEPING,mrv_capacity,DIRECT,DIFFICULT,Low-Medium,0.85,,Difficult; simplification needed
+ADVM_075,TRUE,RECORD_KEEPING,mrv_capacity,DIRECT,NO,Low/none,0.85,,Cannot keep records
+ADVM_076,TRUE,COINVESTMENT_WILLING,financial_commitment,DIRECT,YES,High,0.9,,Willing to co-invest
+ADVM_077,TRUE,COINVESTMENT_WILLING,financial_commitment,DIRECT,MAYBE,Medium,0.85,,Conditional co-investment
+ADVM_078,TRUE,COINVESTMENT_WILLING,financial_commitment,DIRECT,NO,Low,0.85,,Needs subsidy
+ADVM_079,TRUE,RISK_TOLERANCE,risk_tolerance,DIRECT,HIGH,High,0.85,,Early adopter
+ADVM_080,TRUE,RISK_TOLERANCE,risk_tolerance,DIRECT,MODERATE,Moderate,0.85,,Follower
+ADVM_081,TRUE,RISK_TOLERANCE,risk_tolerance,DIRECT,LOW,Low,0.85,,Risk averse
+ADVM_082,TRUE,RISK_TOLERANCE,risk_tolerance,DIRECT,VERY_LOW,Very low,0.85,,Very conservative
+ADVM_083,TRUE,PROGRAM_CONSENT,program_consent,DIRECT,YES,Yes,0.95,,Consent granted
+ADVM_084,TRUE,PROGRAM_CONSENT,program_consent,DIRECT,MAYBE,Conditional,0.9,,Needs counseling; still may proceed
+ADVM_085,TRUE,PROGRAM_CONSENT,program_consent,DIRECT,NO,No,0.95,,Consent denied; cannot enroll in verification program
+ADVM_086,TRUE,NEXT_SEASON_START,next_season_start_window,DIRECT,WITHIN_2_WEEKS,Immediate (0-2 weeks),0.9,,Cohort scheduling window
+ADVM_087,TRUE,NEXT_SEASON_START,next_season_start_window,DIRECT,WITHIN_1_MONTH,Soon (<=1 month),0.9,,Cohort scheduling window
+ADVM_088,TRUE,NEXT_SEASON_START,next_season_start_window,DIRECT,IN_1_3_MONTHS,Medium (1-3 months),0.85,,Cohort scheduling window
+ADVM_089,TRUE,NEXT_SEASON_START,next_season_start_window,DIRECT,IN_3_6_MONTHS,Later (3-6 months),0.85,,Cohort scheduling window
+ADVM_090,TRUE,NEXT_SEASON_START,next_season_start_window,DIRECT,NOT_SURE,Uncertain,0.8,,Needs follow-up confirmation
+ADVM_091,TRUE,SUPPORT_LEVEL_GENERAL,support_intensity_preference,DIRECT,INTENSIVE,High-touch,0.85,,Weekly check-ins/visits
+ADVM_092,TRUE,SUPPORT_LEVEL_GENERAL,support_intensity_preference,DIRECT,MODERATE,Standard,0.85,,Monthly follow-up + training
+ADVM_093,TRUE,SUPPORT_LEVEL_GENERAL,support_intensity_preference,DIRECT,MINIMAL,Light-touch,0.85,,Quarterly check-ins
+ADVM_094,TRUE,SUPPORT_LEVEL_GENERAL,support_intensity_preference,DIRECT,SELF,Self-managed,0.8,,Digital guidance only
+ADVM_095,TRUE,BIOCHAR_TRACEABILITY_WILLINGNESS,biochar_mrv_capacity,DIRECT,YES,High,0.9,,Receipts + application records feasible
+ADVM_096,TRUE,BIOCHAR_TRACEABILITY_WILLINGNESS,biochar_mrv_capacity,DIRECT,YES_WITH_HELP,Medium,0.85,,Feasible with templates/field staff support
+ADVM_097,TRUE,BIOCHAR_TRACEABILITY_WILLINGNESS,biochar_mrv_capacity,DIRECT,DIFFICULT,Low-Medium,0.8,,MRV risk; needs simplification
+ADVM_098,TRUE,BIOCHAR_TRACEABILITY_WILLINGNESS,biochar_mrv_capacity,DIRECT,NO,Low/none,0.9,,Carbon-grade biochar MRV not feasible
+ADVM_099,TRUE,ERW_SOURCE_DISTANCE,erw_source_proximity,DIRECT,NEAR,Near (<=10 km),0.9,,Strong ERW logistics
+ADVM_100,TRUE,ERW_SOURCE_DISTANCE,erw_source_proximity,DIRECT,MID,Moderate (10-50 km),0.85,,Workable ERW logistics
+ADVM_101,TRUE,ERW_SOURCE_DISTANCE,erw_source_proximity,DIRECT,FAR_OR_NONE,Far/none (>50 km or unavailable),0.9,,ERW logistics weak
+ADVM_102,TRUE,ERW_SOURCE_DISTANCE,erw_source_proximity,DIRECT,UNKNOWN,Unknown,0.75,,Need source verification
+ADVM_103,TRUE,ERW_TRANSPORT_SPREAD_FEASIBILITY,erw_material_handling_capacity,DIRECT,EASY,High,0.9,,Can transport/spread ERW material
+ADVM_104,TRUE,ERW_TRANSPORT_SPREAD_FEASIBILITY,erw_material_handling_capacity,DIRECT,POSSIBLE_WITH_SUPPORT,Medium,0.85,,Possible with logistics support
+ADVM_105,TRUE,ERW_TRANSPORT_SPREAD_FEASIBILITY,erw_material_handling_capacity,DIRECT,DIFFICULT,Low,0.85,,ERW handling difficult
+ADVM_106,TRUE,ERW_TRANSPORT_SPREAD_FEASIBILITY,erw_material_handling_capacity,DIRECT,NOT_POSSIBLE,Very low,0.9,,ERW operationally not feasible
+ADVM_107,TRUE,ERW_TRACEABILITY_WILLINGNESS,erw_mrv_capacity,DIRECT,YES,High,0.9,,Receipts + application logs feasible
+ADVM_108,TRUE,ERW_TRACEABILITY_WILLINGNESS,erw_mrv_capacity,DIRECT,YES_WITH_HELP,Medium,0.85,,ERW MRV feasible with support
+ADVM_109,TRUE,ERW_TRACEABILITY_WILLINGNESS,erw_mrv_capacity,DIRECT,DIFFICULT,Low-Medium,0.8,,ERW MRV risk; simplify records
+ADVM_110,TRUE,ERW_TRACEABILITY_WILLINGNESS,erw_mrv_capacity,DIRECT,NO,Low/none,0.9,,Carbon-grade ERW MRV not feasible
+ADVM_111,TRUE,ERW_MATERIAL_TYPE,erw_material_type,DIRECT,BASALT,Basalt (preferred),0.9,,Best-fit ERW material in many cases
+ADVM_112,TRUE,ERW_MATERIAL_TYPE,erw_material_type,DIRECT,GRANITE,Granite,0.8,,Lower reactivity vs basalt
+ADVM_113,TRUE,ERW_MATERIAL_TYPE,erw_material_type,DIRECT,LIMESTONE,Limestone / liming material,0.8,,Methodology treatment differs from silicate ERW
+ADVM_114,TRUE,ERW_MATERIAL_TYPE,erw_material_type,DIRECT,DOLOMITE,Dolomite / liming material,0.8,,Methodology treatment differs from silicate ERW
+ADVM_115,TRUE,ERW_MATERIAL_TYPE,erw_material_type,DIRECT,MIXED,Mixed / variable source,0.75,,Requires source characterization
+ADVM_116,TRUE,ERW_MATERIAL_TYPE,erw_material_type,DIRECT,UNKNOWN,Unknown,0.7,,Request supplier/mineralogy information
+ADVM_117,TRUE,ERW_PARTICLE_FINENESS,erw_particle_fineness,DIRECT,FINE,Fine (<1 mm),0.9,,Best reaction kinetics
+ADVM_118,TRUE,ERW_PARTICLE_FINENESS,erw_particle_fineness,DIRECT,MIXED,Mixed size,0.8,,Moderate reactivity
+ADVM_119,TRUE,ERW_PARTICLE_FINENESS,erw_particle_fineness,DIRECT,COARSE,Coarse,0.85,,Low reaction rate
+ADVM_120,TRUE,ERW_PARTICLE_FINENESS,erw_particle_fineness,DIRECT,UNKNOWN,Unknown,0.7,,Need sieve/spec verification
+ADVM_121,TRUE,ERW_INCORPORATION_ABILITY,erw_incorporation_capacity,DIRECT,STRONG,High,0.85,,Good ability to mix into topsoil
+ADVM_122,TRUE,ERW_INCORPORATION_ABILITY,erw_incorporation_capacity,DIRECT,MODERATE,Medium,0.8,,Can incorporate with light tillage
+ADVM_123,TRUE,ERW_INCORPORATION_ABILITY,erw_incorporation_capacity,DIRECT,LOW,Low,0.85,,Incorporation constrained
+ADVM_124,TRUE,ERW_INCORPORATION_ABILITY,erw_incorporation_capacity,DIRECT,UNSURE,Uncertain,0.75,,Needs field operation planning
+ADVM_125,TRUE,ERW_POST_APPLICATION_MOISTURE,erw_moisture_support,DIRECT,RELIABLE,High,0.8,,Strong moisture support after application
+ADVM_126,TRUE,ERW_POST_APPLICATION_MOISTURE,erw_moisture_support,DIRECT,SOMETIMES,Medium,0.75,,Moderate moisture support
+ADVM_127,TRUE,ERW_POST_APPLICATION_MOISTURE,erw_moisture_support,DIRECT,RARE,Low,0.8,,Limited moisture support
+ADVM_128,TRUE,ERW_POST_APPLICATION_MOISTURE,erw_moisture_support,DIRECT,NONE,Very low,0.85,,Low dissolution support
+ADVM_129,TRUE,ERW_ALKALINE_RISK_PROXY,erw_alkaline_risk,DIRECT,HIGH,High (likely alkaline),0.75,,Proxy flag; validate with measured pH where available
+ADVM_130,TRUE,ERW_ALKALINE_RISK_PROXY,erw_alkaline_risk,DIRECT,LOW,Low,0.75,,No known alkaline risk
+ADVM_131,TRUE,ERW_ALKALINE_RISK_PROXY,erw_alkaline_risk,DIRECT,UNKNOWN,Unknown,0.65,,Needs pH measurement/confirmation
+ADVM_132,TRUE,BIO_PYROLYSIS_ACCESS,biochar_source_access,DIRECT,NEAR,Near (<=5 km),0.9,,Strong biochar supply access
+ADVM_133,TRUE,BIO_PYROLYSIS_ACCESS,biochar_source_access,DIRECT,MID,Moderate (5-20 km),0.85,,Workable biochar supply access
+ADVM_134,TRUE,BIO_PYROLYSIS_ACCESS,biochar_source_access,DIRECT,NO,No nearby access,0.9,,Biochar sourcing constrained
+ADVM_135,TRUE,BIO_PYROLYSIS_ACCESS,biochar_source_access,DIRECT,UNKNOWN,Unknown,0.75,,Need supplier discovery
+ADVM_136,TRUE,BIO_SOURCING_MODE,biochar_sourcing_mode,DIRECT,BUY,Buy finished biochar,0.8,,Market procurement route
+ADVM_137,TRUE,BIO_SOURCING_MODE,biochar_sourcing_mode,DIRECT,LOCAL_UNIT,Local unit production,0.8,,Local outsourced production route
+ADVM_138,TRUE,BIO_SOURCING_MODE,biochar_sourcing_mode,DIRECT,ON_FARM,On-farm kiln,0.75,,On-farm production route
+ADVM_139,TRUE,BIO_SOURCING_MODE,biochar_sourcing_mode,DIRECT,UNSURE,Undecided,0.7,,Sourcing mode not yet selected
+ADVM_140,TRUE,BIO_FEEDSTOCK_AVAILABILITY,bio_feedstock_availability,DIRECT,HIGH,High,0.9,,Strong biomass availability
+ADVM_141,TRUE,BIO_FEEDSTOCK_AVAILABILITY,bio_feedstock_availability,DIRECT,MEDIUM,Medium,0.85,,Moderate biomass availability
+ADVM_142,TRUE,BIO_FEEDSTOCK_AVAILABILITY,bio_feedstock_availability,DIRECT,LOW,Low,0.85,,Limited biomass availability
+ADVM_143,TRUE,BIO_FEEDSTOCK_AVAILABILITY,bio_feedstock_availability,DIRECT,NONE,Very low,0.95,,No biomass available
+ADVM_144,TRUE,BIO_RESIDUE_CURRENT_USE,bio_residue_competing_use,DIRECT,FODDER,High competing use (fodder),0.85,,Residue diversion constrained by livestock feed needs
+ADVM_145,TRUE,BIO_RESIDUE_CURRENT_USE,bio_residue_competing_use,DIRECT,BURN,Burning baseline,0.9,,Transition opportunity if burning is avoided
+ADVM_146,TRUE,BIO_RESIDUE_CURRENT_USE,bio_residue_competing_use,DIRECT,INCORPORATE,Already soil-returned,0.85,,Compare incorporation vs biochar tradeoff
+ADVM_147,TRUE,BIO_RESIDUE_CURRENT_USE,bio_residue_competing_use,DIRECT,SELL,Market-competed,0.85,,Economic competition for residue diversion
+ADVM_148,TRUE,BIO_RESIDUE_CURRENT_USE,bio_residue_competing_use,DIRECT,COMPOST,Composted,0.85,,Residues already valorized
+ADVM_149,TRUE,BIO_RESIDUE_CURRENT_USE,bio_residue_competing_use,DIRECT,OTHER,Other use,0.75,,Needs case-specific interpretation
+ADVM_150,TRUE,BIO_RESIDUE_DIVERT_WILLING,bio_residue_diversion_willingness,DIRECT,YES,High,0.9,,Willing to divert residues for biochar
+ADVM_151,TRUE,BIO_RESIDUE_DIVERT_WILLING,bio_residue_diversion_willingness,DIRECT,DEPENDS,Medium,0.85,,Conditional willingness
+ADVM_152,TRUE,BIO_RESIDUE_DIVERT_WILLING,bio_residue_diversion_willingness,DIRECT,NO,Low,0.9,,Not willing to divert residues
+ADVM_153,TRUE,BIO_APPLICATION_READINESS,biochar_application_readiness,DIRECT,HIGH,High,0.9,,Best-practice route available
+ADVM_154,TRUE,BIO_APPLICATION_READINESS,biochar_application_readiness,DIRECT,GOOD,Good,0.85,,Practical incorporation route available
+ADVM_155,TRUE,BIO_APPLICATION_READINESS,biochar_application_readiness,DIRECT,MODERATE,Moderate,0.85,,Targeted application possible
+ADVM_156,TRUE,BIO_APPLICATION_READINESS,biochar_application_readiness,DIRECT,LOW,Low,0.8,,Topdress-only / limited incorporation
+ADVM_157,TRUE,BIO_APPLICATION_READINESS,biochar_application_readiness,DIRECT,UNSURE,Uncertain,0.75,,Training needed on application method
+ADVM_158,TRUE,BIO_PRIORITY_SOIL_PROBLEM,biochar_target_problem,DIRECT,LOW_WATER_HOLDING,Water holding,0.85,,Biochar candidate use-case: improve water retention
+ADVM_159,TRUE,BIO_PRIORITY_SOIL_PROBLEM,biochar_target_problem,DIRECT,LOW_FERTILITY,Fertility / nutrient retention,0.85,,Biochar candidate use-case: nutrient response support
+ADVM_160,TRUE,BIO_PRIORITY_SOIL_PROBLEM,biochar_target_problem,DIRECT,ACIDIC,Acidic soil constraint,0.8,,Biochar effect depends on material properties
+ADVM_161,TRUE,BIO_PRIORITY_SOIL_PROBLEM,biochar_target_problem,DIRECT,SALINITY_HARDNESS,Salinity / hardness,0.75,,Context-specific biochar response
+ADVM_162,TRUE,BIO_PRIORITY_SOIL_PROBLEM,biochar_target_problem,DIRECT,HARD_SOIL,Compaction / hard soil,0.8,,Biochar may support structure with organics
+ADVM_163,TRUE,BIO_PRIORITY_SOIL_PROBLEM,biochar_target_problem,DIRECT,NONE,No clear target problem,0.75,,Biochar motivation/use-case unclear
+ADVM_164,TRUE,PH_LEVEL,soil_ph,DIRECT,ALKALINE_HIGH,Alkaline (>8.2),0.95,,Measured pH high
+ADVM_165,TRUE,PH_LEVEL,soil_ph,DIRECT,NORMAL,Normal (6.5-8.2),0.95,,Normal pH range
+ADVM_166,TRUE,PH_LEVEL,soil_ph,DIRECT,ACIDIC,Acidic (<6.5),0.95,,Acidic soil
+ADVM_167,TRUE,COMMITMENT_5YR,commitment_duration,DIRECT,YES,5+ years committed,0.95,,Carbon permanence met
+ADVM_168,TRUE,COMMITMENT_5YR,commitment_duration,DIRECT,NO,Not committed,0.95,,Carbon permanence not met
+ADVM_169,TRUE,COMMITMENT_5YR,commitment_duration,DIRECT,UNSURE,Uncertain,0.85,,Needs counseling
+ADVM_170,TRUE,REGEN_COMMITMENT,regen_commitment,DIRECT,YES,Committed,0.9,,Strong regen commitment
+ADVM_171,TRUE,REGEN_COMMITMENT,regen_commitment,DIRECT,DEPENDS,Conditional,0.85,,Needs support/incentives
+ADVM_172,TRUE,REGEN_COMMITMENT,regen_commitment,DIRECT,NO,Not committed,0.9,,Regen unlikely
+ADVM_173,TRUE,REGEN_TILLAGE_INTENSITY,regen_tillage_baseline,DIRECT,HIGH_DISTURBANCE,Deep plough,0.85,,High improvement potential
+ADVM_174,TRUE,REGEN_TILLAGE_INTENSITY,regen_tillage_baseline,DIRECT,MODERATE_HIGH_DISTURBANCE,Multiple till,0.85,,Moderate-high disturbance
+ADVM_175,TRUE,REGEN_TILLAGE_INTENSITY,regen_tillage_baseline,DIRECT,MIN_TILL,Minimum till,0.85,,Good regen alignment
+ADVM_176,TRUE,REGEN_TILLAGE_INTENSITY,regen_tillage_baseline,DIRECT,ZERO_TILL,Zero till,0.9,,Strong regen baseline
+ADVM_177,TRUE,REGEN_RESIDUE_MANAGEMENT,regen_residue_baseline,DIRECT,BURN,Burning,0.9,,Negative for regen
+ADVM_178,TRUE,REGEN_RESIDUE_MANAGEMENT,regen_residue_baseline,DIRECT,REMOVE,Removed,0.85,,Low carbon return
+ADVM_179,TRUE,REGEN_RESIDUE_MANAGEMENT,regen_residue_baseline,DIRECT,PARTIAL_RETAIN,Partial retention,0.85,,Moderate carbon return
+ADVM_180,TRUE,REGEN_RESIDUE_MANAGEMENT,regen_residue_baseline,DIRECT,FULL_RETAIN_MULCH,Full retention/mulch,0.9,,Strong practice
+ADVM_181,TRUE,REGEN_RESIDUE_MANAGEMENT,regen_residue_baseline,DIRECT,COMPOST,Composted,0.85,,Recycled via compost
+ADVM_182,TRUE,REGEN_ORGANIC_AMENDMENTS,regen_organic_frequency,DIRECT,REGULAR,Every season,0.9,,Strong SOC building
+ADVM_183,TRUE,REGEN_ORGANIC_AMENDMENTS,regen_organic_frequency,DIRECT,ANNUAL,Once per year,0.85,,Moderate
+ADVM_184,TRUE,REGEN_ORGANIC_AMENDMENTS,regen_organic_frequency,DIRECT,OCCASIONAL,Occasional,0.8,,Inconsistent
+ADVM_185,TRUE,REGEN_ORGANIC_AMENDMENTS,regen_organic_frequency,DIRECT,NONE,Never,0.9,,No organic inputs
+ADVM_186,TRUE,REGEN_COVER_CROP,regen_cover_crop,DIRECT,REGULAR,Regular,0.9,,Strong living roots
+ADVM_187,TRUE,REGEN_COVER_CROP,regen_cover_crop,DIRECT,SOMETIMES,Sometimes,0.85,,Partial
+ADVM_188,TRUE,REGEN_COVER_CROP,regen_cover_crop,DIRECT,NO,Never,0.9,,No cover crop
+ADVM_189,TRUE,REGEN_ROTATION_DIVERSITY,regen_rotation,DIRECT,MONOCROP,Monocrop,0.85,,Low diversity
+ADVM_190,TRUE,REGEN_ROTATION_DIVERSITY,regen_rotation,DIRECT_CATEGORICAL,MONOCROP,Monocrop,0.85,,Regen rotation diversity
+ADVM_191,TRUE,REGEN_ROTATION_DIVERSITY,regen_rotation,DIRECT_CATEGORICAL,TWO_CROPS,2-crop rotation,0.85,,Regen rotation
+ADVM_192,TRUE,REGEN_ROTATION_DIVERSITY,regen_rotation,DIRECT_CATEGORICAL,DIVERSE,Diverse rotation,0.9,,Regen 3+ crops
+ADVM_193,TRUE,REGEN_ROTATION_DIVERSITY,regen_rotation,DIRECT_CATEGORICAL,LEGUME_ROTATION,Legume rotation,0.9,,Regen legume rotation
+ADVM_194,TRUE,REGEN_LEGUME_INTEGRATION,regen_organic_frequency,DERIVED_PROXY,REGULAR,Every season,0.7,,Legume integration→organic freq proxy
+ADVM_195,TRUE,REGEN_LEGUME_INTEGRATION,regen_organic_frequency,DERIVED_PROXY,SOMETIMES,Occasional,0.65,,Sometimes legumes
+ADVM_196,TRUE,REGEN_LEGUME_INTEGRATION,regen_organic_frequency,DERIVED_PROXY,NONE,Never,0.65,,No legumes
+ADVM_197,TRUE,REGEN_MANURE_ACCESS,regen_organic_frequency,DERIVED_PROXY,REGULAR,Every season,0.8,,Manure access→organic freq
+ADVM_198,TRUE,REGEN_MANURE_ACCESS,regen_organic_frequency,DERIVED_PROXY,SOME,Once per year,0.75,,Some manure
+ADVM_199,TRUE,REGEN_MANURE_ACCESS,regen_organic_frequency,DERIVED_PROXY,NONE,Never,0.8,,No manure
+ADVM_200,TRUE,ERW_ROCK_TYPE,erw_material_type,DIRECT_CATEGORICAL,BASALT,Basalt (preferred),0.9,,Bridge: ERW eligibility→scoring
+ADVM_201,TRUE,ERW_ROCK_TYPE,erw_material_type,DIRECT_CATEGORICAL,OTHER,Mixed / variable source,0.75,,ERW other rock
+ADVM_202,TRUE,ERW_ROCK_TYPE,erw_material_type,DIRECT_CATEGORICAL,NONE,Unknown,0.7,,ERW no source
+ADVM_203,TRUE,MAIN_CROP,water_management_baseline,DERIVED_PROXY,RICE_FLOODED,Continuous flooding,0.75,,Bridge: rice crop→water baseline
+ADVM_204,TRUE,MAIN_CROP,water_management_baseline,DERIVED_PROXY,NON_RICE,Rainfed rice,0.75,,Bridge: non-rice
+ADVM_205,TRUE,WATER_MANAGEMENT,water_management_baseline,DIRECT_CATEGORICAL,CONTINUOUS_FLOOD,Continuous flooding,0.95,,Bridge: water_mgmt eligibility
+ADVM_206,TRUE,WATER_MANAGEMENT,water_management_baseline,DIRECT_CATEGORICAL,AWD_ALREADY,Already AWD,0.95,,Bridge: already AWD
+ADVM_207,TRUE,WATER_MANAGEMENT,water_management_baseline,DIRECT_CATEGORICAL,INTERMITTENT_FLOOD,Intermittent flooding,0.9,,Bridge: intermittent
+ADVM_208,TRUE,WATER_MANAGEMENT,water_management_baseline,DIRECT_CATEGORICAL,AEROBIC,Aerobic rice,0.9,,Bridge: aerobic
+ADVM_209,TRUE,WATER_MANAGEMENT,water_management_baseline,DIRECT_CATEGORICAL,RAINFED,Rainfed rice,0.9,,Bridge: rainfed
+ADVM_210,TRUE,BIOCHAR_APPLICATION,biochar_application_readiness,DIRECT_CATEGORICAL,YES,High,0.9,,Bridge: biochar eligibility
+ADVM_211,TRUE,BIOCHAR_APPLICATION,biochar_application_readiness,DIRECT_CATEGORICAL,PLANNING,Moderate,0.8,,Bridge: planning
+ADVM_212,TRUE,BIOCHAR_APPLICATION,biochar_application_readiness,DIRECT_CATEGORICAL,NO,Low,0.9,,Bridge: no biochar interest
+ADVM_213,TRUE,BIO_RESIDUE_DIVERT_WILLING,bio_residue_diversion_willingness,DIRECT_CATEGORICAL,YES,High,0.9,,Biochar diversion willing
+ADVM_214,TRUE,BIO_RESIDUE_DIVERT_WILLING,bio_residue_diversion_willingness,DIRECT_CATEGORICAL,DEPENDS,Medium,0.85,,Conditional
+ADVM_215,TRUE,BIO_RESIDUE_DIVERT_WILLING,bio_residue_diversion_willingness,DIRECT_CATEGORICAL,NO,Low,0.9,,Unwilling
+ADVM_216,TRUE,PUMP_POWER_TYPE,irrigation_cost_level,DERIVED_PROXY,ELECTRIC,Low,0.7,,Electric pump→lower cost
+ADVM_217,TRUE,PUMP_POWER_TYPE,irrigation_cost_level,DERIVED_PROXY,DIESEL,High,0.75,,Diesel pump→higher cost
+ADVM_218,TRUE,PUMP_POWER_TYPE,irrigation_cost_level,DERIVED_PROXY,SOLAR,Low,0.8,,Solar→very low marginal cost
+ADVM_219,TRUE,PUMP_POWER_TYPE,irrigation_cost_level,DERIVED_PROXY,NONE,Low,0.7,,Rainfed→no pump cost
