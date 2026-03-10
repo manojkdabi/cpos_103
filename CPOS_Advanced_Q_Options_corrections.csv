@@ -1,0 +1,21 @@
+# PASTE OVER MATCHING ROWS (match Question_ID+Option_Code) OR APPEND FOR NEW ENTRIES
+# ----------------------------------------------------------------
+Question_ID,Option_Code,Option_Value_Numeric,Option_Label_EN,Option_Label_HI,Option_Order,Direct_Score_0_100,Confidence_Modifier,Triggers_Verification,Triggers_Follow_Up,Follow_Up_Question_ID,Icon,Is_Active,Notes,Derives_Signal_Key,Derives_Signal_Value,Triggers_Probe,Probe_ID,Is_Other,Option_Category
+ADV_D1_010,NO,,Soil not alkaline / pH likely ≤ 8.2,मिट्टी क्षारीय नहीं / pH संभवतः ≤ 8.2,1,80,0.6,FALSE,FALSE,,🧪,TRUE,Better expected ERW benefit,ERW_ALKALINE_RISK_PROXY,NO,FALSE,,FALSE,HIGH
+ADV_D1_010,DONT_KNOW,,Don't know soil alkalinity,मिट्टी की क्षारीयता पता नहीं,2,55,0.6,FALSE,TRUE,ADV_D1_008,❓,TRUE,Recommend soil pH test,ERW_ALKALINE_RISK_PROXY,DONT_KNOW,FALSE,,FALSE,MEDIUM
+ADV_D1_010,YES_ALKALINE,,Soil is alkaline / pH likely > 8.2,मिट्टी क्षारीय / pH संभवतः > 8.2,3,30,0.6,FALSE,FALSE,,⚠️,TRUE,ERW benefit may be reduced; careful selection needed,ERW_ALKALINE_RISK_PROXY,YES_ALKALINE,FALSE,,FALSE,LOW
+ADV_D8_T01,YES_FEASIBLE,,"Yes, transport and spreading is feasible and affordable","हाँ, परिवहन और फैलाना व्यवहार्य और किफायती है",1,85,0.85,FALSE,FALSE,,🚜,TRUE,ERW application logistically viable,ERW_TRANSPORT_SPREAD_FEASIBILITY,FEASIBLE,FALSE,,FALSE,HIGH
+ADV_D8_T01,YES_PARTIAL,,Possible but costly / limited access,संभव लेकिन महंगा / सीमित पहुंच,2,55,0.75,FALSE,FALSE,,🔶,TRUE,Partial feasibility - may need subsidy,ERW_TRANSPORT_SPREAD_FEASIBILITY,PARTIAL,FALSE,,FALSE,MEDIUM
+ADV_D8_T01,NO,,Not feasible — remote location or no suitable equipment,व्यावहारिक नहीं — दूरदराज स्थान या उपयुक्त उपकरण नहीं,3,15,0.8,FALSE,FALSE,,❌,TRUE,ERW pathway not viable,ERW_TRANSPORT_SPREAD_FEASIBILITY,NOT_FEASIBLE,FALSE,,FALSE,LOW
+ADV_I1_003,YES,,"Yes, smartphone with internet access","हाँ, इंटरनेट वाला स्मार्टफोन है",1,85,0.8,FALSE,FALSE,,📱,TRUE,Digital support possible,SMARTPHONE_ACCESS,YES,FALSE,,FALSE,HIGH
+ADV_I1_003,NO,,No smartphone / no internet,स्मार्टफोन नहीं / इंटरनेट नहीं,2,60,0.8,FALSE,FALSE,,📵,TRUE,Traditional support needed,SMARTPHONE_ACCESS,NO,FALSE,,FALSE,MEDIUM
+ADV_I1_003,BASIC_PHONE,,"Basic phone only (calls/SMS, no internet)","केवल बेसिक फोन (कॉल/SMS, इंटरनेट नहीं)",3,65,0.75,FALSE,FALSE,,📞,TRUE,SMS-based support possible,SMARTPHONE_ACCESS,BASIC_ONLY,FALSE,,FALSE,MEDIUM
+ADV_I3_001,YES_ACTIVE,,"Yes, active bank account with transactions","हाँ, सक्रिय बैंक खाता है",1,90,0.85,FALSE,FALSE,,🏦,TRUE,Full financial access - formal credit accessible,BANK_ACCOUNT_STATUS,ACTIVE,FALSE,,FALSE,HIGH
+ADV_I3_001,YES_INACTIVE,,"Yes, bank account but rarely used","हाँ, बैंक खाता है लेकिन कम उपयोग",2,65,0.75,FALSE,FALSE,,🏦,TRUE,Partial financial access,BANK_ACCOUNT_STATUS,INACTIVE,FALSE,,FALSE,MEDIUM
+ADV_I3_001,NO,,No bank account,बैंक खाता नहीं है,3,30,0.8,FALSE,FALSE,,🪙,TRUE,No formal banking - limits formal credit access,BANK_ACCOUNT_STATUS,NONE,FALSE,,FALSE,LOW
+ADV_I3_002,YES_COMFORTABLE,,"Yes, comfortable savings / 3+ months buffer","हाँ, आरामदायक बचत / 3+ महीने का बफर",1,90,0.85,FALSE,FALSE,,💰,TRUE,Strong financial cushion for investments,SAVINGS_LEVEL,HIGH,FALSE,,FALSE,HIGH
+ADV_I3_002,SOME_SAVINGS,,Some savings / 1-2 months buffer,कुछ बचत / 1-2 महीने का बफर,2,60,0.8,FALSE,FALSE,,💵,TRUE,Moderate financial cushion,SAVINGS_LEVEL,MEDIUM,FALSE,,FALSE,MEDIUM
+ADV_I3_002,NO_SAVINGS,,No savings — hand-to-mouth,कोई बचत नहीं — हाथ से मुँह तक,3,20,0.8,FALSE,FALSE,,📉,TRUE,Financial vulnerability - needs microfinance support,SAVINGS_LEVEL,LOW,FALSE,,FALSE,LOW
+ADV_I3_004,YES_ALL,,"Yes, all major crops insured","हाँ, सभी प्रमुख फसलें बीमाकृत हैं",1,90,0.85,FALSE,FALSE,,🛡️,TRUE,Full crop insurance coverage,CROP_INSURANCE,FULL,FALSE,,FALSE,HIGH
+ADV_I3_004,YES_PARTIAL,,"Yes, some crops insured","हाँ, कुछ फसलें बीमाकृत हैं",2,65,0.8,FALSE,FALSE,,🛡️,TRUE,Partial insurance coverage,CROP_INSURANCE,PARTIAL,FALSE,,FALSE,MEDIUM
+ADV_I3_004,NO,,No crop insurance,कोई फसल बीमा नहीं,3,25,0.8,FALSE,FALSE,,❌,TRUE,No insurance - high risk exposure,CROP_INSURANCE,NONE,FALSE,,FALSE,LOW
