@@ -415,7 +415,7 @@
       font-size: 20px;
     }
 
-    //  CSOP MODULE - All existing styles preserved
+    /*  CSOP MODULE - All existing styles preserved */
     #csopModule .app {
       max-width: 100%;
       margin: 0;
@@ -946,9 +946,34 @@
       .feature-grid {
         grid-template-columns: 1fr;
       }
+
+      /* Hamburger button - visible only on mobile */
+      .mobile-menu-btn {
+        display: flex;
+      }
     }
 
-    //ADVANCED ASSESSMENT MODULE - INDEPENDENT STYLES
+    /* Hamburger button - hidden on desktop */
+    .mobile-menu-btn {
+      display: none;
+      position: fixed;
+      top: 14px;
+      left: 14px;
+      z-index: 1100;
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--primary);
+      border: none;
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    }
+
+    /* ADVANCED ASSESSMENT MODULE - INDEPENDENT STYLES */
 
     /* Shimmer animation for progress bar */
     @keyframes shimmer {
@@ -1374,6 +1399,9 @@
       </div>
     </div>
   </div>
+
+  <!-- MOBILE HAMBURGER BUTTON (visible only on small screens) -->
+  <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMobileMenu()" aria-label="Open navigation menu">☰</button>
 
   <!-- MAIN CONTENT AREA -->
   <div class="main-content" id="mainContent">
@@ -2286,11 +2314,15 @@
 
         window.toggleSidebar = toggleSidebar;
 
-        // Mobile menu toggle (optional)
+        // Mobile menu toggle
         function toggleMobileMenu() {
             const sidebar = document.getElementById('sidebar');
-            sidebar.classList.toggle('mobile-open');
+            const isOpen = sidebar.classList.toggle('mobile-open');
+            const btn = document.getElementById('mobileMenuBtn');
+            if (btn) btn.textContent = isOpen ? '✕' : '☰';
         }
+
+        window.toggleMobileMenu = toggleMobileMenu;
 
 
         // ADMIN MODULE - ADVANCED SHEET ROW EDITOR
@@ -4108,10 +4140,16 @@
 
         function showConsistencyWarning(violation) {
             var lang = CPOSL.language;
-            var warningHtml = '<div class="warning-box">' + '<div style="display:flex;gap:10px;align-items:flex-start">' + '<span style="font-size:24px">⚠️</span>' + '<div style="flex:1">' + '<div style="font-weight:700;margin-bottom:6px;color:var(--warn)">' + (lang === 'HI' ? 'त्वरित जाँच' : 'Quick Check') + '</div>' + '<div style="font-size:13px;line-height:1.5;margin-bottom:10px">' + escapeHtml(violation.message) + '</div>' + '<div style="display:flex;gap:8px;flex-wrap:wrap">' + '<button class="btn ghost" onclick="reviewConflict(\'' + violation.ruleId + '\')">' + (lang === 'HI' ? 'पिछले उत्तर देखें' : 'Review Previous Answers') + '</button>' + '<button class="btn primary" onclick="continueAnyway()">' + (lang === 'HI' ? 'फिर भी जारी रखें' : 'Continue Anyway') + '</button>' + '</div></div></div></div>';
+            // Store violation first so reviewConflict() can read it from state (ruleId not embedded in onclick)
+            CPOSL.qState.pendingWarning = violation;
+            var warningHtml = '<div class="warning-box">' + '<div style="display:flex;gap:10px;align-items:flex-start">' + '<span style="font-size:24px">⚠️</span>' + '<div style="flex:1">' + '<div style="font-weight:700;margin-bottom:6px;color:var(--warn)">' + (lang === 'HI' ? 'त्वरित जाँच' : 'Quick Check') + '</div>' + '<div style="font-size:13px;line-height:1.5;margin-bottom:10px">' + escapeHtml(violation.message) + '</div>' + '<div style="display:flex;gap:8px;flex-wrap:wrap">' + '<button class="btn ghost" id="btnReviewConflict">' + (lang === 'HI' ? 'पिछले उत्तर देखें' : 'Review Previous Answers') + '</button>' + '<button class="btn primary" onclick="continueAnyway()">' + (lang === 'HI' ? 'फिर भी जारी रखें' : 'Continue Anyway') + '</button>' + '</div></div></div></div>';
 
             document.getElementById('qNavStatus').innerHTML = warningHtml;
-            CPOSL.qState.pendingWarning = violation;
+            // Attach reviewer click handler after DOM insertion (avoids ruleId injection into onclick attribute)
+            var btnReview = document.getElementById('btnReviewConflict');
+            if (btnReview) {
+                btnReview.addEventListener('click', function() { reviewConflict(violation.ruleId); });
+            }
         }
 
         function reviewConflict(ruleId) {
@@ -8047,7 +8085,8 @@
             'HIGH': 'HIGH',
 
             'MODERATE': 'MODERATE',
-            'MEDIUM': 'MODERATE',
+            // NOTE: 'MEDIUM' is intentionally omitted here; the canonical mapping
+            //       'MEDIUM': 'MEDIUM' appears in the SOC LEVELS section below.
 
             // CROP TYPE VALUES
             'RICE': 'RICE',
@@ -8067,7 +8106,8 @@
             'LOW': 'LOW',
 
             'NEUTRAL': 'NEUTRAL',
-            'MEDIUM': 'NEUTRAL',
+            // NOTE: 'MEDIUM' is not mapped to 'NEUTRAL' here to avoid conflicting with
+            //       the SOC-level mapping. pH inputs should use 'NEUTRAL' directly.
 
             'ALKALINE': 'HIGH',
             'BASIC': 'HIGH',
@@ -8095,7 +8135,9 @@
             'DRIP': 'DRIP',
             'SPRINKLER': 'SPRINKLER',
             'FURROW': 'FURROW',
-            'NONE': 'RAINFED',
+            // NOTE: 'NONE' is intentionally omitted here to avoid overriding the tillage
+            //       domain mapping ('NONE' = no-till). Use 'NO_IRRIGATION' for absent irrigation.
+            'NO_IRRIGATION': 'RAINFED',
             'RAINFED': 'RAINFED',
 
             // ORGANIC AMENDMENTS
